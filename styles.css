@@ -243,3 +243,27 @@ footer {
   font-weight: bold;
   letter-spacing: 1px;
 }
+/* Button Styles for Navigation Links */
+.button {
+  background-color: #66ccff; /* matches your brand blue */
+  color: #000;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #3399ff; /* darker blue on hover/focus */
+  outline: none;
+}
+
+/* Smooth scroll behavior added inline in HTML already, no change here */
