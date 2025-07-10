@@ -1,0 +1,245 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #ffffff;
+  line-height: 1.9;
+}
+
+a {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 5px;
+}
+
+/* Header */
+header {
+  background-color: #1e1e1e;
+  padding: 1px 1px;
+  text-align: center;
+  border-bottom: 3px solid #66ccff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 5rem;
+}
+
+.slogan {
+  font-style: italic;
+  color: #aaa;
+  font-size: 3rem;
+  margin-top: 5px;
+}
+
+
+/* Sections */
+section {
+  padding: 5px 0;
+}
+
+.intro h2,
+.services h2,
+.quote-form h2 {
+  font-size: 6rem;
+  margin-bottom: 10px;
+}
+
+.package {
+  background-color: #1c1c1c;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-left: 5px solid #66ccff;
+}
+
+.add-ons {
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-top: 10px;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 10px;
+  margin-top: 5px;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+}
+
+form button {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #66ccff;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #55bbee;
+}
+
+/* Footer */
+footer {
+  background-color: #1e1e1e;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #999;
+}
+/* Photo Gallery */
+.photo-gallery {
+  padding: 5px 0;
+}
+
+.photo-gallery h2 {
+  font-size: 3rem;
+  text-align: center;
+  color: #66ccff;
+  margin-bottom: 30px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+}
+
+.gallery-item {
+  background-color: #1c1c1c;
+  border: 2px solid #444;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  padding: 5px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #333;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.gallery-item p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #ccc;
+  font-style: italic;
+}
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y; /* Allows horizontal swiping */
+}
+
+.carousel img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 8px;
+  border: 2px solid #66ccff;
+  transition: transform 0.4s ease;
+}
+.header-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1px 1px;
+  background-color: #e6f2f8; /* optional: matching your brand style */
+}
+
+.logo {
+  height: 250px; /* adjust as needed */
+  width: auto;
+}
+
+.header-text {
+  text-align: center;
+  flex: 1;
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 4em;
+  color: #66ccff;
+}
+
+.slogan {
+  font-style: italic;
+  margin: 1px 0 0;
+  color: #333;
+}
+.carousel button {
+  background-color: transparent;
+  border: none;
+  color: #66ccff;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel button:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .carousel img {
+    max-height: 300px;
+  }
+
+  .carousel button {
+    font-size: 1.5rem;
+  }
+}
+.container > h2 {
+  font-size: 3rem;}
+  .intro p {
+  font-size: 2rem; /* or whatever size you want */
+  margin-top: 10px;}
+  .intro h2 {
+  font-size: 3rem; /* adjust as needed */
+}
+.package h3 {
+  font-size: 1.5rem; /* or try 2.2rem or 2.5rem depending on your preference */
+  color: #66ccff;   /* optional: helps them stand out */
+  margin-bottom: 5px;
+}
+.package p {
+  font-size: 1.5rem; /* or 0.9rem for slightly smaller */
+  line-height: 1.0; /* optional: keeps it readable */
+}
+.package ul li {
+  font-size: 1.5rem; /* increase as desired: try 1.3rem or 1.4rem if needed */
+  margin-bottom: 5px; /* optional: adds spacing between items */
+}
+.header-text h1 {
+  font-size: 6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
