@@ -265,5 +265,31 @@ footer {
   background-color: #3399ff; /* darker blue on hover/focus */
   outline: none;
 }
+/* Buttons in the header below slogan */
+.header-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header-buttons .button {
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  border-radius: 6px;
+  background-color: #66ccff;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.header-buttons .button:hover,
+.header-buttons .button:focus {
+  background-color: #3399ff;
+  outline: none;
+}
+
 
 /* Smooth scroll behavior added inline in HTML already, no change here */
