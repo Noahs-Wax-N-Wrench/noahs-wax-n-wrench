@@ -275,11 +275,11 @@ footer {
 }
 
 .header-buttons .button {
-  padding: 10px 20px;
-  font-size: 1.4rem;
+  padding: 12px 24px;
+  font-size: 1.6rem; /* slightly larger */
   border-radius: 6px;
   background-color: #66ccff;
-  color: #000;
+  color: #000000; /* black text */
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.3s ease;
