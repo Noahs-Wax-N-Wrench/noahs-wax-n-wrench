@@ -15,34 +15,32 @@
 <body>
   <header>
     <div class="header-logos">
-      <img src="Pictures/Logo-Idea.png" alt="Logo Left" class="logo left">
+      <img src="Pictures/Logo-Idea.png" alt="Logo Left" class="logo left" />
       <div class="header-text">
         <h1>Noah's Wax N' Wrench</h1>
         <p class="slogan">On the Go, Auto Glow</p>
       </div>
-      <img src="Pictures/Logo-Idea.png" alt="Logo Right" class="logo right">
+      <img src="Pictures/Logo-Idea.png" alt="Logo Right" class="logo right" />
     </div>
   </header>
 
-  <section id="intro" class="intro"> <!-- added id -->
+  <section id="intro" class="intro">
     <div class="container">
       <h2>Mobile Detailing in Southeast Wisconsin</h2>
       <p>Professional, affordable, and right at your doorstep. We bring the shine to you!</p>
-      <a href="#packages" class="button">View Our Packages</a> <!-- added button -->
+      <a href="#packages" class="button">View Our Packages</a>
     </div>
   </section>
 
-  <section id="gallery" class="photo-gallery"> <!-- added id -->
+  <section id="gallery" class="photo-gallery">
     <div class="container">
       <h2>Detailing Gallery</h2>
       <div class="carousel">
         <button id="prevBtn">&#10094;</button>
-
-        <img id="carouselImage" src="Pictures/Kia-Front-Before-and-After.jpeg" alt="Gallery Image">
-
+        <img id="carouselImage" src="Pictures/Kia-Front-Before-and-After.jpeg" alt="Gallery Image" />
         <button id="nextBtn">&#10095;</button>
       </div>
-      <a href="#quote" class="button">Request a Quote</a> <!-- added button -->
+      <a href="#quote" class="button">Request a Quote</a>
     </div>
     <script>
       const images = [
@@ -67,7 +65,7 @@
     </script>
   </section>
 
-  <div id="packages" class="container"> <!-- added id -->
+  <div id="packages" class="container">
     <h2>Our Detailing Packages</h2>
 
     <h2>Interior</h2>
@@ -106,16 +104,14 @@
 
     <p class="add-ons">💡 Add-ons available for any package (e.g., oil change, headlight restoration, exterior trim restoration, light scratch removal etc.)</p>
 
-    <a href="#quote" class="button">Get a Free Quote</a> <!-- added button -->
+    <a href="#quote" class="button">Get a Free Quote</a>
   </div>
 
-  <section id="quote" class="quote-form"> <!-- added id -->
+  <section id="quote" class="quote-form">
     <div class="container">
       <h2>Request a Quote</h2>
-      <!-- Success / Error Message -->
       <div id="form-messages" style="display: none; margin-top: 15px;"></div>
 
-      <!-- Updated Form using Formspree -->
       <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="Name" required />
