@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noah's Wax N' Wrench</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -18,49 +24,54 @@
     </div>
   </header>
 
-  <section class="intro">
+  <section id="intro" class="intro"> <!-- added id -->
     <div class="container">
       <h2>Mobile Detailing in Southeast Wisconsin</h2>
       <p>Professional, affordable, and right at your doorstep. We bring the shine to you!</p>
+      <a href="#packages" class="button">View Our Packages</a> <!-- added button -->
     </div>
   </section>
 
-  <section class="photo-gallery">
+  <section id="gallery" class="photo-gallery"> <!-- added id -->
     <div class="container">
       <h2>Detailing Gallery</h2>
       <div class="carousel">
         <button id="prevBtn">&#10094;</button>
+
         <img id="carouselImage" src="Pictures/Kia-Front-Before-and-After.jpeg" alt="Gallery Image">
+
         <button id="nextBtn">&#10095;</button>
       </div>
+      <a href="#quote" class="button">Request a Quote</a> <!-- added button -->
     </div>
+    <script>
+      const images = [
+        "Pictures/Honda-Backseat-Before-and-After.jpeg",
+        "Pictures/Kia-Backseat-Before-and-After.jpeg",
+        "Pictures/Kia-Front-Before-and-After.jpeg",
+        "Pictures/Lexus-Front-Before-and-After.png"
+      ];
+
+      let currentIndex = 0;
+      const imgElement = document.getElementById("carouselImage");
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        imgElement.src = images[currentIndex];
+      });
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        imgElement.src = images[currentIndex];
+      });
+    </script>
   </section>
 
-  <script>
-    const images = [
-      "Pictures/Honda-Backseat-Before-and-After.jpeg",
-      "Pictures/Kia-Backseat-Before-and-After.jpeg",
-      "Pictures/Kia-Front-Before-and-After.jpeg",
-      "Pictures/Lexus-Front-Before-and-After.png"
-    ];
-    let currentIndex = 0;
-    const imgElement = document.getElementById("carouselImage");
-
-    document.getElementById("prevBtn").addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      imgElement.src = images[currentIndex];
-    });
-
-    document.getElementById("nextBtn").addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % images.length;
-      imgElement.src = images[currentIndex];
-    });
-  </script>
-
-  <div class="container">
+  <div id="packages" class="container"> <!-- added id -->
     <h2>Our Detailing Packages</h2>
 
     <h2>Interior</h2>
+
     <div class="package">
       <h3>Interior Detail – Starting at $100</h3>
       <p><strong>Note:</strong> Final price varies by vehicle size and condition.</p>
@@ -77,6 +88,7 @@
     </div>
 
     <h2>Exterior</h2>
+
     <div class="package">
       <h3>Exterior Bronze – Starting at $60+</h3>
       <p>Degreaser foam sprayer and brush clean for wheels, wheel wells, tires, and lower rocker panels. Pressure washer pre-rinse, foam cannon agitation wash with wash mitt, no-rinse application to remove any water spots and clean door jambs, finished with a spray wax on all exterior surfaces.</p>
@@ -93,15 +105,17 @@
     </div>
 
     <p class="add-ons">💡 Add-ons available for any package (e.g., oil change, headlight restoration, exterior trim restoration, light scratch removal etc.)</p>
+
+    <a href="#quote" class="button">Get a Free Quote</a> <!-- added button -->
   </div>
 
-  <section class="quote-form">
+  <section id="quote" class="quote-form"> <!-- added id -->
     <div class="container">
       <h2>Request a Quote</h2>
-
-      <!-- Success/Error Message Container -->
+      <!-- Success / Error Message -->
       <div id="form-messages" style="display: none; margin-top: 15px;"></div>
 
+      <!-- Updated Form using Formspree -->
       <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="Name" required />
@@ -136,7 +150,6 @@
     </div>
   </footer>
 
-  <!-- Formspree JS Handler -->
   <script>
     const form = document.getElementById("quote-form");
     const formMessages = document.getElementById("form-messages");
