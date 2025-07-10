@@ -2,125 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Noah's Wax N' Wrench</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Smooth scrolling */
-    html {
-      scroll-behavior: smooth;
-    }
-  </style>
 </head>
 <body>
+
+  <a href="#intro" class="skip-link">Skip to content</a>
+
   <header>
     <div class="header-logos">
-      <img src="Pictures/Logo-Idea.png" alt="Logo Left" class="logo left">
+      <img src="Pictures/Logo-Idea.png" alt="Logo Left" class="logo left" />
       <div class="header-text">
         <h1>Noah's Wax N' Wrench</h1>
         <p class="slogan">On the Go, Auto Glow</p>
 
-        <!-- Navigation Buttons below slogan -->
-        <nav class="header-buttons">
+        <nav class="header-buttons" aria-label="Primary Navigation">
           <a href="#intro" class="button">Intro</a>
           <a href="#gallery" class="button">Gallery</a>
           <a href="#packages" class="button">Packages</a>
           <a href="#quote" class="button">Get a Quote</a>
         </nav>
       </div>
-      <img src="Pictures/Logo-Idea.png" alt="Logo Right" class="logo right">
+      <img src="Pictures/Logo-Idea.png" alt="Logo Right" class="logo right" />
     </div>
   </header>
 
-  <section id="intro" class="intro">
-    <div class="container">
+  <main>
+    <section id="intro" class="intro container">
       <h2>Mobile Detailing in Southeast Wisconsin</h2>
       <p>Professional, affordable, and right at your doorstep. We bring the shine to you!</p>
-      <!-- Removed old button here -->
-    </div>
-  </section>
+    </section>
 
-  <section id="gallery" class="photo-gallery">
-    <div class="container">
+    <section id="gallery" class="photo-gallery container">
       <h2>Detailing Gallery</h2>
-      <div class="carousel">
-        <button id="prevBtn">&#10094;</button>
-        <img id="carouselImage" src="Pictures/Kia-Front-Before-and-After.jpeg" alt="Gallery Image">
-        <button id="nextBtn">&#10095;</button>
+      <div class="carousel" role="region" aria-label="Detailing image gallery">
+        <button id="prevBtn" aria-label="Previous image">&#10094;</button>
+        <img id="carouselImage" src="Pictures/Kia-Front-Before-and-After.jpeg" alt="Gallery Image" />
+        <button id="nextBtn" aria-label="Next image">&#10095;</button>
       </div>
-      <!-- Removed old button here -->
-    </div>
-    <script>
-      const images = [
-        "Pictures/Honda-Backseat-Before-and-After.jpeg",
-        "Pictures/Kia-Backseat-Before-and-After.jpeg",
-        "Pictures/Kia-Front-Before-and-After.jpeg",
-        "Pictures/Lexus-Front-Before-and-After.png"
-      ];
+    </section>
 
-      let currentIndex = 0;
-      const imgElement = document.getElementById("carouselImage");
+    <section id="packages" class="container">
+      <h2>Our Detailing Packages</h2>
 
-      document.getElementById("prevBtn").addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        imgElement.src = images[currentIndex];
-      });
+      <h2>Interior</h2>
 
-      document.getElementById("nextBtn").addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % images.length;
-        imgElement.src = images[currentIndex];
-      });
-    </script>
-  </section>
+      <div class="package">
+        <h3>Interior Detail – Starting at $100</h3>
+        <p><strong>Note:</strong> Final price varies by vehicle size and condition.</p>
+        <ul>
+          <li>Thorough vacuuming of all interior surfaces</li>
+          <li>Steam cleaning of carpets and upholstery (as needed)</li>
+          <li>Vinyl, plastic & trim cleaning (dash, center console, doors, cupholders, vents, glove box)</li>
+          <li>Light spot/stain treatment <em>(must be agreed upon)</em></li>
+          <li>UV protectant applied to all vinyl, plastic & trim</li>
+          <li>Interior glass cleaning</li>
+          <li>Everyday odor elimination</li>
+        </ul>
+        <p><strong>Add-ons available:</strong> Extractor vacuuming, cabin & or engine air filter replacement, carpet enzyme clean, shampoo & finisher, heavy stain treatment, major odor elimination & more — priced upon consultation.</p>
+      </div>
 
-  <div id="packages" class="container">
-    <h2>Our Detailing Packages</h2>
+      <h2>Exterior</h2>
 
-    <h2>Interior</h2>
+      <div class="package">
+        <h3>Exterior Bronze – Starting at $60+</h3>
+        <p>Degreaser foam sprayer and brush clean for wheels, wheel wells, tires, and lower rocker panels. Pressure washer pre-rinse, foam cannon agitation wash with wash mitt, no-rinse application to remove any water spots and clean door jambs, finished with a spray wax on all exterior surfaces.</p>
+      </div>
 
-    <div class="package">
-      <h3>Interior Detail – Starting at $100</h3>
-      <p><strong>Note:</strong> Final price varies by vehicle size and condition.</p>
-      <ul>
-        <li>Thorough vacuuming of all interior surfaces</li>
-        <li>Steam cleaning of carpets and upholstery (as needed)</li>
-        <li>Vinyl, plastic & trim cleaning (dash, center console, doors, cupholders, vents, glove box)</li>
-        <li>Light spot/stain treatment <em>(must be agreed upon)</em></li>
-        <li>UV protectant applied to all vinyl, plastic & trim</li>
-        <li>Interior glass cleaning</li>
-        <li>Everyday odor elimination</li>
-      </ul>
-      <p><strong>Add-ons available:</strong> Extractor vacuuming, cabin & or engine air filter replacement, carpet enzyme clean, shampoo & finisher, heavy stain treatment, major odor elimination & more — priced upon consultation.</p>
-    </div>
+      <div class="package">
+        <h3>Exterior Silver – Starting at $75+</h3>
+        <p>Everything in Bronze plus: Interior & exterior window cleaning, bug removal treatment, exterior trim & plastic dressing & protectorant, safe tire dressing application</p>
+      </div>
 
-    <h2>Exterior</h2>
+      <div class="package">
+        <h3>Exterior Platinum – Starting at $100+</h3>
+        <p>Everything in Silver and Bronze plus: Engine bay cleaning, clay bar decontamination treatment, and iron removal treatment.</p>
+      </div>
 
-    <div class="package">
-      <h3>Exterior Bronze – Starting at $60+</h3>
-      <p>Degreaser foam sprayer and brush clean for wheels, wheel wells, tires, and lower rocker panels. Pressure washer pre-rinse, foam cannon agitation wash with wash mitt, no-rinse application to remove any water spots and clean door jambs, finished with a spray wax on all exterior surfaces.</p>
-    </div>
+      <p class="add-ons">💡 Add-ons available for any package (e.g., oil change, headlight restoration, exterior trim restoration, light scratch removal etc.)</p>
+    </section>
 
-    <div class="package">
-      <h3>Exterior Silver – Starting at $75+</h3>
-      <p>Everything in Bronze plus: Interior & exterior window cleaning, bug removal treatment, exterior trim & plastic dressing & protectorant, safe tire dressing application</p>
-    </div>
-
-    <div class="package">
-      <h3>Exterior Platinum – Starting at $100+</h3>
-      <p>Everything in Silver and Bronze plus: Engine bay cleaning, clay bar decontamination treatment, and iron removal treatment.</p>
-    </div>
-
-    <p class="add-ons">💡 Add-ons available for any package (e.g., oil change, headlight restoration, exterior trim restoration, light scratch removal etc.)</p>
-
-    <!-- Removed old button here -->
-  </div>
-
-  <section id="quote" class="quote-form">
-    <div class="container">
+    <section id="quote" class="quote-form container">
       <h2>Request a Quote</h2>
       <div id="form-messages" style="display: none; margin-top: 15px;"></div>
 
-      <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST">
+      <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST" novalidate>
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="Name" required />
 
@@ -143,8 +110,8 @@
 
         <button type="submit">Send Quote Request</button>
       </form>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <div class="container">
@@ -154,40 +121,6 @@
     </div>
   </footer>
 
-  <script>
-    const form = document.getElementById("quote-form");
-    const formMessages = document.getElementById("form-messages");
-
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: { Accept: "application/json" }
-        });
-
-        if (response.ok) {
-          formMessages.style.display = "block";
-          formMessages.style.color = "lightgreen";
-          formMessages.innerText = "✅ Thank you! Your quote request has been sent.";
-          form.reset();
-        } else {
-          const data = await response.json();
-          formMessages.style.display = "block";
-          formMessages.style.color = "orange";
-          formMessages.innerText = data.errors
-            ? data.errors.map(e => e.message).join(", ")
-            : "⚠️ Something went wrong. Please try again.";
-        }
-      } catch (error) {
-        formMessages.style.display = "block";
-        formMessages.style.color = "red";
-        formMessages.innerText = "❌ Network error. Please try again later.";
-      }
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
