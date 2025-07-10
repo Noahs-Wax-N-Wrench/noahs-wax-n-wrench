@@ -1,3 +1,8 @@
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* Global Styles */
 body {
   margin: 0;
@@ -5,6 +10,7 @@ body {
   background-color: #121212;
   color: #ffffff;
   line-height: 1.9;
+  padding: 0 20px;
 }
 
 a {
@@ -18,86 +24,195 @@ a {
   padding: 5px;
 }
 
+/* Skip link styles */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #66ccff;
+  color: #000;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s ease;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* Header */
 header {
   background-color: #1e1e1e;
-  padding: 1px 1px;
+  padding: 10px 0;
   text-align: center;
   border-bottom: 3px solid #66ccff;
 }
 
-header h1 {
+.header-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e6f2f8;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 250px;
+  width: auto;
+  margin: 10px;
+}
+
+.header-text {
+  flex: 1 1 400px;
+  text-align: center;
+  margin: 10px;
+}
+
+.header-text h1 {
   margin: 0;
-  font-size: 5rem;
+  font-size: 6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #66ccff;
 }
 
 .slogan {
   font-style: italic;
-  color: #aaa;
-  font-size: 3rem;
-  margin-top: 5px;
+  margin: 10px 0 0;
+  color: #333;
+  font-size: 2.5rem;
 }
 
+/* Navigation Buttons below slogan */
+.header-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header-buttons .button {
+  background-color: #66ccff;
+  color: #000000;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.6rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+}
+
+.header-buttons .button:hover,
+.header-buttons .button:focus {
+  background-color: #3399ff;
+  outline: none;
+}
 
 /* Sections */
-section {
-  padding: 5px 0;
+section, .container {
+  padding: 20px 0;
 }
 
 .intro h2,
-.services h2,
-.quote-form h2 {
-  font-size: 6rem;
+.quote-form h2,
+#packages h2 {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  color: #66ccff;
+  text-align: center;
+}
+
+.intro p {
+  font-size: 2rem;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+  text-align: center;
+}
+
+/* Package styling */
+.package {
+  background-color: #1c1c1c;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 5px solid #66ccff;
+  border-radius: 8px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.package h3 {
+  font-size: 2rem;
+  color: #66ccff;
   margin-bottom: 10px;
 }
 
-.package {
-  background-color: #1c1c1c;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-left: 5px solid #66ccff;
+.package p, .package ul li {
+  font-size: 1.5rem;
+  line-height: 1.3;
 }
 
 .add-ons {
   margin-top: 10px;
   font-style: italic;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.3rem;
+  text-align: center;
 }
 
 /* Form */
 form {
+  max-width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
 form label {
-  margin-top: 10px;
+  margin-top: 15px;
+  font-size: 1.4rem;
 }
 
 form input,
 form select,
 form textarea {
-  padding: 10px;
+  padding: 12px;
   margin-top: 5px;
   background-color: #222;
   color: #fff;
   border: 1px solid #444;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  resize: vertical;
 }
 
 form button {
-  margin-top: 20px;
-  padding: 12px;
+  margin-top: 25px;
+  padding: 16px;
   background-color: #66ccff;
   border: none;
   color: #000;
   font-weight: bold;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
+  font-size: 1.6rem;
   transition: background-color 0.3s ease;
+  user-select: none;
 }
 
 form button:hover {
-  background-color: #55bbee;
+  background-color: #3399ff;
 }
 
 /* Footer */
@@ -105,14 +220,11 @@ footer {
   background-color: #1e1e1e;
   text-align: center;
   padding: 20px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: #999;
 }
-/* Photo Gallery */
-.photo-gallery {
-  padding: 5px 0;
-}
 
+/* Photo Gallery */
 .photo-gallery h2 {
   font-size: 3rem;
   text-align: center;
@@ -120,35 +232,6 @@ footer {
   margin-bottom: 30px;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 10px;
-}
-
-.gallery-item {
-  background-color: #1c1c1c;
-  border: 2px solid #444;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  padding: 5px;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 1px solid #333;
-  box-shadow: 0 0 10px rgba(0,0,0,0.6);
-}
-
-.gallery-item p {
-  margin-top: 8px;
-  font-size: 1rem;
-  color: #ccc;
-  font-style: italic;
-}
 .carousel {
   display: flex;
   align-items: center;
@@ -156,7 +239,9 @@ footer {
   gap: 10px;
   position: relative;
   overflow: hidden;
-  touch-action: pan-y; /* Allows horizontal swiping */
+  touch-action: pan-y;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
 }
 
 .carousel img {
@@ -166,130 +251,103 @@ footer {
   border: 2px solid #66ccff;
   transition: transform 0.4s ease;
 }
-.header-logos {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1px 1px;
-  background-color: #e6f2f8; /* optional: matching your brand style */
-}
 
-.logo {
-  height: 250px; /* adjust as needed */
-  width: auto;
-}
-
-.header-text {
-  text-align: center;
-  flex: 1;
-}
-
-.header-text h1 {
-  margin: 0;
-  font-size: 4em;
-  color: #66ccff;
-}
-
-.slogan {
-  font-style: italic;
-  margin: 1px 0 0;
-  color: #333;
-}
 .carousel button {
   background-color: transparent;
   border: none;
   color: #66ccff;
-  font-size: 2rem;
+  font-size: 2.5rem;
   cursor: pointer;
   z-index: 1;
+  user-select: none;
+  padding: 0 10px;
+  transition: color 0.3s ease;
 }
 
 .carousel button:hover {
   color: #ffffff;
 }
 
-@media (max-width: 600px) {
-  .carousel img {
-    max-height: 300px;
+/* Responsive styles */
+@media (max-width: 768px) {
+  body {
+    padding: 0 15px;
   }
 
-  .carousel button {
-    font-size: 1.5rem;
+  .header-logos {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-}
-.container > h2 {
-  font-size: 3rem;}
+
+  .logo {
+    height: 150px;
+    margin: 10px 0;
+  }
+
+  .header-text h1 {
+    font-size: 3rem;
+  }
+
+  .slogan {
+    font-size: 1.6rem;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .header-buttons .button {
+    font-size: 1.4rem;
+    width: 100%;
+    padding: 12px;
+  }
+
+  .intro h2,
+  .quote-form h2,
+  #packages h2 {
+    font-size: 2.4rem;
+  }
+
   .intro p {
-  font-size: 2rem; /* or whatever size you want */
-  margin-top: 10px;}
-  .intro h2 {
-  font-size: 3rem; /* adjust as needed */
-}
-.package h3 {
-  font-size: 1.5rem; /* or try 2.2rem or 2.5rem depending on your preference */
-  color: #66ccff;   /* optional: helps them stand out */
-  margin-bottom: 5px;
-}
-.package p {
-  font-size: 1.5rem; /* or 0.9rem for slightly smaller */
-  line-height: 1.0; /* optional: keeps it readable */
-}
-.package ul li {
-  font-size: 1.5rem; /* increase as desired: try 1.3rem or 1.4rem if needed */
-  margin-bottom: 5px; /* optional: adds spacing between items */
-}
-.header-text h1 {
-  font-size: 6rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-/* Button Styles for Navigation Links */
-.button {
-  background-color: #66ccff; /* matches your brand blue */
-  color: #000;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 20px;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+    font-size: 1.4rem;
+  }
+
+  .package h3,
+  .package p,
+  .package ul li {
+    font-size: 1.2rem;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 1.1rem;
+  }
+
+  form button {
+    font-size: 1.4rem;
+    width: 100%;
+  }
+
+  .photo-gallery h2 {
+    font-size: 2rem;
+  }
+
+  .carousel img {
+    max-height: 250px;
+  }
+
+  footer {
+    font-size: 0.9rem;
+  }
 }
 
-.button:hover,
-.button:focus {
-  background-color: #3399ff; /* darker blue on hover/focus */
-  outline: none;
+/* Accessibility focus outlines */
+.button:focus,
+form button:focus {
+  outline: 3px solid #3399ff;
+  outline-offset: 3px;
 }
-/* Buttons in the header below slogan */
-.header-buttons {
-  margin-top: 15px;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.header-buttons .button {
-  padding: 12px 24px;
-  font-size: 1.6rem; /* slightly larger */
-  border-radius: 6px;
-  background-color: #66ccff;
-  color: #000000; /* black text */
-  font-weight: bold;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.header-buttons .button:hover,
-.header-buttons .button:focus {
-  background-color: #3399ff;
-  outline: none;
-}
-
-
-/* Smooth scroll behavior added inline in HTML already, no change here */
