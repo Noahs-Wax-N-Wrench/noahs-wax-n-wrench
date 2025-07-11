@@ -1,9 +1,11 @@
 const images = [
-  "Pictures/Honda-Backseat-Before-and-After.jpeg",
   "Pictures/Kia-Backseat-Before-and-After.jpeg",
   "Pictures/Kia-Front-Before-and-After.jpeg",
-  "Pictures/Lexus-Front-Before-and-After.png"
+  "Pictures/Lexus-Front-Before-and-After.png",
+  "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg",
+  "Pictures/Lexus-Back-Before-and-After.jpg"
 ];
+
 
 let currentIndex = 0;
 const imgElement = document.getElementById("carouselImage");
