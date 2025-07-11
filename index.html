@@ -98,59 +98,28 @@
       <option value="Platinum">Exterior Platinum</option>
     </select>
 
-    <fieldset id="addons" name="AddOns">
-      <legend>Add-ons (select any):</legend>
+    <!-- inside your form, replace only the fieldset for add-ons with this updated version -->
+<fieldset id="addons" name="AddOns">
+  <legend>Add-ons (select any):</legend>
 
-      <label>
-        <input type="checkbox" name="AddOns" value="Oil Change" />
-        Oil Change
-      </label>
+  <div class="addons-grid">
+    <div class="addons-column">
+      <label><input type="checkbox" name="AddOns" value="Oil Change" /> Oil Change</label>
+      <label><input type="checkbox" name="AddOns" value="Headlight Restoration" /> Headlight Restoration</label>
+      <label><input type="checkbox" name="AddOns" value="Exterior Trim Restoration" /> Exterior Trim Restoration</label>
+      <label><input type="checkbox" name="AddOns" value="Light Scratch Removal" /> Clear Coat Scratch Removal</label>
+      <label><input type="checkbox" name="AddOns" value="Engine Bay Cleaning" /> Engine Bay Cleaning</label>
+    </div>
+    <div class="addons-column">
+      <label><input type="checkbox" name="AddOns" value="Cabin or Engine Air Filter Replacement" /> Cabin & or Engine Air Filter Replacement</label>
+      <label><input type="checkbox" name="AddOns" value="Ozone Odor Treatment" /> Ozone Odor Treatment</label>
+      <label><input type="checkbox" name="AddOns" value="Headliner Cleaning" /> Headliner Cleaning</label>
+      <label><input type="checkbox" name="AddOns" value="Vehicle Pick-up & Delivery" /> Vehicle Pick-up & Delivery</label>
+      <label><input type="checkbox" name="AddOns" value="Windshield Water Repellent" /> Windshield Water Repellent</label>
+    </div>
+  </div>
+</fieldset>
 
-      <label>
-        <input type="checkbox" name="AddOns" value="Headlight Restoration" />
-        Headlight Restoration
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Exterior Trim Restoration" />
-        Exterior Trim Restoration
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Light Scratch Removal" />
-        Clear Coat Scratch Removal
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Engine Bay Cleaning" />
-        Engine Bay Cleaning
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Cabin or Engine Air Filter Replacement" />
-        Cabin &amp; or Engine Air Filter Replacement
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Ozone Odor Treatment" />
-        Ozone Odor Treatment
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Headliner Cleaning" />
-        Headliner Cleaning
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Vehicle Pick-up & Delivery" />
-        Vehicle Pick-up &amp; Delivery
-      </label>
-
-      <label>
-        <input type="checkbox" name="AddOns" value="Windshield Water Repellent" />
-        Windshield Water Repellent
-      </label>
-    </fieldset>
 
     <label for="details">Vehicle & Service Details:</label>
     <textarea id="details" name="Details" rows="4" placeholder="Year, make, model, add-ons, preferred dates, etc."></textarea>
