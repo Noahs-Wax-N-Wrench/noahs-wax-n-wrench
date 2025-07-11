@@ -1,8 +1,8 @@
 const images = [
   "Pictures/Kia-Front-Before-and-After.jpeg",
   "Pictures/Kia-Backseat-Before-and-After.jpeg",
-  "Pictures/Lexus Back Before and After.jpg",
-  "Pictures/Clear Coat Scratch Before and After.jpeg"
+  "Pictures/Lexus-Back-Before-and-After.jpg",
+  "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg"
 ];
 
 let currentIndex = 0;
