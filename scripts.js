@@ -1,24 +1,35 @@
 const images = [
-  "Pictures/Kia-Backseat-Before-and-After.jpeg",
   "Pictures/Kia-Front-Before-and-After.jpeg",
-  "Pictures/Lexus-Front-Before-and-After.png",
-  "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg",
-  "Pictures/Lexus-Back-Before-and-After.jpg"
+  "Pictures/Kia-Backseat-Before-and-After.jpeg",
+  "Pictures/Lexus Back Before and After.jpg",
+  "Pictures/Clear Coat Scratch Before and After.jpeg"
 ];
-
 
 let currentIndex = 0;
 const imgElement = document.getElementById("carouselImage");
 
-document.getElementById("prevBtn").addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  imgElement.src = images[currentIndex];
-});
+function showImage(index) {
+  imgElement.src = images[index];
+}
 
-document.getElementById("nextBtn").addEventListener("click", () => {
+function nextImage() {
   currentIndex = (currentIndex + 1) % images.length;
-  imgElement.src = images[currentIndex];
-});
+  showImage(currentIndex);
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+}
+
+// Initial image load
+showImage(currentIndex);
+
+// Auto-rotate every 5 seconds
+setInterval(nextImage, 5000);
+
+document.getElementById("nextBtn").addEventListener("click", nextImage);
+document.getElementById("prevBtn").addEventListener("click", prevImage);
 
 // Form submission with fetch
 const form = document.getElementById("quote-form");
@@ -54,46 +65,3 @@ form.addEventListener("submit", async function (e) {
     formMessages.innerText = "❌ Network error. Please try again later.";
   }
 });
-const images = [
-  {
-    src: "Pictures/Kia-Backseat-Before-and-After.jpeg",
-    alt: "Kia backseat before and after detailing"
-  },
-  {
-    src: "Pictures/Kia-Front-Before-and-After.jpeg",
-    alt: "Kia front interior before and after detailing"
-  },
-  {
-    src: "Pictures/Lexus-Front-Before-and-After.png",
-    alt: "Lexus front area before and after detailing"
-  },
-  {
-    src: "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg",
-    alt: "Clear coat scratch before and after"
-  },
-  {
-    src: "Pictures/Lexus-Back-Before-and-After.jpg",
-    alt: "Lexus carpet before and after cleaning"
-  }
-];
-
-let currentIndex = 0;
-const imgElement = document.getElementById("carouselImage");
-
-function updateImage() {
-  imgElement.src = images[currentIndex].src;
-  imgElement.alt = images[currentIndex].alt;
-}
-
-document.getElementById("prevBtn").addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateImage();
-});
-
-document.getElementById("nextBtn").addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateImage();
-});
-
-// Initialize on load
-updateImage();
