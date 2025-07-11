@@ -1,52 +1,19 @@
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Global Styles */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #121212;
   color: #ffffff;
-  line-height: 1.9;
-  padding: 0 20px;
-}
-
-a {
-  color: #66ccff;
-  text-decoration: none;
 }
 
 .container {
   max-width: 960px;
   margin: auto;
-  padding: 5px;
+  padding: 20px;
 }
 
-/* Skip link styles */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #66ccff;
-  color: #000;
-  padding: 8px;
-  z-index: 100;
-  transition: top 0.3s ease;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-}
-.skip-link:focus {
-  top: 0;
-}
-
-/* Header */
 header {
   background-color: #1e1e1e;
   padding: 10px 0;
-  text-align: center;
   border-bottom: 3px solid #66ccff;
 }
 
@@ -54,91 +21,86 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   background-color: #e6f2f8;
   padding: 10px 20px;
-  flex-wrap: wrap;
 }
 
 .logo {
-  height: 250px;
+  height: 150px;
   width: auto;
-  margin: 10px;
 }
 
 .header-text {
-  flex: 1 1 400px;
+  flex: 1;
   text-align: center;
-  margin: 10px;
 }
 
 .header-text h1 {
+  font-size: 3rem;
   margin: 0;
-  font-size: 6rem;
-  font-weight: bold;
-  letter-spacing: 1px;
   color: #66ccff;
 }
 
 .slogan {
   font-style: italic;
-  margin: 10px 0 0;
+  font-size: 1.5rem;
   color: #333;
-  font-size: 2.5rem;
 }
 
-/* Navigation Buttons below slogan */
 .header-buttons {
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
-  gap: 15px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .header-buttons .button {
   background-color: #66ccff;
-  color: #000000;
-  padding: 14px 28px;
+  color: #000;
+  padding: 12px 20px;
   border-radius: 8px;
   font-weight: bold;
-  font-size: 1.6rem;
   text-decoration: none;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.3s ease;
-  display: inline-block;
-  text-align: center;
-  user-select: none;
+  font-size: 1.2rem;
 }
 
-.header-buttons .button:hover,
-.header-buttons .button:focus {
-  background-color: #3399ff;
-  outline: none;
-}
-
-/* Sections */
-section, .container {
-  padding: 20px 0;
-}
-
-.intro h2,
-.quote-form h2,
-#packages h2 {
-  font-size: 4rem;
-  margin-bottom: 15px;
+.photo-gallery h2 {
+  font-size: 2.5rem;
   color: #66ccff;
   text-align: center;
 }
 
-.intro p {
-  font-size: 2rem;
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
   max-width: 700px;
-  margin: 0 auto 30px auto;
-  text-align: center;
+  margin: 0 auto;
 }
 
-/* Package styling */
+.carousel img {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 10px;
+  border: 2px solid #66ccff;
+}
+
+.carousel button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #66ccff;
+  cursor: pointer;
+}
+
+.carousel button:hover {
+  color: #fff;
+}
+
 .package {
   background-color: #1c1c1c;
   padding: 20px;
@@ -171,7 +133,6 @@ section, .container {
   text-align: center;
 }
 
-/* Form */
 form {
   max-width: 700px;
   margin: 0 auto;
@@ -215,139 +176,20 @@ form button:hover {
   background-color: #3399ff;
 }
 
-/* Footer */
 footer {
   background-color: #1e1e1e;
   text-align: center;
   padding: 20px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #999;
 }
 
-/* Photo Gallery */
-.photo-gallery h2 {
-  font-size: 3rem;
-  text-align: center;
-  color: #66ccff;
-  margin-bottom: 30px;
-}
-
-.carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  overflow: hidden;
-  touch-action: pan-y;
-  max-width: 700px;
-  margin: 0 auto 30px auto;
-}
-
-.carousel img {
-  max-width: 100%;
-  max-height: 500px;
-  border-radius: 8px;
-  border: 2px solid #66ccff;
-  transition: transform 0.4s ease;
-}
-
-.carousel button {
-  background-color: transparent;
-  border: none;
-  color: #66ccff;
-  font-size: 2.5rem;
-  cursor: pointer;
-  z-index: 1;
-  user-select: none;
-  padding: 0 10px;
-  transition: color 0.3s ease;
-}
-
-.carousel button:hover {
-  color: #ffffff;
-}
-
-/* Responsive styles */
 @media (max-width: 768px) {
-  body {
-    padding: 0 15px;
-  }
-
-  .header-logos {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .logo {
-    height: 150px;
-    margin: 10px 0;
-  }
-
   .header-text h1 {
-    font-size: 3rem;
-  }
-
-  .slogan {
-    font-size: 1.6rem;
-  }
-
-  .header-buttons {
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
-  }
-
-  .header-buttons .button {
-    font-size: 1.4rem;
-    width: 100%;
-    padding: 12px;
-  }
-
-  .intro h2,
-  .quote-form h2,
-  #packages h2 {
-    font-size: 2.4rem;
-  }
-
-  .intro p {
-    font-size: 1.4rem;
-  }
-
-  .package h3,
-  .package p,
-  .package ul li {
-    font-size: 1.2rem;
-  }
-
-  form input,
-  form select,
-  form textarea {
-    font-size: 1.1rem;
-  }
-
-  form button {
-    font-size: 1.4rem;
-    width: 100%;
-  }
-
-  .photo-gallery h2 {
     font-size: 2rem;
   }
 
   .carousel img {
     max-height: 250px;
   }
-
-  footer {
-    font-size: 0.9rem;
-  }
-}
-
-/* Accessibility focus outlines */
-.button:focus,
-form button:focus {
-  outline: 3px solid #3399ff;
-  outline-offset: 3px;
 }
