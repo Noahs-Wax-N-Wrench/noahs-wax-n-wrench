@@ -54,3 +54,46 @@ form.addEventListener("submit", async function (e) {
     formMessages.innerText = "❌ Network error. Please try again later.";
   }
 });
+const images = [
+  {
+    src: "Pictures/Kia-Backseat-Before-and-After.jpeg",
+    alt: "Kia backseat before and after detailing"
+  },
+  {
+    src: "Pictures/Kia-Front-Before-and-After.jpeg",
+    alt: "Kia front interior before and after detailing"
+  },
+  {
+    src: "Pictures/Lexus-Front-Before-and-After.png",
+    alt: "Lexus front area before and after detailing"
+  },
+  {
+    src: "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg",
+    alt: "Clear coat scratch before and after"
+  },
+  {
+    src: "Pictures/Lexus-Back-Before-and-After.jpg",
+    alt: "Lexus carpet before and after cleaning"
+  }
+];
+
+let currentIndex = 0;
+const imgElement = document.getElementById("carouselImage");
+
+function updateImage() {
+  imgElement.src = images[currentIndex].src;
+  imgElement.alt = images[currentIndex].alt;
+}
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  updateImage();
+});
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  updateImage();
+});
+
+// Initialize on load
+updateImage();
