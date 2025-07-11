@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
-  color: #000;
+  background-color: #f5f5f5; /* Light background */
+  color: #000000;            /* Black text */
 }
 
 .container {
@@ -11,8 +11,9 @@ body {
   padding: 20px;
 }
 
+/* Header */
 header {
-  background-color: #1e1e1e;
+  background-color: #ffffff;
   padding: 10px 0;
   border-bottom: 3px solid #66ccff;
 }
@@ -64,8 +65,15 @@ header {
   font-weight: bold;
   text-decoration: none;
   font-size: 1.2rem;
+  transition: background-color 0.3s ease;
 }
 
+.header-buttons .button:hover {
+  background-color: #3399ff;
+  color: #fff;
+}
+
+/* Gallery */
 .photo-gallery h2 {
   font-size: 2.5rem;
   color: #66ccff;
@@ -98,11 +106,13 @@ header {
 }
 
 .carousel button:hover {
-  color: #fff;
+  color: #000;
 }
 
+/* Package Cards */
 .package {
-  background-color: #1c1c1c;
+  background-color: #ffffff;
+  color: #000;
   padding: 20px;
   margin-bottom: 20px;
   border-left: 5px solid #66ccff;
@@ -133,6 +143,7 @@ header {
   text-align: center;
 }
 
+/* Form */
 form {
   max-width: 700px;
   margin: 0 auto;
@@ -150,8 +161,8 @@ form select,
 form textarea {
   padding: 12px;
   margin-top: 5px;
-  background-color: #222;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   border: 1px solid #444;
   border-radius: 6px;
   font-size: 1.4rem;
@@ -174,16 +185,19 @@ form button {
 
 form button:hover {
   background-color: #3399ff;
+  color: #fff;
 }
 
+/* Footer */
 footer {
-  background-color: #1e1e1e;
+  background-color: #f0f0f0;
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
-  color: #999;
+  color: #444;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .header-text h1 {
     font-size: 2rem;
