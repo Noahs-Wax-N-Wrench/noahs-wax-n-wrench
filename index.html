@@ -97,34 +97,17 @@
           <option value="Silver">Exterior Silver</option>
           <option value="Platinum">Exterior Platinum</option>
         </select>
+       
+        <label for="addons">Add-ons (select any):</label>
+<select id="addons" name="AddOns" multiple size="4">
+  <option value="Oil Change">Oil Change</option>
+  <option value="Headlight Restoration">Headlight Restoration</option>
+  <option value="Exterior Trim Restoration">Exterior Trim Restoration</option>
+  <option value="Light Scratch Removal">Light Scratch Removal</option>
+</select>
 
         <label for="details">Vehicle & Service Details:</label>
         <textarea id="details" name="Details" rows="4" placeholder="Year, make, model, add-ons, preferred dates, etc."></textarea>
-
-        <fieldset>
-          <legend>Add-ons (select any):</legend>
-
-          <label>
-            <input type="checkbox" name="AddOns" value="Oil Change" />
-            Oil Change
-          </label>
-
-          <label>
-            <input type="checkbox" name="AddOns" value="Headlight Restoration" />
-            Headlight Restoration
-          </label>
-
-          <label>
-            <input type="checkbox" name="AddOns" value="Exterior Trim Restoration" />
-            Exterior Trim Restoration
-          </label>
-
-          <label>
-            <input type="checkbox" name="AddOns" value="Light Scratch Removal" />
-            Light Scratch Removal
-          </label>
-
-        </fieldset>
 
         <button type="submit">Send Quote Request</button>
       </form>
