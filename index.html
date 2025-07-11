@@ -78,49 +78,87 @@
     </section>
 
     <section id="quote" class="quote-form container">
-      <h2>Request a Quote</h2>
-      <div id="form-messages" style="display: none; margin-top: 15px;"></div>
-      <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST" novalidate>
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="Name" required />
+  <h2>Request a Quote</h2>
+  <div id="form-messages" style="display: none; margin-top: 15px;"></div>
+  <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST" novalidate>
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="Name" required />
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="Email" required />
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="Email" required />
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="Phone" required />
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="Phone" required />
 
-        <label for="package">Select Package:</label>
-        <select id="package" name="Package">
-          <option value="Interior">Interior</option>
-          <option value="Bronze">Exterior Bronze</option>
-          <option value="Silver">Exterior Silver</option>
-          <option value="Platinum">Exterior Platinum</option>
-        </select>
+    <label for="package">Select Package:</label>
+    <select id="package" name="Package">
+      <option value="Interior">Interior</option>
+      <option value="Bronze">Exterior Bronze</option>
+      <option value="Silver">Exterior Silver</option>
+      <option value="Platinum">Exterior Platinum</option>
+    </select>
 
-        <fieldset id="addons" name="AddOns">
-          <legend>Add-ons (select any):</legend>
+    <fieldset id="addons" name="AddOns">
+      <legend>Add-ons (select any):</legend>
 
-          <label>
-            <input type="checkbox" name="AddOns" value="Oil Change" />
-            Oil Change
-          </label>
+      <label>
+        <input type="checkbox" name="AddOns" value="Oil Change" />
+        Oil Change
+      </label>
 
-          <label>
-            <input type="checkbox" name="AddOns" value="Headlight Restoration" />
-            Headlight Restoration
-          </label>
+      <label>
+        <input type="checkbox" name="AddOns" value="Headlight Restoration" />
+        Headlight Restoration
+      </label>
 
-          <label>
-            <input type="checkbox" name="AddOns" value="Exterior Trim Restoration" />
-            Exterior Trim Restoration
-          </label>
+      <label>
+        <input type="checkbox" name="AddOns" value="Exterior Trim Restoration" />
+        Exterior Trim Restoration
+      </label>
 
-          <label>
-            <input type="checkbox" name="AddOns" value="Light Scratch Removal" />
-            Light Scratch Removal
-          </label>
-        </fieldset>
+      <label>
+        <input type="checkbox" name="AddOns" value="Light Scratch Removal" />
+        Clear Coat Scratch Removal
+      </label>
+
+      <label>
+        <input type="checkbox" name="AddOns" value="Engine Bay Cleaning" />
+        Engine Bay Cleaning
+      </label>
+
+      <label>
+        <input type="checkbox" name="AddOns" value="Cabin or Engine Air Filter Replacement" />
+        Cabin &amp; or Engine Air Filter Replacement
+      </label>
+
+      <label>
+        <input type="checkbox" name="AddOns" value="Ozone Odor Treatment" />
+        Ozone Odor Treatment
+      </label>
+
+      <label>
+        <input type="checkbox" name="AddOns" value="Headliner Cleaning" />
+        Headliner Cleaning
+      </label>
+
+      <label>
+        <input type="checkbox" name="AddOns" value="Vehicle Pick-up & Delivery" />
+        Vehicle Pick-up &amp; Delivery
+      </label>
+
+      <label>
+        <input type="checkbox" name="AddOns" value="Windshield Water Repellent" />
+        Windshield Water Repellent
+      </label>
+    </fieldset>
+
+    <label for="details">Vehicle & Service Details:</label>
+    <textarea id="details" name="Details" rows="4" placeholder="Year, make, model, add-ons, preferred dates, etc."></textarea>
+
+    <button type="submit">Send Quote Request</button>
+  </form>
+</section>
+
 
         <label for="details">Vehicle & Service Details:</label>
         <textarea id="details" name="Details" rows="4" placeholder="Year, make, model, add-ons, preferred dates, etc."></textarea>
