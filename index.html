@@ -7,17 +7,13 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <a href="#intro" class="skip-link">Skip to content</a>
-
   <header>
     <div class="header-logos">
       <img src="Pictures/Logo-Idea.png" alt="Logo Left" class="logo left" />
       <div class="header-text">
         <h1>Noah's Wax N' Wrench</h1>
         <p class="slogan">On the Go, Auto Glow</p>
-
-        <nav class="header-buttons" aria-label="Primary Navigation">
+        <nav class="header-buttons">
           <a href="#intro" class="button">Intro</a>
           <a href="#gallery" class="button">Gallery</a>
           <a href="#packages" class="button">Packages</a>
@@ -36,9 +32,9 @@
 
     <section id="gallery" class="photo-gallery container">
       <h2>Detailing Gallery</h2>
-      <div class="carousel" role="region" aria-label="Detailing image gallery">
+      <div class="carousel">
         <button id="prevBtn" aria-label="Previous image">&#10094;</button>
-        <img id="carouselImage" src="Pictures/Kia-Front-Before-and-After.jpeg" alt="Gallery Image" />
+        <img id="carouselImage" src="" alt="Gallery image" />
         <button id="nextBtn" aria-label="Next image">&#10095;</button>
       </div>
     </section>
@@ -47,7 +43,6 @@
       <h2>Our Detailing Packages</h2>
 
       <h2>Interior</h2>
-
       <div class="package">
         <h3>Interior Detail – Starting at $100</h3>
         <p><strong>Note:</strong> Final price varies by vehicle size and condition.</p>
@@ -64,7 +59,6 @@
       </div>
 
       <h2>Exterior</h2>
-
       <div class="package">
         <h3>Exterior Bronze – Starting at $60+</h3>
         <p>Degreaser foam sprayer and brush clean for wheels, wheel wells, tires, and lower rocker panels. Pressure washer pre-rinse, foam cannon agitation wash with wash mitt, no-rinse application to remove any water spots and clean door jambs, finished with a spray wax on all exterior surfaces.</p>
@@ -86,7 +80,6 @@
     <section id="quote" class="quote-form container">
       <h2>Request a Quote</h2>
       <div id="form-messages" style="display: none; margin-top: 15px;"></div>
-
       <form id="quote-form" action="https://formspree.io/f/xwpbgkbz" method="POST" novalidate>
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="Name" required />
