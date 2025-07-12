@@ -1,0 +1,329 @@
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #66ccff 0%, #ffffff 100%);
+  color: #000000;
+  font-size: 16px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  padding: 10px 0;
+  border-bottom: 3px solid #66ccff;
+}
+
+.header-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: #e6f2f8;
+  padding: 10px 20px;
+}
+
+.logo {
+  height: 150px;
+  width: auto;
+}
+
+.header-text {
+  flex: 1;
+  text-align: center;
+}
+
+.header-text h1 {
+  font-size: 3rem;
+  margin: 0;
+  color: #66ccff;
+}
+
+.slogan {
+  font-style: italic;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.header-buttons {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.header-buttons .button {
+  background-color: #ffffff;
+  color: #000;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2rem;
+  border: 2px solid #66ccff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-buttons .button:hover {
+  background-color: #3399ff;
+  color: #fff;
+}
+
+/* Intro Section */
+#intro h2 {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+#intro p {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* Gallery */
+.photo-gallery h2 {
+  font-size: 2.5rem;
+  color: #000;
+  text-align: center;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #66ccff;
+}
+
+.carousel button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.carousel button:hover {
+  color: #ffffff;
+  background-color: #66ccff;
+  border-radius: 50%;
+}
+
+/* Packages */
+.package {
+  background-color: #ffffff;
+  color: #000;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 5px solid #66ccff;
+  border-radius: 8px;
+  max-width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.package h3 {
+  font-size: 2rem;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.package p,
+.package ul li {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Add-ons note */
+.add-ons {
+  margin-top: 10px;
+  font-style: italic;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #333;
+}
+
+/* Quote Form */
+form {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  margin-top: 15px;
+  font-size: 1.4rem;
+  color: #000;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 12px;
+  margin-top: 5px;
+  background-color: #f9f9f9;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  resize: vertical;
+}
+
+form button {
+  margin-top: 25px;
+  padding: 16px;
+  background-color: #66ccff;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+form button:hover {
+  background-color: #3399ff;
+  color: #fff;
+}
+
+/* Fieldset */
+fieldset {
+  margin-top: 15px;
+  border: 1px solid #66ccff;
+  padding: 15px 20px;
+  border-radius: 8px;
+}
+
+fieldset legend {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #000;
+  padding: 0 10px;
+}
+
+fieldset label {
+  display: block;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+fieldset input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+  vertical-align: middle;
+}
+
+/* Add-on Grid Layout */
+.addons-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.addons-column {
+  flex: 1;
+  min-width: 250px;
+}
+
+.addons-column label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  background-color: #e6f2f8;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #444;
+  border-top: 2px solid #66ccff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
+  .header-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .package h3,
+  .package p,
+  .package ul li {
+    font-size: 1.1rem;
+  }
+
+  .carousel img {
+    max-height: 250px;
+  }
+
+  form label,
+  form input,
+  form select,
+  form textarea,
+  fieldset label {
+    font-size: 1.1rem;
+  }
+
+  form button {
+    font-size: 1.3rem;
+    padding: 12px;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-buttons .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Wide Screen Adjustments */
+@media (min-width: 1200px) {
+  body {
+    font-size: 18px;
+  }
+
+  .header-text h1 {
+    font-size: 3.2rem;
+  }
+
+  .carousel img {
+    max-height: 600px;
+  }
+}
