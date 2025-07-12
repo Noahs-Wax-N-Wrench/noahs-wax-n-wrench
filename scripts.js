@@ -3,6 +3,7 @@ const images = [
   "Pictures/Kia-Front-Before-and-After.jpeg",
   "Pictures/Kia-Backseat-Before-and-After.jpeg",
   "Pictures/Lexus-Back-Before-and-After.jpg",
+  "Pictures/Lexus-Front-Before-and-After.png", // New image added
   "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg"
 ];
 
@@ -37,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Auto-rotate every 5 seconds
   setInterval(nextImage, 5000);
 
-  // Form submission
+  // Quote form submission
   const form = document.getElementById("quote-form");
   const formMessages = document.getElementById("form-messages");
 
