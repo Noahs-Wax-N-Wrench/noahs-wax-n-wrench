@@ -1,7 +1,7 @@
 const images = [
   "Pictures/Kia-Front-Before-and-After.jpeg",
   "Pictures/Kia-Backseat-Before-and-After.jpeg",
-  "Pictures/Lexus-Back-Before-and-After.jpeg",
+  "Pictures/Lexus-Back-Before-and-After.jpg",
   "Pictures/Lexus-Front-Before-and-After.png",
   "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg"
 ];
