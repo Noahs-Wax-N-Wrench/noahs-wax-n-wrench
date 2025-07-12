@@ -1,49 +1,40 @@
-// Image Carousel Setup
 const images = [
   "Pictures/Kia-Front-Before-and-After.jpeg",
   "Pictures/Kia-Backseat-Before-and-After.jpeg",
   "Pictures/Lexus-Back-Before-and-After.jpg",
-  "Pictures/Lexus-Front-Before-and-After.png", // New image added
+  "Pictures/Lexus-Front-Before-and-After.png",
   "Pictures/Clear-Coat-Scratch-Before-and-After.jpeg"
 ];
 
 let currentIndex = 0;
+const carouselImg = document.getElementById("carouselImage");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
 
 function showImage(index) {
-  const imgElement = document.getElementById("carouselImage");
-  if (imgElement) {
-    imgElement.src = images[index];
+  if (carouselImg) {
+    carouselImg.src = images[index];
+    carouselImg.alt = `Detailing image ${index + 1}`;
   }
 }
 
-function nextImage() {
-  currentIndex = (currentIndex + 1) % images.length;
+function changeImage(step) {
+  currentIndex = (currentIndex + step + images.length) % images.length;
   showImage(currentIndex);
 }
 
-function prevImage() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showImage(currentIndex);
-}
-
-// DOM Ready Setup
 document.addEventListener("DOMContentLoaded", () => {
-  // Show initial image
   showImage(currentIndex);
 
-  // Set up carousel buttons
-  document.getElementById("nextBtn")?.addEventListener("click", nextImage);
-  document.getElementById("prevBtn")?.addEventListener("click", prevImage);
+  prevBtn?.addEventListener("click", () => changeImage(-1));
+  nextBtn?.addEventListener("click", () => changeImage(1));
+  setInterval(() => changeImage(1), 5000);
 
-  // Auto-rotate every 5 seconds
-  setInterval(nextImage, 5000);
-
-  // Quote form submission
   const form = document.getElementById("quote-form");
   const formMessages = document.getElementById("form-messages");
 
   if (form && formMessages) {
-    form.addEventListener("submit", async function (e) {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const formData = new FormData(form);
 
@@ -54,23 +45,21 @@ document.addEventListener("DOMContentLoaded", () => {
           headers: { Accept: "application/json" }
         });
 
+        formMessages.style.display = "block";
+
         if (response.ok) {
-          formMessages.style.display = "block";
           formMessages.style.color = "lightgreen";
-          formMessages.innerText = "✅ Thank you! Your quote request has been sent.";
+          formMessages.textContent = "✅ Thank you! Your quote request has been sent.";
           form.reset();
         } else {
           const data = await response.json();
-          formMessages.style.display = "block";
           formMessages.style.color = "orange";
-          formMessages.innerText = data.errors
-            ? data.errors.map(e => e.message).join(", ")
-            : "⚠️ Something went wrong. Please try again.";
+          formMessages.textContent = data.errors?.map(e => e.message).join(", ") || "⚠️ Something went wrong.";
         }
-      } catch (error) {
+      } catch {
         formMessages.style.display = "block";
         formMessages.style.color = "red";
-        formMessages.innerText = "❌ Network error. Please try again later.";
+        formMessages.textContent = "❌ Network error. Please try again later.";
       }
     });
   }
