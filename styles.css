@@ -69,6 +69,7 @@ header {
   padding: 18px 0 25px;
   margin-top: 0;
   border-bottom: 2px solid #66ccff;
+  position: relative;
 }
 
 .header-buttons .button {
@@ -84,6 +85,80 @@ header {
 }
 
 .header-buttons .button:hover {
+  background-color: #3399ff;
+  color: #fff;
+}
+
+/* Hamburger button */
+.header-buttons > button {
+  display: none;
+  background-color: transparent;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #000;
+  padding: 12px 20px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  transition: color 0.3s ease;
+  z-index: 1001;
+}
+
+.header-buttons > button:hover {
+  color: #3399ff;
+}
+
+/* Dropdown menu */
+.header-buttons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #e6f2f8;
+  border-radius: 8px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0);
+  width: 250px;
+  z-index: 1000;
+}
+
+.header-buttons.open ul {
+  max-height: 400px;
+  padding: 15px 0;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+}
+
+.header-buttons ul li {
+  padding: 0 20px;
+}
+
+.header-buttons ul li a.button {
+  display: block;
+  padding: 12px 0;
+  font-size: 1.4rem;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #66ccff;
+  color: #000;
+  text-align: left;
+  background-color: transparent;
+  border-radius: 0;
+  border-bottom: 1px solid #66ccff;
+  font-weight: normal;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-buttons ul li a.button:last-child {
+  border-bottom: none;
+}
+
+.header-buttons ul li a.button:hover {
   background-color: #3399ff;
   color: #fff;
 }
@@ -325,83 +400,49 @@ select[multiple] {
   min-height: 120px;
 }
 
-/* (Your existing styles remain the same above) */
-
-/* Hamburger menu styles */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 22px;
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  display: block;
-  height: 4px;
-  background: #000;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-}
-
-.header-buttons ul {
-  list-style: none;
-  display: flex;
-  gap: 12px;
-  padding: 0;
-  margin: 0;
-}
-
-.header-buttons ul li {
-  display: inline;
-}
-
-/* Mobile dropdown */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
+/* iPhone 16 and similar high-res large mobiles */
+@media (max-width: 480px) {
+  /* Increase header text size a bit */
+  .header-text h1 {
+    font-size: 3.6rem !important;
+    line-height: 1.2;
   }
 
+  .slogan {
+    font-size: 1.8rem !important;
+  }
+
+  /* Logo size */
+  .logo {
+    max-height: 110px !important;
+  }
+
+  /* Hamburger nav button bigger */
+  .header-buttons > button {
+    font-size: 2.6rem !important;
+    padding: 14px 18px !important;
+  }
+
+  /* Dropdown menu styling */
   .header-buttons ul {
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 10px;
-    background-color: #e6f2f8;
-    padding: 15px;
-    border-radius: 8px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    max-height: 600px !important; /* more room to scroll if needed */
+    width: 90vw !important;       /* wider menu for finger taps */
+    right: 5vw !important;        /* position it nicely centered-ish */
+    padding: 20px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3) !important;
   }
 
-  .header-buttons ul.show {
-    max-height: 400px;
-  }
-
-  .header-buttons {
-    position: relative;
-    justify-content: flex-end;
-    padding-right: 20px;
-  }
-
-  /* Transform hamburger to X */
-  .menu-toggle.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .menu-toggle.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  /* Hide inline flex buttons on mobile */
+  /* Menu items bigger and spaced */
   .header-buttons ul li a.button {
-    display: block;
-    padding: 10px;
+    font-size: 1.8rem !important;
+    padding: 18px 22px !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Touch targets spacing */
+  .header-buttons ul li:last-child a.button {
+    margin-bottom: 0 !important;
   }
 }
-
