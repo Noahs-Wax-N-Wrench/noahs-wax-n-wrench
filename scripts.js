@@ -67,4 +67,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // --- Mobile navigation toggle ---
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  if (toggle && navLinks) {
+    // Toggle menu
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+      toggle.classList.toggle('open');
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        toggle.classList.remove('open');
+      });
+    });
+  }
 });
