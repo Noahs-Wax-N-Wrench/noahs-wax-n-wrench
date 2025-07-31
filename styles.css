@@ -324,3 +324,84 @@ select[multiple] {
   box-sizing: border-box;
   min-height: 120px;
 }
+
+/* (Your existing styles remain the same above) */
+
+/* Hamburger menu styles */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 4px;
+  background: #000;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.header-buttons ul {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+}
+
+.header-buttons ul li {
+  display: inline;
+}
+
+/* Mobile dropdown */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-buttons ul {
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    background-color: #e6f2f8;
+    padding: 15px;
+    border-radius: 8px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .header-buttons ul.show {
+    max-height: 400px;
+  }
+
+  .header-buttons {
+    position: relative;
+    justify-content: flex-end;
+    padding-right: 20px;
+  }
+
+  /* Transform hamburger to X */
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Hide inline flex buttons on mobile */
+  .header-buttons ul li a.button {
+    display: block;
+    padding: 10px;
+  }
+}
+
