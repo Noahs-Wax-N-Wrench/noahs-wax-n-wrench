@@ -1,3 +1,5 @@
+/* === Noah's Wax N' Wrench CSS === */
+
 /* Global Styles */
 body {
   margin: 0;
@@ -91,7 +93,7 @@ header {
   color: #fff;
 }
 
-/* Hamburger button */
+/* Hamburger Button */
 .header-buttons > button {
   display: none;
   background-color: transparent;
@@ -112,7 +114,7 @@ header {
   color: #3399ff;
 }
 
-/* Dropdown menu */
+/* Dropdown Menu */
 .header-buttons ul {
   list-style: none;
   padding: 0;
@@ -240,7 +242,7 @@ header {
   line-height: 1.4;
 }
 
-/* Add-ons note */
+/* Add-ons Note */
 .add-ons {
   margin-top: 10px;
   font-style: italic;
@@ -333,7 +335,7 @@ fieldset input[type="checkbox"] {
   vertical-align: middle;
 }
 
-/* Add-on Grid Layout */
+/* Add-on Grid */
 .addons-grid {
   display: flex;
   gap: 20px;
@@ -362,7 +364,7 @@ footer {
   border-top: 2px solid #66ccff;
 }
 
-/* Responsive */
+/* === Responsive Styles === */
 @media (max-width: 768px) {
   .header-text h1 {
     font-size: 3rem;
@@ -394,27 +396,43 @@ footer {
   .header-buttons .button {
     display: none;
   }
+
+  /* Compact Mobile Header with Side Logos */
+  .header-logos {
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .logo {
+    max-height: 80px !important;
+  }
+
+  .header-text {
+    padding: 0;
+    flex: 0 1 auto;
+  }
+
+  .header-text h1 {
+    font-size: 2rem !important;
+    margin: 0;
+    line-height: 1.1;
+    color: #66ccff;
+  }
+
+  .slogan {
+    font-size: 1.1rem !important;
+    margin: 6px 0 0;
+    text-align: center;
+  }
 }
 
-/* Multi-select dropdown (fallback) */
-select[multiple] {
-  width: 100%;
-  padding: 10px;
-  font-size: 1.4rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  box-sizing: border-box;
-  min-height: 120px;
-}
-
-/* iPhone 16 and similar high-res large mobiles */
+/* iPhone 16 and High-Res Small Devices */
 @media (max-width: 480px) {
   .header-text h1 {
     font-size: 3.6rem !important;
-    line-height: 1.2;
   }
 
   .slogan {
@@ -451,35 +469,16 @@ select[multiple] {
   }
 }
 
-/* === NEW: Compact Mobile Header with Side Logos === */
-@media (max-width: 768px) {
-  .header-logos {
-    flex-direction: row !important;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    gap: 12px;
-  }
-
-  .logo {
-    max-height: 80px !important;
-  }
-
-  .header-text {
-    padding: 0;
-    flex: 0 1 auto;
-  }
-
-  .header-text h1 {
-    font-size: 2rem !important;
-    margin: 0;
-    line-height: 1.1;
-    color: #66ccff;
-  }
-
-  .slogan {
-    font-size: 1.1rem !important;
-    margin: 6px 0 0;
-    text-align: center;
-  }
+/* Multi-Select Fallback */
+select[multiple] {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.4rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  min-height: 120px;
 }
