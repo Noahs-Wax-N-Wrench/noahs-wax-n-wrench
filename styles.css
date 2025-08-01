@@ -367,38 +367,36 @@ footer {
 /* === Responsive Styles === */
 @media (max-width: 768px) {
   .header-logos {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-    padding: 10px !important;
-    gap: 12px !important;
-    flex-wrap: nowrap !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    padding: 10px;
   }
 
   .logo {
-    max-height: 80px !important;
-    width: auto !important;
+    width: 60px;
+    height: auto;
   }
 
   .header-text {
-    padding: 0 !important;
-    flex: 0 1 auto !important;
-    text-align: center !important;
+    flex: 1 1 auto;
+    text-align: center;
   }
 
   .header-text h1 {
-    font-size: 2rem !important;
-    margin: 0 !important;
-    line-height: 1.1 !important;
-    color: #66ccff !important;
+    font-size: 1.8rem;
+    margin: 0;
   }
 
   .slogan {
-    font-size: 1.1rem !important;
-    margin: 6px 0 0 !important;
-    text-align: center !important;
+    font-size: 1rem;
+    margin-top: 4px;
   }
+}
+
 
   .header-buttons {
     flex-direction: column;
