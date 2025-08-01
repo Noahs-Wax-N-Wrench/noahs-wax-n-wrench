@@ -121,7 +121,7 @@ header {
   margin: 0;
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   background-color: #e6f2f8;
   border-radius: 8px;
   max-height: 0;
