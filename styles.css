@@ -174,10 +174,9 @@ header {
 }
 
 #intro p {
-  text-align: center;
+  text-align: left;
   font-size: 0.8rem;
 }
-
 /* Gallery */
 .photo-gallery h2 {
   font-size: 2.5rem;
