@@ -169,13 +169,13 @@ header {
 
 /* Intro Section */
 #intro h2 {
-  font-size: 2.2rem;
+  font-size: 1.4rem;
   text-align: center;
 }
 
 #intro p {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 0.8rem;
 }
 
 /* Gallery */
