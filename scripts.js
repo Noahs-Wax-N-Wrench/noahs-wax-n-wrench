@@ -1,4 +1,7 @@
 const images = [
+  "Pictures/Audi-Exhaust-Fumes.JPG",
+  "Pictures/Subaru-Center.JPEG",
+  "Pictures/Audi-Backseat.JPG",
   "Pictures/Lexus-Back-Carpet-Before-And-After.jpg",
   "Pictures/Lexus-Front-Carpet-Before-And-After.jpg",
   "Pictures/Lexus-Back-Stripes-One.jpg",
