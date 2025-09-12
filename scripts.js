@@ -9,8 +9,6 @@ const images = [
   "Pictures/Lexus-Front-Carpet-Before-And-After.jpg",
   "Pictures/Lexus-Back-Stripes-One.jpg",
   "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
-  "Pictures/Lexus-Back-Before-and-After.jpg",
-  "Pictures/Lexus-Front-Before-and-After.png",
   "Pictures/Santa-Fe-Exterior.jpg"
 ];
 
