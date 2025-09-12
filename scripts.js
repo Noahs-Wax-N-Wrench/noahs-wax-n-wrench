@@ -1,8 +1,8 @@
 const images = [
   "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
   "Pictures/Headlight-Restoration.JPEG",
-  "F150-Exterior.jpg",
-  "Highlander-Black-Exterior.jpg",
+  "Pictures/F150-Exterior.jpg",
+  "Pictures/Highlander-Black-Exterior.jpg",
   "Pictures/Subaru-Center.JPEG",
   "Pictures/Kia-Trunk.JPEG",
   "Pictures/Lexus-Back-Carpet-Before-And-After.jpg",
