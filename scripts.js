@@ -1,5 +1,6 @@
 const images = [
   "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
+  "Pictures/Headlight-Restoration.JPEG",
   "Pictures/Subaru-Center.JPEG",
   "Pictures/Kia-Trunk.JPEG",
   "Pictures/Audi-Backseat.JPG",
