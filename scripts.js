@@ -1,6 +1,8 @@
 const images = [
   "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
   "Pictures/Headlight-Restoration.JPEG",
+  "F150-Exterior.jpg",
+  "Highlander-Black-Exterior.jpg",
   "Pictures/Subaru-Center.JPEG",
   "Pictures/Kia-Trunk.JPEG",
   "Pictures/Lexus-Back-Carpet-Before-And-After.jpg",
@@ -9,6 +11,7 @@ const images = [
   "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
   "Pictures/Lexus-Back-Before-and-After.jpg",
   "Pictures/Lexus-Front-Before-and-After.png",
+  "Pictures/Santa-Fe-Exterior.jpg"
 ];
 
 let currentIndex = 0;
