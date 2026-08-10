@@ -1,201 +1,134 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <title>Sussex Auto Detailing | Mobile Auto Detailing in Southeast Wisconsin</title>
+  <title>Noah's Wax N' Wrench | Mobile Auto Detailing in Southeast Wisconsin</title>
 
   <meta
     name="description"
-    content="Sussex Auto Detailing provides professional mobile auto detailing in Sussex, Menomonee Falls, Brookfield, Waukesha, Hartland, Hartford, Oconomowoc, West Bend, and surrounding Southeast Wisconsin areas."
+    content="Noah's Wax N' Wrench provides professional mobile auto detailing and automotive services in Sussex, Menomonee Falls, Brookfield, Waukesha, Hartland, Hartford, Oconomowoc, West Bend, and surrounding Southeast Wisconsin areas."
   />
 
   <meta
     name="keywords"
-    content="auto detailing Sussex WI, mobile detailing Sussex WI, car detailing Menomonee Falls, auto detailing Waukesha, mobile car detailing Wisconsin"
+    content="Noah's Wax N' Wrench, auto detailing Sussex WI, mobile detailing Sussex WI, car detailing Menomonee Falls, auto detailing Waukesha, mobile car detailing Wisconsin"
   />
 
-  <meta name="author" content="Sussex Auto Detailing" />
+  <meta name="author" content="Noah's Wax N' Wrench" />
+  <meta name="theme-color" content="#0b0d0f" />
 
   <link rel="canonical" href="https://sussexautodetailing.com/" />
-
   <link rel="stylesheet" href="styles.css" />
-
-  <meta name="theme-color" content="#0b0d0f" />
 </head>
 
 <body>
 
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
-
+  <!-- HEADER -->
   <header>
+    <div class="header-main">
 
-    <div class="header-logos">
-
-      <a href="#top" aria-label="Sussex Auto Detailing Home">
+      <a href="#top" class="brand" aria-label="Noah's Wax N' Wrench Home">
         <img
           class="logo"
           src="Pictures/Logo-Idea.png"
-          alt="Sussex Auto Detailing logo"
+          alt="Noah's Wax N' Wrench logo"
         />
+
+        <div class="header-text">
+          <h1>Noah's Wax N' Wrench</h1>
+          <p>Professional Mobile Auto Detailing</p>
+        </div>
       </a>
 
-      <div class="header-text">
-        <h1>Sussex Auto Detailing</h1>
-        <p class="slogan">Professional Mobile Auto Detailing</p>
-      </div>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#intro">Home</a>
+        <a href="#gallery">Our Work</a>
+        <a href="#packages">Services</a>
+        <a href="#quote" class="nav-quote">Get a Quote</a>
+      </nav>
 
-    </div>
-
-    <nav class="header-buttons" aria-label="Main navigation">
-
-      <!-- Mobile menu button -->
       <button
+        class="menu-toggle"
         type="button"
         aria-label="Open navigation menu"
         aria-expanded="false"
       >
-        &#9776;
+        ☰
       </button>
+    </div>
 
-      <!-- Desktop navigation -->
-      <a class="button" href="#intro">Home</a>
-      <a class="button" href="#gallery">Our Work</a>
-      <a class="button" href="#packages">Services</a>
-      <a class="button" href="#quote">Get a Quote</a>
-
-      <!-- Mobile navigation -->
-      <ul>
-        <li>
-          <a class="button" href="#intro">Home</a>
-        </li>
-        <li>
-          <a class="button" href="#gallery">Our Work</a>
-        </li>
-        <li>
-          <a class="button" href="#packages">Services</a>
-        </li>
-        <li>
-          <a class="button" href="#quote">Get a Quote</a>
-        </li>
-      </ul>
-
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="#intro">Home</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#packages">Services</a>
+      <a href="#quote">Get a Quote</a>
     </nav>
-
   </header>
 
 
   <main id="top">
 
-    <!-- =====================================================
-         HERO / INTRO
-         ===================================================== -->
+    <!-- HERO -->
+    <section id="intro" class="hero container">
 
-    <section id="intro" class="container">
-
-      <p
-        style="
-          color: #66ccff;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          font-size: 0.85rem;
-          margin-bottom: 15px;
-        "
-      >
+      <div class="eyebrow">
         Mobile Auto Detailing • Southeast Wisconsin
-      </p>
+      </div>
 
       <h2>
         Professional Detailing.<br />
-        Right at Your Door.
+        <span>Right at Your Door.</span>
       </h2>
 
       <p>
-        Proudly serving Sussex, Menomonee Falls, Brookfield, Waukesha,
-        Hartland, Hartford, Oconomowoc, West Bend, and surrounding
-        Southeast Wisconsin areas, I make your car look and feel brand new
-        — without the hassle of visiting a shop.
+        Noah's Wax N' Wrench brings professional vehicle detailing
+        directly to you. Serving Sussex, Menomonee Falls, Brookfield,
+        Waukesha, Hartland, Hartford, Oconomowoc, West Bend, and
+        surrounding Southeast Wisconsin areas.
       </p>
 
-      <p>
-        Book your mobile detailing service today and experience the
-        convenience of expert care at your doorstep.
-      </p>
-
-      <div
-        style="
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 12px;
-          margin-top: 30px;
-        "
-      >
-
-        <a
-          href="#quote"
-          style="
-            display: inline-block;
-            padding: 14px 24px;
-            border-radius: 9px;
-            background: #66ccff;
-            color: #071018;
-            text-decoration: none;
-            font-weight: 800;
-          "
-        >
+      <div class="hero-buttons">
+        <a href="#quote" class="primary-button">
           Request a Quote
         </a>
 
-        <a
-          href="#packages"
-          style="
-            display: inline-block;
-            padding: 14px 24px;
-            border-radius: 9px;
-            background: transparent;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.2);
-          "
-        >
+        <a href="#packages" class="secondary-button">
           View Services
         </a>
+      </div>
 
+      <div class="hero-features">
+        <div>
+          <strong>✓</strong>
+          Mobile Service
+        </div>
+
+        <div>
+          <strong>✓</strong>
+          Professional Results
+        </div>
+
+        <div>
+          <strong>✓</strong>
+          Convenient Scheduling
+        </div>
       </div>
 
     </section>
 
 
-    <!-- =====================================================
-         GALLERY
-         ===================================================== -->
-
+    <!-- OUR WORK -->
     <section id="gallery" class="photo-gallery container">
 
-      <h2>Our Work</h2>
-
-      <p
-        style="
-          max-width: 650px;
-          margin: -15px auto 30px;
-          text-align: center;
-          color: #aeb6bd;
-        "
-      >
-        See some of the vehicles I've worked on and the difference
-        professional detailing can make.
-      </p>
+      <div class="section-heading">
+        <div class="eyebrow">Before & After</div>
+        <h2>Our Work</h2>
+        <p>
+          See the difference professional detailing can make.
+        </p>
+      </div>
 
       <div class="carousel">
 
@@ -207,11 +140,13 @@
           &#10094;
         </button>
 
-        <img
-          id="carouselImage"
-          src="Pictures/Kia-Front-Before-and-After.jpeg"
-          alt="Sussex Auto Detailing vehicle detailing work"
-        />
+        <div class="carousel-image-wrapper">
+          <img
+            id="carouselImage"
+            src="Pictures/Audi-Exhaust-Fumes-Fix.JPEG"
+            alt="Noah's Wax N' Wrench detailing work"
+          />
+        </div>
 
         <button
           id="nextBtn"
@@ -223,238 +158,179 @@
 
       </div>
 
+      <div class="carousel-dots" id="carouselDots"></div>
+
     </section>
 
 
-    <!-- =====================================================
-         SERVICES / PACKAGES
-         ===================================================== -->
+    <!-- SERVICES -->
+    <section id="packages" class="container services-section">
 
-    <section id="packages" class="container">
-
-      <h2>Our Detailing Packages</h2>
-
-      <p
-        style="
-          max-width: 700px;
-          margin: -15px auto 40px;
-          text-align: center;
-          color: #aeb6bd;
-        "
-      >
-        Choose the service that fits your vehicle. Final pricing varies
-        depending on vehicle size and condition.
-      </p>
+      <div class="section-heading">
+        <div class="eyebrow">Services</div>
+        <h2>Detailing Packages</h2>
+        <p>
+          Choose the service that fits your vehicle. Final pricing
+          depends on vehicle size and condition.
+        </p>
+      </div>
 
 
       <!-- INTERIOR -->
+      <div class="service-category">
+        <h3 class="category-title">Interior</h3>
 
-      <h2>Interior</h2>
+        <div class="package featured-package">
 
-      <div class="package">
+          <div class="package-header">
+            <div>
+              <h3>Interior Detail</h3>
+              <p class="starting-price">Starting at <strong>$100</strong></p>
+            </div>
+          </div>
 
-        <h3>
-          Interior Detail – Starting at $100
-        </h3>
+          <p class="package-note">
+            Final price varies by vehicle size and condition.
+          </p>
 
-        <p>
-          <strong>Note:</strong>
-          Final price varies by vehicle size and condition.
-        </p>
+          <ul>
+            <li>Thorough vacuuming of all interior surfaces</li>
+            <li>Steam cleaning of carpets and upholstery as needed</li>
+            <li>
+              Vinyl, plastic and trim cleaning including dash,
+              console, doors, cupholders, vents and glove box
+            </li>
+            <li>Light spot/stain treatment when agreed upon</li>
+            <li>UV protectant applied to vinyl, plastic and trim</li>
+            <li>Interior glass cleaning</li>
+            <li>Everyday odor elimination</li>
+          </ul>
 
-        <ul>
-          <li>
-            Thorough vacuuming of all interior surfaces
-          </li>
+          <div class="package-footer">
+            <strong>Add-ons available:</strong>
+            Extractor vacuuming, cabin or engine air filter replacement,
+            carpet enzyme cleaning, shampoo and finisher, heavy stain
+            treatment, major odor elimination and more.
+          </div>
 
-          <li>
-            Steam cleaning of carpets and upholstery (as needed)
-          </li>
-
-          <li>
-            Vinyl, plastic &amp; trim cleaning including dash,
-            center console, doors, cupholders, vents, and glove box
-          </li>
-
-          <li>
-            Light spot/stain treatment
-            <em>(must be agreed upon)</em>
-          </li>
-
-          <li>
-            UV protectant applied to all vinyl, plastic &amp; trim
-          </li>
-
-          <li>
-            Interior glass cleaning
-          </li>
-
-          <li>
-            Everyday odor elimination
-          </li>
-        </ul>
-
-        <p>
-          <strong>Add-ons available:</strong>
-          Extractor vacuuming, cabin &amp; or engine air filter replacement,
-          carpet enzyme clean, shampoo &amp; finisher, heavy stain treatment,
-          major odor elimination &amp; more — priced upon consultation.
-        </p>
-
+        </div>
       </div>
 
 
       <!-- EXTERIOR -->
+      <div class="service-category">
+        <h3 class="category-title">Exterior</h3>
 
-      <h2>Exterior</h2>
+        <div class="service-grid">
+
+          <div class="package">
+            <div class="package-badge">BRONZE</div>
+
+            <h3>Exterior Bronze</h3>
+
+            <p class="starting-price">
+              Starting at <strong>$60+</strong>
+            </p>
+
+            <p>
+              Degreaser foam and brush cleaning for wheels, wheel wells,
+              tires and lower rocker panels. Pressure washer pre-rinse,
+              foam cannon wash with wash mitt, no-rinse treatment to
+              remove water spots and clean door jambs, finished with
+              spray wax on exterior surfaces.
+            </p>
+          </div>
 
 
-      <div class="package">
+          <div class="package">
+            <div class="package-badge">SILVER</div>
 
-        <h3>
-          Exterior Bronze – Starting at $60+
-        </h3>
+            <h3>Exterior Silver</h3>
 
-        <p>
-          Degreaser foam sprayer and brush clean for wheels, wheel wells,
-          tires, and lower rocker panels. Pressure washer pre-rinse,
-          foam cannon agitation wash with wash mitt, no-rinse application
-          to remove any water spots and clean door jambs, finished with
-          a spray wax on all exterior surfaces.
-        </p>
+            <p class="starting-price">
+              Starting at <strong>$75+</strong>
+            </p>
 
+            <p>
+              Everything included with Bronze, plus interior and exterior
+              window cleaning, bug removal treatment, exterior trim and
+              plastic dressing/protectant, and safe tire dressing.
+            </p>
+          </div>
+
+
+          <div class="package platinum-package">
+            <div class="package-badge">PLATINUM</div>
+
+            <h3>Exterior Platinum</h3>
+
+            <p class="starting-price">
+              Starting at <strong>$100+</strong>
+            </p>
+
+            <p>
+              Everything included with Silver and Bronze, plus engine
+              bay cleaning, clay bar decontamination and iron removal
+              treatment.
+            </p>
+          </div>
+
+        </div>
       </div>
 
 
-      <div class="package">
-
-        <h3>
-          Exterior Silver – Starting at $75+
-        </h3>
-
+      <div class="addons-banner">
+        <strong>💡 Additional Services Available</strong>
         <p>
-          Everything in Bronze plus: Interior &amp; exterior window cleaning,
-          bug removal treatment, exterior trim &amp; plastic dressing &
-          protectorant, safe tire dressing application.
+          Oil changes, headlight restoration, exterior trim restoration,
+          light scratch removal and other services are available.
+          Contact us for pricing.
         </p>
-
       </div>
-
-
-      <div class="package">
-
-        <h3>
-          Exterior Platinum – Starting at $100+
-        </h3>
-
-        <p>
-          Everything in Silver and Bronze plus: Engine bay cleaning,
-          clay bar decontamination treatment, and iron removal treatment.
-        </p>
-
-      </div>
-
-
-      <p class="add-ons">
-        💡 Add-ons available for any package
-        (e.g., oil change, headlight restoration, exterior trim restoration,
-        light scratch removal, etc.)
-      </p>
 
     </section>
 
 
-    <!-- =====================================================
-         WHY MOBILE DETAILING
-         ===================================================== -->
+    <!-- WHY MOBILE -->
+    <section class="why-mobile container">
 
-    <section
-      class="container"
-      style="
-        padding-top: 30px;
-        padding-bottom: 30px;
-      "
-    >
+      <div class="why-card">
 
-      <div
-        style="
-          max-width: 900px;
-          margin: 0 auto;
-          padding: 35px;
-          background: linear-gradient(
-            145deg,
-            rgba(102,204,255,0.08),
-            rgba(255,255,255,0.02)
-          );
-          border: 1px solid rgba(102,204,255,0.15);
-          border-radius: 16px;
-          text-align: center;
-        "
-      >
+        <div class="eyebrow">Why Choose Mobile?</div>
 
-        <p
-          style="
-            color: #66ccff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin: 0 0 10px;
-          "
-        >
-          Why Mobile Detailing?
-        </p>
+        <h2>We Come to You.</h2>
 
-        <h2
-          style="
-            margin: 0 0 15px;
-            font-size: clamp(1.7rem, 4vw, 2.5rem);
-          "
-        >
-          We Come to You.
-        </h2>
-
-        <p
-          style="
-            max-width: 680px;
-            margin: 0 auto;
-            color: #aeb6bd;
-          "
-        >
+        <p>
           Skip the waiting room and the hassle of dropping your vehicle
-          off at a shop. Book your service and enjoy professional vehicle
-          care right at your home or another convenient location.
+          off at a shop. Schedule your service and let Noah's Wax N'
+          Wrench bring professional vehicle care right to your home
+          or another convenient location.
         </p>
+
+        <a href="#quote" class="primary-button">
+          Book Your Detail
+        </a>
 
       </div>
 
     </section>
 
 
-    <!-- =====================================================
-         QUOTE FORM
-         ===================================================== -->
-
+    <!-- QUOTE FORM -->
     <section id="quote" class="quote-form container">
 
-      <h2>Request a Quote</h2>
+      <div class="section-heading">
+        <div class="eyebrow">Get Started</div>
 
-      <p
-        style="
-          max-width: 650px;
-          margin: -15px auto 35px;
-          text-align: center;
-          color: #aeb6bd;
-        "
-      >
-        Tell me a little about your vehicle and the services you're
-        interested in. I'll review your request and get back to you.
-      </p>
+        <h2>Request a Quote</h2>
 
-      <div
-        id="form-messages"
-        style="display: none;"
-      ></div>
+        <p>
+          Tell us about your vehicle and the services you're interested
+          in. We'll review your request and get back to you.
+        </p>
+      </div>
+
+      <div id="form-messages" aria-live="polite"></div>
 
       <form
         id="quote-form"
@@ -463,11 +339,7 @@
         novalidate
       >
 
-        <!-- NAME -->
-
-        <label for="name">
-          Full Name
-        </label>
+        <label for="name">Full Name</label>
 
         <input
           type="text"
@@ -479,11 +351,7 @@
         />
 
 
-        <!-- EMAIL -->
-
-        <label for="email">
-          Email
-        </label>
+        <label for="email">Email</label>
 
         <input
           type="email"
@@ -495,11 +363,7 @@
         />
 
 
-        <!-- PHONE -->
-
-        <label for="phone">
-          Phone Number
-        </label>
+        <label for="phone">Phone Number</label>
 
         <input
           type="tel"
@@ -511,154 +375,114 @@
         />
 
 
-        <!-- PACKAGE -->
+        <label for="package">Select Package</label>
 
-        <label for="package">
-          Select Package
-        </label>
-
-        <select
-          id="package"
-          name="Package"
-        >
-
-          <option value="Interior">
-            Interior
-          </option>
-
-          <option value="Bronze">
-            Exterior Bronze
-          </option>
-
-          <option value="Silver">
-            Exterior Silver
-          </option>
-
-          <option value="Platinum">
-            Exterior Platinum
-          </option>
-
+        <select id="package" name="Package">
+          <option value="Interior">Interior Detail</option>
+          <option value="Exterior Bronze">Exterior Bronze</option>
+          <option value="Exterior Silver">Exterior Silver</option>
+          <option value="Exterior Platinum">Exterior Platinum</option>
         </select>
 
 
-        <!-- ADD-ONS -->
-
-        <fieldset
-          id="addons"
-          name="AddOns"
-        >
-
-          <legend>
-            Add-ons (select any)
-          </legend>
+        <fieldset>
+          <legend>Add-ons</legend>
 
           <div class="addons-grid">
 
-            <div class="addons-column">
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Oil Change"
+              />
+              Oil Change
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Oil Change"
-                />
-                Oil Change
-              </label>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Headlight Restoration"
+              />
+              Headlight Restoration
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Headlight Restoration"
-                />
-                Headlight Restoration
-              </label>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Exterior Trim Restoration"
+              />
+              Exterior Trim Restoration
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Exterior Trim Restoration"
-                />
-                Exterior Trim Restoration
-              </label>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Clear Coat Scratch Removal"
+              />
+              Clear Coat Scratch Removal
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Light Scratch Removal"
-                />
-                Clear Coat Scratch Removal
-              </label>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Engine Bay Cleaning"
+              />
+              Engine Bay Cleaning
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Engine Bay Cleaning"
-                />
-                Engine Bay Cleaning
-              </label>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Cabin or Engine Air Filter Replacement"
+              />
+              Cabin / Engine Air Filter Replacement
+            </label>
 
-            </div>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Ozone Odor Treatment"
+              />
+              Ozone Odor Treatment
+            </label>
 
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Headliner Cleaning"
+              />
+              Headliner Cleaning
+            </label>
 
-            <div class="addons-column">
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Vehicle Pick-up & Delivery"
+              />
+              Vehicle Pick-up & Delivery
+            </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Cabin or Engine Air Filter Replacement"
-                />
-                Cabin &amp; or Engine Air Filter Replacement
-              </label>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Ozone Odor Treatment"
-                />
-                Ozone Odor Treatment
-              </label>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Headliner Cleaning"
-                />
-                Headliner Cleaning
-              </label>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Vehicle Pick-up & Delivery"
-                />
-                Vehicle Pick-up &amp; Delivery
-              </label>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="AddOns"
-                  value="Windshield Water Repellent"
-                />
-                Windshield Water Repellent
-              </label>
-
-            </div>
+            <label>
+              <input
+                type="checkbox"
+                name="AddOns"
+                value="Windshield Water Repellent"
+              />
+              Windshield Water Repellent
+            </label>
 
           </div>
-
         </fieldset>
 
-
-        <!-- DETAILS -->
 
         <label for="details">
           Vehicle &amp; Service Details
@@ -668,15 +492,11 @@
           id="details"
           name="Details"
           rows="5"
-          placeholder="Year, make, model, add-ons, leather or vinyl seats, preferred dates, other service, etc."
+          placeholder="Year, make, model, vehicle condition, preferred date, add-ons, questions, etc."
         ></textarea>
 
 
-        <!-- SUBMIT -->
-
-        <button
-          type="submit"
-        >
+        <button type="submit">
           Send Quote Request
         </button>
 
@@ -687,73 +507,34 @@
   </main>
 
 
-  <!-- =====================================================
-       FOOTER
-       ===================================================== -->
-
+  <!-- FOOTER -->
   <footer>
 
-    <div
-      style="
-        max-width: 900px;
-        margin: 0 auto;
-      "
-    >
+    <img
+      src="Pictures/Logo-Idea.png"
+      alt="Noah's Wax N' Wrench logo"
+    />
 
-      <img
-        src="Pictures/Logo-Idea.png"
-        alt="Sussex Auto Detailing"
-        style="
-          width: 75px;
-          height: 75px;
-          object-fit: contain;
-          margin: 0 auto 15px;
-        "
-      />
+    <h3>Noah's Wax N' Wrench</h3>
 
-      <p
-        style="
-          margin: 0 0 8px;
-          color: #ffffff;
-          font-weight: 700;
-          font-size: 1rem;
-        "
-      >
-        Sussex Auto Detailing
-      </p>
+    <p>
+      Professional Mobile Auto Detailing
+    </p>
 
-      <p
-        style="
-          margin: 0 auto 15px;
-          max-width: 650px;
-          line-height: 1.6;
-        "
-      >
-        Proudly serving Sussex, Menomonee Falls, Brookfield, Waukesha,
-        Hartland, Hartford, Oconomowoc, West Bend, and surrounding
-        Southeast Wisconsin areas.
-      </p>
+    <p>
+      Proudly serving Sussex, Menomonee Falls, Brookfield, Waukesha,
+      Hartland, Hartford, Oconomowoc, West Bend, and surrounding
+      Southeast Wisconsin areas.
+    </p>
 
-      <p
-        style="
-          margin: 0;
-          font-size: 0.8rem;
-        "
-      >
-        © 2026 Sussex Auto Detailing. All rights reserved.
-      </p>
-
-    </div>
+    <p class="copyright">
+      © 2026 Noah's Wax N' Wrench. All rights reserved.
+    </p>
 
   </footer>
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
 
   <script src="scripts.js"></script>
 
 </body>
 </html>
-```
