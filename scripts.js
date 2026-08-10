@@ -1,3 +1,13 @@
+/* =========================================================
+   NOAH'S WAX N' WRENCH
+   Website JavaScript
+   ========================================================= */
+
+
+/* =========================================================
+   GALLERY
+   ========================================================= */
+
 const images = [
   "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
   "Pictures/Headlight-Restoration.JPEG",
@@ -13,190 +23,440 @@ const images = [
 ];
 
 let currentIndex = 0;
-let autoRotate;
+let autoRotate = null;
 
 const carouselImg = document.getElementById("carouselImage");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
+const carouselDots = document.getElementById("carouselDots");
+
+
+function createCarouselDots() {
+
+  if (!carouselDots) return;
+
+  carouselDots.innerHTML = "";
+
+  images.forEach((_, index) => {
+
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+
+    dot.className = "carousel-dot";
+
+    dot.setAttribute(
+      "aria-label",
+      `View image ${index + 1}`
+    );
+
+    dot.addEventListener("click", () => {
+
+      currentIndex = index;
+
+      showImage(currentIndex);
+
+      startCarousel();
+
+    });
+
+    carouselDots.appendChild(dot);
+
+  });
+
+}
+
+
+function updateCarouselDots() {
+
+  if (!carouselDots) return;
+
+  const dots =
+    carouselDots.querySelectorAll(".carousel-dot");
+
+  dots.forEach((dot, index) => {
+
+    dot.classList.toggle(
+      "active",
+      index === currentIndex
+    );
+
+  });
+
+}
+
 
 function showImage(index) {
+
   if (!carouselImg) return;
 
   carouselImg.style.opacity = "0";
 
-  setTimeout(() => {
-    carouselImg.src = images[index];
-    carouselImg.alt = `Sussex Auto Detailing work - image ${index + 1}`;
+  const nextImage = new Image();
 
-    carouselImg.onload = () => {
-      carouselImg.style.opacity = "1";
-    };
-  }, 120);
+  nextImage.src = images[index];
+
+  nextImage.onload = () => {
+
+    carouselImg.src = images[index];
+
+    carouselImg.alt =
+      `Noah's Wax N' Wrench detailing work - image ${index + 1}`;
+
+    carouselImg.style.opacity = "1";
+
+  };
+
+  updateCarouselDots();
+
 }
+
 
 function changeImage(step) {
+
   currentIndex =
-    (currentIndex + step + images.length) % images.length;
+    (currentIndex + step + images.length) %
+    images.length;
 
   showImage(currentIndex);
+
 }
 
+
 function startCarousel() {
+
   clearInterval(autoRotate);
 
   autoRotate = setInterval(() => {
+
     changeImage(1);
+
   }, 5000);
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------------------------------------------
-     Gallery
-  --------------------------------------------- */
+/* =========================================================
+   QUOTE FORM
+   ========================================================= */
 
-  if (carouselImg) {
-    carouselImg.style.transition = "opacity 0.2s ease";
-    showImage(currentIndex);
-  }
+function setupQuoteForm() {
 
-  prevBtn?.addEventListener("click", () => {
-    changeImage(-1);
-    startCarousel();
-  });
+  const form =
+    document.getElementById("quote-form");
 
-  nextBtn?.addEventListener("click", () => {
-    changeImage(1);
-    startCarousel();
-  });
+  const formMessages =
+    document.getElementById("form-messages");
 
-  startCarousel();
+  if (!form || !formMessages) return;
 
 
-  /* ---------------------------------------------
-     Quote Form
-  --------------------------------------------- */
+  form.addEventListener("submit", async (event) => {
 
-  const form = document.getElementById("quote-form");
-  const formMessages = document.getElementById("form-messages");
+    event.preventDefault();
 
-  if (form && formMessages) {
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    const submitButton =
+      form.querySelector(
+        "button[type='submit']"
+      );
 
-      const submitButton = form.querySelector("button[type='submit']");
-      const originalButtonText = submitButton?.textContent;
 
-      if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = "Sending...";
-      }
+    const originalButtonText =
+      submitButton
+        ? submitButton.textContent
+        : "Send Quote Request";
 
-      formMessages.style.display = "block";
-      formMessages.style.color = "#aeb6bd";
-      formMessages.textContent = "Sending your quote request...";
 
-      const formData = new FormData(form);
+    /*
+      Basic browser validation.
+    */
 
-      try {
+    if (!form.checkValidity()) {
 
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json"
+      form.reportValidity();
+
+      return;
+
+    }
+
+
+    if (submitButton) {
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "Sending...";
+
+    }
+
+
+    formMessages.style.display = "block";
+
+    formMessages.style.color =
+      "#aeb6bd";
+
+    formMessages.textContent =
+      "Sending your quote request...";
+
+
+    const formData =
+      new FormData(form);
+
+
+    try {
+
+      const response =
+        await fetch(
+          form.action,
+          {
+            method: "POST",
+
+            body: formData,
+
+            headers: {
+              Accept: "application/json"
+            }
           }
-        });
+        );
 
-        if (response.ok) {
 
-          formMessages.style.color = "#66ccff";
-          formMessages.textContent =
-            "✓ Thank you! Your quote request has been sent. We'll be in touch soon.";
+      if (response.ok) {
 
-          form.reset();
-
-        } else {
-
-          let data = {};
-
-          try {
-            data = await response.json();
-          } catch {
-            data = {};
-          }
-
-          formMessages.style.color = "#ffb86b";
-
-          formMessages.textContent =
-            data.errors?.map(error => error.message).join(", ") ||
-            "Something went wrong. Please try again.";
-        }
-
-      } catch {
-
-        formMessages.style.color = "#ff7b7b";
+        formMessages.style.color =
+          "#66ccff";
 
         formMessages.textContent =
-          "Network error. Please try again or contact us directly.";
+          "✓ Thank you! Your quote request has been sent. We'll be in touch soon.";
+
+        form.reset();
+
+      } else {
+
+        let data = {};
+
+        try {
+
+          data =
+            await response.json();
+
+        } catch {
+
+          data = {};
+
+        }
+
+
+        formMessages.style.color =
+          "#ffb86b";
+
+
+        formMessages.textContent =
+          data.errors
+            ?.map(error => error.message)
+            .join(", ") ||
+          "Something went wrong. Please try again.";
+
       }
 
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-    });
-  }
+    } catch (error) {
+
+      formMessages.style.color =
+        "#ff7b7b";
+
+      formMessages.textContent =
+        "Network error. Please try again or contact us directly.";
+
+    }
 
 
-  /* ---------------------------------------------
-     Mobile Navigation
-  --------------------------------------------- */
+    if (submitButton) {
 
-  const menuToggleBtn =
-    document.querySelector(".header-buttons > button");
+      submitButton.disabled = false;
 
-  const headerButtons =
-    document.querySelector(".header-buttons");
+      submitButton.textContent =
+        originalButtonText;
 
-  if (menuToggleBtn && headerButtons) {
+    }
 
-    menuToggleBtn.setAttribute("aria-expanded", "false");
+  });
 
-    menuToggleBtn.addEventListener("click", () => {
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+function setupMobileNavigation() {
+
+  const menuButton =
+    document.querySelector(".menu-toggle");
+
+  const header =
+    document.querySelector("header");
+
+  const mobileLinks =
+    document.querySelectorAll(
+      ".mobile-nav a"
+    );
+
+
+  if (!menuButton || !header) return;
+
+
+  menuButton.addEventListener(
+    "click",
+    () => {
 
       const isOpen =
-        headerButtons.classList.toggle("open");
+        header.classList.toggle(
+          "menu-open"
+        );
 
-      menuToggleBtn.setAttribute(
+
+      menuButton.setAttribute(
         "aria-expanded",
         isOpen ? "true" : "false"
       );
 
-      menuToggleBtn.innerHTML =
-        isOpen ? "&#10005;" : "&#9776;";
-    });
+
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close navigation menu"
+          : "Open navigation menu"
+      );
 
 
-    const menuLinks =
-      headerButtons.querySelectorAll("ul li a.button");
+      menuButton.textContent =
+        isOpen ? "✕" : "☰";
 
-    menuLinks.forEach(link => {
+    }
+  );
 
-      link.addEventListener("click", () => {
 
-        headerButtons.classList.remove("open");
+  mobileLinks.forEach(link => {
 
-        menuToggleBtn.setAttribute(
+    link.addEventListener(
+      "click",
+      () => {
+
+        header.classList.remove(
+          "menu-open"
+        );
+
+
+        menuButton.setAttribute(
           "aria-expanded",
           "false"
         );
 
-        menuToggleBtn.innerHTML = "&#9776;";
-      });
 
-    });
+        menuButton.setAttribute(
+          "aria-label",
+          "Open navigation menu"
+        );
+
+
+        menuButton.textContent =
+          "☰";
+
+      }
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    /*
+      Gallery
+    */
+
+    if (carouselImg) {
+
+      carouselImg.style.transition =
+        "opacity 0.25s ease";
+
+      createCarouselDots();
+
+      showImage(currentIndex);
+
+      startCarousel();
+
+
+      /*
+        Pause automatic rotation while
+        the user is interacting with it.
+      */
+
+      carouselImg.addEventListener(
+        "mouseenter",
+        () => clearInterval(autoRotate)
+      );
+
+
+      carouselImg.addEventListener(
+        "mouseleave",
+        startCarousel
+      );
+
+    }
+
+
+    if (prevBtn) {
+
+      prevBtn.addEventListener(
+        "click",
+        () => {
+
+          changeImage(-1);
+
+          startCarousel();
+
+        }
+      );
+
+    }
+
+
+    if (nextBtn) {
+
+      nextBtn.addEventListener(
+        "click",
+        () => {
+
+          changeImage(1);
+
+          startCarousel();
+
+        }
+      );
+
+    }
+
+
+    /*
+      Quote form
+    */
+
+    setupQuoteForm();
+
+
+    /*
+      Mobile navigation
+    */
+
+    setupMobileNavigation();
+
   }
-
-});
+);
