@@ -553,7 +553,7 @@ header {
 .review-card {
   position: absolute;
   inset: 0;
-  padding: 40px;
+  padding: 50px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -576,9 +576,10 @@ header {
 }
 
 .review-stars {
-  color: var(--accent);
-  font-size: 1.1rem;
-  letter-spacing: 4px;
+  color: #fbbf24;
+  font-size: 1.3rem;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
 }
 
 .review-text {
@@ -594,6 +595,13 @@ header {
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.review-date {
+  margin: 4px 0 0 0;
+  color: var(--muted-2);
+  font-size: 0.8rem;
+  font-style: normal;
 }
 
 .reviews-dots {
@@ -625,6 +633,13 @@ header {
 
 .review-dot:hover {
   background: rgba(0, 217, 255, 0.6);
+}
+
+.review-loading {
+  padding: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
 }
 
 /* =========================================================
@@ -1671,5 +1686,10 @@ footer {
 
   .reviews-dots {
     padding: 12px 0;
+  }
+
+  .review-stars {
+    font-size: 1.1rem;
+    letter-spacing: 4px;
   }
 }
