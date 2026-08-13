@@ -1,374 +1,1147 @@
-// =========================================================
-//    NOAH'S WAX N' WRENCH
-//    JavaScript Functionality
-// =========================================================
+/* =========================================================
+   NOAH'S WAX N' WRENCH
+   Website JavaScript
+   ========================================================= */
 
-// =========================================================
-//    PREVENT SCROLL POSITION JUMP ON PAGE LOAD
-// =========================================================
 
-window.addEventListener('load', () => {
-  // Reset scroll to top on initial page load
-  if (!sessionStorage.getItem('scrolled')) {
-    window.scrollTo(0, 0);
-    sessionStorage.setItem('scrolled', 'true');
-  }
-});
+/* =========================================================
+   GALLERY
+   ========================================================= */
 
-// Clear scroll position on fresh page load (not back button)
-if (performance.navigation.type === 1) {
-  window.scrollTo(0, 0);
-  sessionStorage.removeItem('scrolled');
-}
-
-// =========================================================
-//    MOBILE MENU TOGGLE
-// =========================================================
-
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileNav = document.querySelector('.mobile-nav');
-
-// Ensure mobile nav starts closed
-if (mobileNav) {
-  mobileNav.classList.remove('active');
-  if (menuToggle) {
-    menuToggle.setAttribute('aria-expanded', 'false');
-  }
-}
-
-if (menuToggle && mobileNav) {
-  menuToggle.addEventListener('click', () => {
-    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', !isExpanded);
-    mobileNav.classList.toggle('active');
-    
-    // Animate burger menu
-    const spans = menuToggle.querySelectorAll('span');
-    spans.forEach((span, index) => {
-      if (!isExpanded) {
-        if (index === 0) span.style.transform = 'rotate(45deg) translateY(12px)';
-        if (index === 1) span.style.opacity = '0';
-        if (index === 2) span.style.transform = 'rotate(-45deg) translateY(-12px)';
-      } else {
-        span.style.transform = 'none';
-        span.style.opacity = '1';
-      }
-    });
-  });
-
-  // Close mobile menu when a link is clicked
-  const mobileNavLinks = mobileNav.querySelectorAll('a');
-  mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      menuToggle.setAttribute('aria-expanded', 'false');
-      mobileNav.classList.remove('active');
-      const spans = menuToggle.querySelectorAll('span');
-      spans.forEach(span => {
-        span.style.transform = 'none';
-        span.style.opacity = '1';
-      });
-    });
-  });
-}
-
-// =========================================================
-//    REVIEWS CAROUSEL
-// =========================================================
-
-const reviewsCarousel = document.querySelector('.reviews-carousel-inner');
-const reviewCards = document.querySelectorAll('.review-card');
-const reviewsDots = document.getElementById('reviewsDots');
-
-let currentReviewIndex = 0;
-const reviewAutoPlayInterval = 6000; // Change review every 6 seconds
-
-// Initialize review dots
-if (reviewsDots && reviewCards.length > 0) {
-  reviewCards.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.className = `review-dot ${index === 0 ? 'active' : ''}`;
-    dot.setAttribute('aria-label', `Review ${index + 1}`);
-    dot.addEventListener('click', () => {
-      currentReviewIndex = index;
-      updateReviewCarousel();
-      resetAutoPlay();
-    });
-    reviewsDots.appendChild(dot);
-  });
-
-  // Update reviews carousel display
-  function updateReviewCarousel() {
-    reviewCards.forEach((card, index) => {
-      card.classList.remove('active', 'prev');
-      if (index === currentReviewIndex) {
-        card.classList.add('active');
-      } else if (index < currentReviewIndex) {
-        card.classList.add('prev');
-      }
-    });
-
-    // Update dots
-    document.querySelectorAll('.review-dot').forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentReviewIndex);
-    });
-  }
-
-  // Auto-advance reviews
-  let autoPlayTimer;
-
-  function startAutoPlay() {
-    autoPlayTimer = setInterval(() => {
-      currentReviewIndex = (currentReviewIndex + 1) % reviewCards.length;
-      updateReviewCarousel();
-    }, reviewAutoPlayInterval);
-  }
-
-  function resetAutoPlay() {
-    clearInterval(autoPlayTimer);
-    startAutoPlay();
-  }
-
-  // Start auto-play
-  startAutoPlay();
-
-  // Pause on hover
-  reviewsCarousel.addEventListener('mouseenter', () => {
-    clearInterval(autoPlayTimer);
-  });
-
-  reviewsCarousel.addEventListener('mouseleave', () => {
-    startAutoPlay();
-  });
-}
-
-// =========================================================
-//    CAROUSEL FUNCTIONALITY
-// =========================================================
-
-const carouselImage = document.getElementById('carouselImage');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const carouselDots = document.getElementById('carouselDots');
-
-// Sample images array - replace with your actual image paths
 const images = [
-  'Pictures/Audi-Exhaust-Fumes-Fix.JPEG',
-  // Add more image paths here
+  "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
+  "Pictures/Headlight-Restoration.JPEG",
+  "Pictures/F150-Exterior.jpg",
+  "Pictures/Highlander-Black-Exterior.jpg",
+  "Pictures/Subaru-Center.JPEG",
+  "Pictures/Kia-Trunk.JPEG",
+  "Pictures/Lexus-Back-Carpet-Before-And-After.jpg",
+  "Pictures/Lexus-Front-Carpet-Before-And-After.jpg",
+  "Pictures/Lexus-Back-Stripes-One.jpg",
+  "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
+  "Pictures/Santa-Fe-Exterior.jpg"
 ];
 
-let currentImageIndex = 0;
 
-// Initialize carousel dots
-function initDots() {
-  carouselDots.innerHTML = '';
-  images.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
-    dot.setAttribute('aria-label', `Image ${index + 1}`);
-    dot.addEventListener('click', () => {
-      currentImageIndex = index;
-      updateCarousel();
-    });
-    carouselDots.appendChild(dot);
-  });
-}
+const imageDescriptions = [
+  "Audi detailing and exhaust repair work by Noah's Wax N' Wrench",
+  "Headlight restoration by Noah's Wax N' Wrench",
+  "Professionally detailed Ford F-150",
+  "Professionally detailed black Toyota Highlander",
+  "Subaru interior detailing by Noah's Wax N' Wrench",
+  "Kia trunk detailing by Noah's Wax N' Wrench",
+  "Lexus rear carpet before and after detailing",
+  "Lexus front carpet before and after detailing",
+  "Lexus rear carpet detailing result",
+  "Lexus front driver and passenger area detailing",
+  "Professionally detailed Hyundai Santa Fe"
+];
 
-// Update carousel display
-function updateCarousel() {
-  if (images.length === 0) return;
-  
-  carouselImage.src = images[currentImageIndex];
-  
-  // Update dots
-  document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentImageIndex);
-  });
-}
 
-// Next image
-if (nextBtn) {
-  nextBtn.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    updateCarousel();
-  });
-}
+let currentImage = 0;
+let galleryTimer = null;
+let galleryChanging = false;
 
-// Previous image
-if (prevBtn) {
-  prevBtn.addEventListener('click', () => {
-    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-    updateCarousel();
-  });
-}
 
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight') {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    updateCarousel();
-  }
-  if (e.key === 'ArrowLeft') {
-    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-    updateCarousel();
-  }
+const carouselImage = document.getElementById("carouselImage");
+const carouselDots = document.getElementById("carouselDots");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const carouselWrapper = document.getElementById("carouselWrapper");
+
+
+/* ---------------------------------------------------------
+   Preload images
+   --------------------------------------------------------- */
+
+images.forEach((src) => {
+  const img = new Image();
+  img.src = src;
 });
 
-// Initialize carousel
-initDots();
 
-// =========================================================
-//    FORM HANDLING
-// =========================================================
+/* ---------------------------------------------------------
+   Create gallery dots
+   --------------------------------------------------------- */
 
-const quoteForm = document.getElementById('quote-form');
-const formMessages = document.getElementById('form-messages');
+function createGalleryDots() {
 
-if (quoteForm) {
-  quoteForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Show loading state
-    const submitBtn = quoteForm.querySelector('.form-submit');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
+  if (!carouselDots) {
+    return;
+  }
 
-    try {
-      // Formspree handles the actual submission
-      const response = await fetch(quoteForm.action, {
-        method: 'POST',
-        body: new FormData(quoteForm),
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+  carouselDots.innerHTML = "";
 
-      if (response.ok) {
-        // Show success message
-        formMessages.textContent = '✓ Quote request sent successfully! We\'ll be in touch soon.';
-        formMessages.className = 'form-message success';
-        formMessages.hidden = false;
+  images.forEach((_, index) => {
 
-        // Reset form
-        quoteForm.reset();
+    const dot = document.createElement("button");
 
-        // Hide message after 5 seconds
-        setTimeout(() => {
-          formMessages.hidden = true;
-        }, 5000);
-      } else {
-        throw new Error('Form submission failed');
-      }
-    } catch (error) {
-      // Show error message
-      formMessages.textContent = '✗ Error sending quote request. Please try again or contact us directly.';
-      formMessages.className = 'form-message error';
-      formMessages.hidden = false;
-      console.error('Error:', error);
-    } finally {
-      // Restore submit button
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }
+    dot.type = "button";
+
+    dot.className = "carousel-dot";
+
+    dot.setAttribute(
+      "aria-label",
+      `View gallery image ${index + 1}`
+    );
+
+    dot.addEventListener("click", () => {
+
+      showImage(index);
+      restartGallery();
+
+    });
+
+    carouselDots.appendChild(dot);
+
   });
+
 }
 
-// =========================================================
-//    SMOOTH SCROLL ANCHOR LINKS
-// =========================================================
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    
-    // Don't prevent default for empty hash
-    if (href === '#') {
+/* ---------------------------------------------------------
+   Update dots
+   --------------------------------------------------------- */
+
+function updateGalleryDots() {
+
+  if (!carouselDots) {
+    return;
+  }
+
+  const dots = carouselDots.querySelectorAll(".carousel-dot");
+
+  dots.forEach((dot, index) => {
+
+    dot.classList.toggle(
+      "active",
+      index === currentImage
+    );
+
+  });
+
+}
+
+
+/* ---------------------------------------------------------
+   Show gallery image
+   --------------------------------------------------------- */
+
+function showImage(index) {
+
+  if (!carouselImage || galleryChanging) {
+    return;
+  }
+
+  currentImage =
+    (index + images.length) % images.length;
+
+  galleryChanging = true;
+
+  carouselImage.classList.add("is-changing");
+
+  const nextSrc = images[currentImage];
+  const nextAlt = imageDescriptions[currentImage];
+
+
+  setTimeout(() => {
+
+    carouselImage.src = nextSrc;
+    carouselImage.alt = nextAlt;
+
+    const revealImage = () => {
+
+      carouselImage.classList.remove("is-changing");
+
+      galleryChanging = false;
+
+      updateGalleryDots();
+
+      carouselImage.removeEventListener(
+        "load",
+        revealImage
+      );
+
+    };
+
+
+    carouselImage.addEventListener(
+      "load",
+      revealImage
+    );
+
+
+    /*
+      If the browser already has the image cached,
+      make sure the carousel does not get stuck.
+    */
+
+    if (carouselImage.complete) {
+
+      setTimeout(() => {
+
+        carouselImage.classList.remove(
+          "is-changing"
+        );
+
+        galleryChanging = false;
+
+        updateGalleryDots();
+
+      }, 50);
+
+    }
+
+  }, 250);
+
+}
+
+
+/* ---------------------------------------------------------
+   Change image
+   --------------------------------------------------------- */
+
+function changeImage(step) {
+
+  showImage(currentImage + step);
+
+}
+
+
+/* ---------------------------------------------------------
+   Gallery timer
+   --------------------------------------------------------- */
+
+function startGallery() {
+
+  stopGallery();
+
+  galleryTimer = setInterval(() => {
+
+    if (
+      document.hidden ||
+      galleryChanging
+    ) {
       return;
     }
 
-    const targetElement = document.querySelector(href);
-    
-    if (targetElement) {
-      e.preventDefault();
-      
-      // Close mobile menu if open
-      if (mobileNav && mobileNav.classList.contains('active')) {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        mobileNav.classList.remove('active');
-        const spans = menuToggle.querySelectorAll('span');
-        spans.forEach(span => {
-          span.style.transform = 'none';
-          span.style.opacity = '1';
-        });
-      }
+    changeImage(1);
 
-      // Scroll to element
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
+  }, 5000);
 
-// =========================================================
-//    INTERSECTION OBSERVER FOR ANIMATIONS
-// =========================================================
-
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.package-card, .gallery-card').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(20px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
-});
-
-// =========================================================
-//    ACTIVE NAV HIGHLIGHTING
-// =========================================================
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.desktop-nav a, .mobile-nav a');
-
-function updateActiveNav() {
-  let current = '';
-
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    if (scrollY >= sectionTop - 200) {
-      current = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href').slice(1) === current) {
-      link.classList.add('active');
-    }
-  });
 }
 
-window.addEventListener('scroll', updateActiveNav);
 
-// =========================================================
-//    UTILITY: SAFE NAVIGATION
-// =========================================================
+function stopGallery() {
 
-// Ensure page always loads at top
-document.addEventListener('DOMContentLoaded', () => {
-  window.scrollTo(0, 0);
+  if (galleryTimer) {
+
+    clearInterval(galleryTimer);
+
+    galleryTimer = null;
+
+  }
+
+}
+
+
+function restartGallery() {
+
+  startGallery();
+
+}
+
+
+/* ---------------------------------------------------------
+   Gallery buttons
+   --------------------------------------------------------- */
+
+if (prevBtn) {
+
+  prevBtn.addEventListener("click", () => {
+
+    changeImage(-1);
+    restartGallery();
+
+  });
+
+}
+
+
+if (nextBtn) {
+
+  nextBtn.addEventListener("click", () => {
+
+    changeImage(1);
+    restartGallery();
+
+  });
+
+}
+
+
+/* ---------------------------------------------------------
+   Keyboard controls
+   --------------------------------------------------------- */
+
+document.addEventListener("keydown", (event) => {
+
+  const gallery = document.getElementById("gallery");
+
+  if (!gallery) {
+    return;
+  }
+
+  const rect = gallery.getBoundingClientRect();
+
+  const galleryVisible =
+    rect.top < window.innerHeight &&
+    rect.bottom > 0;
+
+
+  if (!galleryVisible) {
+    return;
+  }
+
+
+  if (event.key === "ArrowLeft") {
+
+    changeImage(-1);
+    restartGallery();
+
+  }
+
+
+  if (event.key === "ArrowRight") {
+
+    changeImage(1);
+    restartGallery();
+
+  }
+
 });
+
+
+/* ---------------------------------------------------------
+   Swipe controls
+   --------------------------------------------------------- */
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+
+if (carouselWrapper) {
+
+  carouselWrapper.addEventListener(
+    "touchstart",
+    (event) => {
+
+      const touch = event.changedTouches[0];
+
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  carouselWrapper.addEventListener(
+    "touchend",
+    (event) => {
+
+      const touch = event.changedTouches[0];
+
+      const deltaX =
+        touch.clientX - touchStartX;
+
+      const deltaY =
+        touch.clientY - touchStartY;
+
+
+      /*
+        Ignore mostly vertical swipes.
+      */
+
+      if (
+        Math.abs(deltaX) < 45 ||
+        Math.abs(deltaX) < Math.abs(deltaY)
+      ) {
+        return;
+      }
+
+
+      if (deltaX < 0) {
+
+        changeImage(1);
+
+      } else {
+
+        changeImage(-1);
+
+      }
+
+      restartGallery();
+
+    },
+    {
+      passive: true
+    }
+  );
+
+}
+
+
+/* ---------------------------------------------------------
+   Initialize gallery
+   --------------------------------------------------------- */
+
+createGalleryDots();
+updateGalleryDots();
+startGallery();
+
+
+/* =========================================================
+   REVIEWS CAROUSEL
+   ========================================================= */
+
+const reviewCards =
+  document.querySelectorAll(".review-card");
+
+const reviewsDots =
+  document.getElementById("reviewsDots");
+
+
+let currentReview = 0;
+let reviewTimer = null;
+
+
+function createReviewDots() {
+
+  if (!reviewsDots) {
+    return;
+  }
+
+  reviewsDots.innerHTML = "";
+
+  reviewCards.forEach((_, index) => {
+
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+
+    dot.className = "review-dot";
+
+    dot.setAttribute(
+      "aria-label",
+      `View customer review ${index + 1}`
+    );
+
+    dot.addEventListener("click", () => {
+
+      showReview(index);
+      restartReviews();
+
+    });
+
+    reviewsDots.appendChild(dot);
+
+  });
+
+}
+
+
+function showReview(index) {
+
+  if (!reviewCards.length) {
+    return;
+  }
+
+  currentReview =
+    (index + reviewCards.length) %
+    reviewCards.length;
+
+
+  reviewCards.forEach((card, cardIndex) => {
+
+    card.classList.toggle(
+      "active",
+      cardIndex === currentReview
+    );
+
+  });
+
+
+  if (reviewsDots) {
+
+    const dots =
+      reviewsDots.querySelectorAll(".review-dot");
+
+    dots.forEach((dot, dotIndex) => {
+
+      dot.classList.toggle(
+        "active",
+        dotIndex === currentReview
+      );
+
+    });
+
+  }
+
+}
+
+
+function startReviews() {
+
+  stopReviews();
+
+  if (reviewCards.length <= 1) {
+    return;
+  }
+
+  reviewTimer = setInterval(() => {
+
+    if (!document.hidden) {
+
+      showReview(currentReview + 1);
+
+    }
+
+  }, 6500);
+
+}
+
+
+function stopReviews() {
+
+  if (reviewTimer) {
+
+    clearInterval(reviewTimer);
+
+    reviewTimer = null;
+
+  }
+
+}
+
+
+function restartReviews() {
+
+  startReviews();
+
+}
+
+
+createReviewDots();
+showReview(0);
+startReviews();
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+const menuToggle =
+  document.querySelector(".menu-toggle");
+
+const mobileNav =
+  document.getElementById("mobileNav");
+
+
+function closeMobileMenu() {
+
+  if (!menuToggle || !mobileNav) {
+    return;
+  }
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+  menuToggle.setAttribute(
+    "aria-label",
+    "Open navigation menu"
+  );
+
+  mobileNav.classList.remove("open");
+
+}
+
+
+function openMobileMenu() {
+
+  if (!menuToggle || !mobileNav) {
+    return;
+  }
+
+  menuToggle.setAttribute(
+    "aria-expanded",
+    "true"
+  );
+
+  menuToggle.setAttribute(
+    "aria-label",
+    "Close navigation menu"
+  );
+
+  mobileNav.classList.add("open");
+
+}
+
+
+if (menuToggle) {
+
+  menuToggle.addEventListener(
+    "click",
+    () => {
+
+      const expanded =
+        menuToggle.getAttribute(
+          "aria-expanded"
+        ) === "true";
+
+
+      if (expanded) {
+
+        closeMobileMenu();
+
+      } else {
+
+        openMobileMenu();
+
+      }
+
+    }
+  );
+
+}
+
+
+/* ---------------------------------------------------------
+   Close menu when navigation link clicked
+   --------------------------------------------------------- */
+
+if (mobileNav) {
+
+  mobileNav
+    .querySelectorAll("a")
+    .forEach((link) => {
+
+      link.addEventListener(
+        "click",
+        closeMobileMenu
+      );
+
+    });
+
+}
+
+
+/* ---------------------------------------------------------
+   Close menu with Escape
+   --------------------------------------------------------- */
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (event.key === "Escape") {
+
+      closeMobileMenu();
+
+    }
+
+  }
+);
+
+
+/* ---------------------------------------------------------
+   Close menu when clicking outside
+   --------------------------------------------------------- */
+
+document.addEventListener(
+  "click",
+  (event) => {
+
+    if (!mobileNav || !menuToggle) {
+      return;
+    }
+
+    const clickedInsideMenu =
+      mobileNav.contains(event.target);
+
+    const clickedToggle =
+      menuToggle.contains(event.target);
+
+
+    if (
+      !clickedInsideMenu &&
+      !clickedToggle
+    ) {
+
+      closeMobileMenu();
+
+    }
+
+  }
+);
+
+
+/* ---------------------------------------------------------
+   Close menu after resizing
+   --------------------------------------------------------- */
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    if (window.innerWidth > 800) {
+
+      closeMobileMenu();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   QUOTE FORM
+   ========================================================= */
+
+const quoteForm =
+  document.getElementById("quote-form");
+
+const formMessage =
+  document.getElementById("form-messages");
+
+
+function showFormMessage(
+  message,
+  type
+) {
+
+  if (!formMessage) {
+    return;
+  }
+
+  formMessage.hidden = false;
+
+  formMessage.className =
+    `form-message ${type}`;
+
+  formMessage.textContent =
+    message;
+
+}
+
+
+function hideFormMessage() {
+
+  if (!formMessage) {
+    return;
+  }
+
+  formMessage.hidden = true;
+
+  formMessage.className =
+    "form-message";
+
+  formMessage.textContent = "";
+
+}
+
+
+/* ---------------------------------------------------------
+   Form submission
+   --------------------------------------------------------- */
+
+if (quoteForm) {
+
+  quoteForm.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+      hideFormMessage();
+
+
+      /*
+        Let native browser validation
+        handle required fields.
+      */
+
+      if (!quoteForm.checkValidity()) {
+
+        quoteForm.reportValidity();
+
+        return;
+
+      }
+
+
+      const submitButton =
+        quoteForm.querySelector(
+          ".form-submit"
+        );
+
+
+      if (!submitButton) {
+        return;
+      }
+
+
+      const originalButtonHTML =
+        submitButton.innerHTML;
+
+
+      submitButton.disabled = true;
+
+      submitButton.innerHTML =
+        "Sending Request...";
+
+
+      const formData =
+        new FormData(quoteForm);
+
+
+      try {
+
+        const response =
+          await fetch(
+            quoteForm.action,
+            {
+              method: "POST",
+              body: formData,
+              headers: {
+                Accept: "application/json"
+              }
+            }
+          );
+
+
+        if (response.ok) {
+
+          showFormMessage(
+            "Your quote request has been sent! We'll review your information and get back to you shortly.",
+            "success"
+          );
+
+
+          quoteForm.reset();
+
+
+          /*
+            Return the button to its normal state
+            after a successful submission.
+          */
+
+          submitButton.disabled = false;
+
+          submitButton.innerHTML =
+            originalButtonHTML;
+
+
+          /*
+            Keep the confirmation visible.
+          */
+
+          formMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+
+
+        } else {
+
+          let errorMessage =
+            "Something went wrong while sending your request. Please try again.";
+
+
+          try {
+
+            const data =
+              await response.json();
+
+
+            if (
+              data &&
+              data.errors &&
+              data.errors.length
+            ) {
+
+              errorMessage =
+                data.errors
+                  .map(
+                    (error) =>
+                      error.message
+                  )
+                  .join(" ");
+
+            }
+
+          } catch {
+            /*
+              Use the default error message.
+            */
+          }
+
+
+          showFormMessage(
+            errorMessage,
+            "error"
+          );
+
+
+          submitButton.disabled = false;
+
+          submitButton.innerHTML =
+            originalButtonHTML;
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Form submission error:",
+          error
+        );
+
+
+        showFormMessage(
+          "We couldn't send your request right now. Please try again in a moment.",
+          "error"
+        );
+
+
+        submitButton.disabled = false;
+
+        submitButton.innerHTML =
+          originalButtonHTML;
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   PHONE NUMBER FORMATTING
+   ========================================================= */
+
+const phoneInput =
+  document.getElementById("phone");
+
+
+if (phoneInput) {
+
+  phoneInput.addEventListener(
+    "input",
+    () => {
+
+      let digits =
+        phoneInput.value.replace(
+          /\D/g,
+          ""
+        );
+
+
+      if (digits.length > 10) {
+
+        digits =
+          digits.substring(0, 10);
+
+      }
+
+
+      if (digits.length > 6) {
+
+        phoneInput.value =
+          `(${digits.substring(0, 3)}) ` +
+          `${digits.substring(3, 6)}-` +
+          `${digits.substring(6)}`;
+
+      } else if (digits.length > 3) {
+
+        phoneInput.value =
+          `(${digits.substring(0, 3)}) ` +
+          digits.substring(3);
+
+      } else {
+
+        phoneInput.value =
+          digits;
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   YEAR VALIDATION
+   ========================================================= */
+
+const yearInput =
+  document.getElementById("year");
+
+
+if (yearInput) {
+
+  yearInput.addEventListener(
+    "input",
+    () => {
+
+      yearInput.value =
+        yearInput.value
+          .replace(/\D/g, "")
+          .substring(0, 4);
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   SMOOTH ANCHOR HANDLING
+   ========================================================= */
+
+document
+  .querySelectorAll('a[href^="#"]')
+  .forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      (event) => {
+
+        const targetId =
+          link.getAttribute("href");
+
+
+        if (
+          !targetId ||
+          targetId === "#"
+        ) {
+          return;
+        }
+
+
+        const target =
+          document.querySelector(
+            targetId
+          );
+
+
+        if (!target) {
+          return;
+        }
+
+
+        event.preventDefault();
+
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   VISIBILITY / PERFORMANCE
+   ========================================================= */
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if (document.hidden) {
+
+      stopGallery();
+      stopReviews();
+
+    } else {
+
+      startGallery();
+      startReviews();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+const prefersReducedMotion =
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+
+if (prefersReducedMotion.matches) {
+
+  stopGallery();
+  stopReviews();
+
+}
+
+
+/* =========================================================
+   DYNAMIC COPYRIGHT YEAR
+   ========================================================= */
+
+const copyrightYear =
+  document.getElementById(
+    "copyrightYear"
+  );
+
+
+if (copyrightYear) {
+
+  copyrightYear.textContent =
+    new Date().getFullYear();
+
+}
+
+
+/* =========================================================
+   IMAGE ERROR HANDLING
+   ========================================================= */
+
+if (carouselImage) {
+
+  carouselImage.addEventListener(
+    "error",
+    () => {
+
+      carouselImage.classList.remove(
+        "is-changing"
+      );
+
+      galleryChanging = false;
+
+      console.error(
+        "Unable to load gallery image:",
+        carouselImage.src
+      );
+
+    }
+  );
+
+}
