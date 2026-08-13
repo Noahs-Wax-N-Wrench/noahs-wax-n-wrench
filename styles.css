@@ -58,7 +58,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 110px;
 }
 
 body {
@@ -138,13 +138,15 @@ header {
 }
 
 .header-main {
-  width: min(calc(100% - 44px), var(--max-width));
-  min-height: 85px;
+  width: 100%;
+  min-height: 110px;
+  padding: 0 22px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 28px;
+  max-width: 100%;
 }
 
 .brand {
@@ -160,8 +162,8 @@ header {
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 75px;
+  height: 75px;
   object-fit: contain;
   filter: drop-shadow(0 8px 24px rgba(0, 217, 255, 0.2));
   transition: filter 0.3s ease;
@@ -287,7 +289,7 @@ header {
 .mobile-nav {
   display: none !important;
   position: absolute;
-  top: 85px;
+  top: 110px;
   left: 0;
   right: 0;
   flex-direction: column;
@@ -336,7 +338,7 @@ header {
    ========================================================= */
 
 .hero {
-  min-height: calc(100vh - 85px);
+  min-height: calc(100vh - 110px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -386,7 +388,7 @@ header {
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
-  padding: 80px 0;
+  padding: 40px 0 80px;
 }
 
 .hero-copy {
@@ -397,7 +399,7 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   color: var(--accent);
   font-size: 0.72rem;
   font-weight: 900;
@@ -612,6 +614,8 @@ header {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--muted);
+  width: 100%;
+  max-width: 100%;
 }
 
 .service-strip-inner span {
@@ -1504,11 +1508,11 @@ footer {
   }
 
   .hero {
-    min-height: calc(100vh - 85px);
+    min-height: calc(100vh - 110px);
   }
 
   .hero-copy {
-    padding: 60px 0 80px;
+    padding: 40px 0 60px;
   }
 
   .hero h1 {
@@ -1583,7 +1587,13 @@ footer {
   }
 
   .header-main {
-    min-height: 70px;
+    min-height: 90px;
+    padding: 0 16px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
   }
 
   .hero h1 {
@@ -1596,11 +1606,6 @@ footer {
 
   .mobile-card h2 {
     font-size: 1.8rem;
-  }
-
-  .logo {
-    width: 48px;
-    height: 48px;
   }
 
   .brand-name {
