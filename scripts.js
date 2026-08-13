@@ -1,796 +1,353 @@
-/* =========================================================
-   NOAH'S WAX N' WRENCH
-   Website JavaScript
-   ========================================================= */
+// =========================================================
+//    NOAH'S WAX N' WRENCH
+//    JavaScript Functionality
+// =========================================================
 
-document.addEventListener("DOMContentLoaded", () => {
-  "use strict";
+// =========================================================
+//    MOBILE MENU TOGGLE
+// =========================================================
 
-  /* =======================================================
-     GALLERY
-     ======================================================= */
+const menuToggle = document.querySelector('.menu-toggle');
+const mobileNav = document.querySelector('.mobile-nav');
 
-  const images = [
-    "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
-    "Pictures/Headlight-Restoration.JPEG",
-    "Pictures/F150-Exterior.jpg",
-    "Pictures/Highlander-Black-Exterior.jpg",
-    "Pictures/Subaru-Center.JPEG",
-    "Pictures/Kia-Trunk.JPEG",
-    "Pictures/Lexus-Back-Carpet-Before-And-After.jpg",
-    "Pictures/Lexus-Front-Carpet-Before-And-After.jpg",
-    "Pictures/Lexus-Back-Stripes-One.jpg",
-    "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
-    "Pictures/Santa-Fe-Exterior.jpg"
-  ];
-
-  const carouselImg = document.getElementById("carouselImage");
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const carouselDots = document.getElementById("carouselDots");
-  const carouselWrapper = document.querySelector(".carousel-image-wrapper");
-  const carousel = document.querySelector(".carousel");
-
-  let currentIndex = 0;
-  let autoRotate = null;
-  let isChangingImage = false;
-
-  const AUTO_ROTATE_DELAY = 5000;
-
-  /* -------------------------------------------------------
-     Preload gallery images
-     ------------------------------------------------------- */
-
-  function preloadImages() {
-    images.forEach((src) => {
-      const image = new Image();
-      image.src = src;
-    });
-  }
-
-  /* -------------------------------------------------------
-     Create carousel dots
-     ------------------------------------------------------- */
-
-  function createCarouselDots() {
-    if (!carouselDots) return;
-
-    carouselDots.innerHTML = "";
-
-    images.forEach((src, index) => {
-      const dot = document.createElement("button");
-
-      dot.type = "button";
-      dot.className = "carousel-dot";
-      dot.setAttribute(
-        "aria-label",
-        `View gallery image ${index + 1}`
-      );
-
-      dot.addEventListener("click", () => {
-        showImage(index);
-        restartCarousel();
-      });
-
-      carouselDots.appendChild(dot);
-    });
-
-    updateCarouselDots();
-  }
-
-  /* -------------------------------------------------------
-     Update active dot
-     ------------------------------------------------------- */
-
-  function updateCarouselDots() {
-    if (!carouselDots) return;
-
-    const dots = carouselDots.querySelectorAll(".carousel-dot");
-
-    dots.forEach((dot, index) => {
-      const isActive = index === currentIndex;
-
-      dot.classList.toggle("active", isActive);
-
-      if (isActive) {
-        dot.setAttribute("aria-current", "true");
+if (menuToggle && mobileNav) {
+  menuToggle.addEventListener('click', () => {
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', !isExpanded);
+    mobileNav.style.display = isExpanded ? 'none' : 'flex';
+    
+    // Animate burger menu
+    const spans = menuToggle.querySelectorAll('span');
+    spans.forEach((span, index) => {
+      if (!isExpanded) {
+        if (index === 0) span.style.transform = 'rotate(45deg) translateY(12px)';
+        if (index === 1) span.style.opacity = '0';
+        if (index === 2) span.style.transform = 'rotate(-45deg) translateY(-12px)';
       } else {
-        dot.removeAttribute("aria-current");
+        span.style.transform = 'none';
+        span.style.opacity = '1';
       }
     });
+  });
+
+  // Close mobile menu when a link is clicked
+  const mobileNavLinks = mobileNav.querySelectorAll('a');
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      mobileNav.style.display = 'none';
+      const spans = menuToggle.querySelectorAll('span');
+      spans.forEach(span => {
+        span.style.transform = 'none';
+        span.style.opacity = '1';
+      });
+    });
+  });
+}
+
+// =========================================================
+//    PREVENT SCROLL POSITION JUMP ON PAGE LOAD
+// =========================================================
+
+window.addEventListener('load', () => {
+  // Reset scroll to top on initial page load
+  if (!sessionStorage.getItem('scrolled')) {
+    window.scrollTo(0, 0);
+    sessionStorage.setItem('scrolled', 'true');
   }
+});
 
-  /* -------------------------------------------------------
-     Display gallery image
-     ------------------------------------------------------- */
+// Clear scroll position on fresh page load (not back button)
+if (performance.navigation.type === 1) {
+  window.scrollTo(0, 0);
+  sessionStorage.removeItem('scrolled');
+}
 
-  function showImage(index, direction = 1) {
-    if (!carouselImg || !images.length || isChangingImage) return;
+// =========================================================
+//    CAROUSEL FUNCTIONALITY
+// =========================================================
 
-    index = (index + images.length) % images.length;
+const carouselImage = document.getElementById('carouselImage');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const carouselDots = document.getElementById('carouselDots');
 
-    if (index === currentIndex && carouselImg.src) {
-      updateCarouselDots();
-      return;
-    }
+// Sample images array - replace with your actual image paths
+const images = [
+  'Pictures/Audi-Exhaust-Fumes-Fix.JPEG',
+  // Add more image paths here
+];
 
-    isChangingImage = true;
+let currentImageIndex = 0;
 
-    const nextSrc = images[index];
-    const nextImage = new Image();
+// Initialize carousel dots
+function initDots() {
+  carouselDots.innerHTML = '';
+  images.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Image ${index + 1}`);
+    dot.addEventListener('click', () => {
+      currentImageIndex = index;
+      updateCarousel();
+    });
+    carouselDots.appendChild(dot);
+  });
+}
 
-    /*
-      Slight fade while the next image loads.
-      This keeps the gallery from flashing or showing
-      a broken image if the connection is slow.
-    */
+// Update carousel display
+function updateCarousel() {
+  if (images.length === 0) return;
+  
+  carouselImage.src = images[currentImageIndex];
+  
+  // Update dots
+  document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentImageIndex);
+  });
+}
 
-    carouselImg.style.opacity = "0";
+// Next image
+if (nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateCarousel();
+  });
+}
 
-    nextImage.onload = () => {
-      carouselImg.src = nextSrc;
+// Previous image
+if (prevBtn) {
+  prevBtn.addEventListener('click', () => {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+}
 
-      carouselImg.alt =
-        `Noah's Wax N' Wrench detailing work - gallery image ${index + 1} of ${images.length}`;
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    updateCarousel();
+  }
+  if (e.key === 'ArrowLeft') {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    updateCarousel();
+  }
+});
 
-      currentIndex = index;
+// Initialize carousel
+initDots();
 
-      updateCarouselDots();
+// =========================================================
+//    FORM HANDLING
+// =========================================================
 
-      requestAnimationFrame(() => {
-        carouselImg.style.opacity = "1";
+const quoteForm = document.getElementById('quote-form');
+const formMessages = document.getElementById('form-messages');
+
+if (quoteForm) {
+  quoteForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Show loading state
+    const submitBtn = quoteForm.querySelector('.form-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      // Formspree handles the actual submission
+      const response = await fetch(quoteForm.action, {
+        method: 'POST',
+        body: new FormData(quoteForm),
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
-      /*
-        Small delay prevents extremely rapid clicks
-        from causing the carousel to feel glitchy.
-      */
-      setTimeout(() => {
-        isChangingImage = false;
-      }, 120);
-    };
+      if (response.ok) {
+        // Show success message
+        formMessages.textContent = '✓ Quote request sent successfully! We\'ll be in touch soon.';
+        formMessages.className = 'form-message success';
+        formMessages.hidden = false;
 
-    nextImage.onerror = () => {
-      console.warn(
-        `Noah's Wax N' Wrench: Unable to load gallery image: ${nextSrc}`
-      );
+        // Reset form
+        quoteForm.reset();
 
-      carouselImg.style.opacity = "1";
-      isChangingImage = false;
-
-      /*
-        Move past a broken image automatically instead
-        of leaving the gallery stuck.
-      */
-      if (images.length > 1) {
-        const fallbackIndex =
-          (index + direction + images.length) % images.length;
-
-        if (fallbackIndex !== index) {
-          currentIndex = fallbackIndex;
-          updateCarouselDots();
-        }
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          formMessages.hidden = true;
+        }, 5000);
+      } else {
+        throw new Error('Form submission failed');
       }
-    };
-
-    nextImage.src = nextSrc;
-  }
-
-  /* -------------------------------------------------------
-     Change gallery image
-     ------------------------------------------------------- */
-
-  function changeImage(step) {
-    if (!images.length) return;
-
-    const nextIndex =
-      (currentIndex + step + images.length) % images.length;
-
-    showImage(nextIndex, step);
-  }
-
-  /* -------------------------------------------------------
-     Automatic carousel
-     ------------------------------------------------------- */
-
-  function stopCarousel() {
-    if (autoRotate !== null) {
-      clearInterval(autoRotate);
-      autoRotate = null;
-    }
-  }
-
-  function startCarousel() {
-    stopCarousel();
-
-    /*
-      Respect reduced-motion preferences.
-      Users who have requested reduced motion won't get
-      automatic gallery movement.
-    */
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion || images.length <= 1) {
-      return;
-    }
-
-    autoRotate = setInterval(() => {
-      changeImage(1);
-    }, AUTO_ROTATE_DELAY);
-  }
-
-  function restartCarousel() {
-    startCarousel();
-  }
-
-  /* -------------------------------------------------------
-     Pause carousel while user interacts with it
-     ------------------------------------------------------- */
-
-  if (carousel) {
-    carousel.addEventListener("mouseenter", stopCarousel);
-    carousel.addEventListener("mouseleave", startCarousel);
-
-    carousel.addEventListener("focusin", stopCarousel);
-    carousel.addEventListener("focusout", (event) => {
-      if (!carousel.contains(event.relatedTarget)) {
-        startCarousel();
-      }
-    });
-  }
-
-  /* -------------------------------------------------------
-     Touch/swipe support
-     ------------------------------------------------------- */
-
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let touchStartTime = 0;
-
-  if (carouselWrapper) {
-    carouselWrapper.addEventListener(
-      "touchstart",
-      (event) => {
-        const touch = event.changedTouches[0];
-
-        touchStartX = touch.clientX;
-        touchStartY = touch.clientY;
-        touchStartTime = Date.now();
-
-        stopCarousel();
-      },
-      { passive: true }
-    );
-
-    carouselWrapper.addEventListener(
-      "touchend",
-      (event) => {
-        const touch = event.changedTouches[0];
-
-        const deltaX = touch.clientX - touchStartX;
-        const deltaY = touch.clientY - touchStartY;
-        const duration = Date.now() - touchStartTime;
-
-        /*
-          A swipe must:
-          - move at least 45px horizontally
-          - be more horizontal than vertical
-          - happen within 800ms
-        */
-
-        const isHorizontalSwipe =
-          Math.abs(deltaX) > 45 &&
-          Math.abs(deltaX) > Math.abs(deltaY) * 1.25 &&
-          duration < 800;
-
-        if (isHorizontalSwipe) {
-          if (deltaX < 0) {
-            changeImage(1);
-          } else {
-            changeImage(-1);
-          }
-        }
-
-        startCarousel();
-      },
-      { passive: true }
-    );
-  }
-
-  /* -------------------------------------------------------
-     Previous / Next buttons
-     ------------------------------------------------------- */
-
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      changeImage(-1);
-      restartCarousel();
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      changeImage(1);
-      restartCarousel();
-    });
-  }
-
-  /* -------------------------------------------------------
-     Keyboard gallery controls
-     ------------------------------------------------------- */
-
-  document.addEventListener("keydown", (event) => {
-    /*
-      Only use left/right arrow keys when the gallery is
-      actually being interacted with.
-    */
-
-    if (!carousel || !carousel.contains(document.activeElement)) {
-      return;
-    }
-
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      changeImage(-1);
-      restartCarousel();
-    }
-
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      changeImage(1);
-      restartCarousel();
-    }
-  });
-
-  /* -------------------------------------------------------
-     Pause automatic rotation when browser tab is hidden
-     ------------------------------------------------------- */
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stopCarousel();
-    } else {
-      startCarousel();
-    }
-  });
-
-  /* -------------------------------------------------------
-     Initialize gallery
-     ------------------------------------------------------- */
-
-  if (carouselImg && images.length) {
-    carouselImg.style.transition = "opacity 0.28s ease";
-
-    createCarouselDots();
-    preloadImages();
-
-    /*
-      Make sure the first image is correctly configured.
-    */
-    carouselImg.src = images[0];
-    carouselImg.alt =
-      `Noah's Wax N' Wrench detailing work - gallery image 1 of ${images.length}`;
-
-    currentIndex = 0;
-    updateCarouselDots();
-
-    startCarousel();
-  }
-
-
-  /* =======================================================
-     MOBILE NAVIGATION
-     ======================================================= */
-
-  const menuButton = document.querySelector(".menu-toggle");
-  const header = document.querySelector("header");
-  const mobileNav = document.querySelector(".mobile-nav");
-  const mobileLinks = document.querySelectorAll(".mobile-nav a");
-
-  function openMobileMenu() {
-    if (!header || !menuButton) return;
-
-    header.classList.add("menu-open");
-
-    menuButton.setAttribute("aria-expanded", "true");
-    menuButton.setAttribute("aria-label", "Close navigation menu");
-  }
-
-  function closeMobileMenu() {
-    if (!header || !menuButton) return;
-
-    header.classList.remove("menu-open");
-
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "Open navigation menu");
-  }
-
-  function toggleMobileMenu() {
-    if (!header) return;
-
-    const isOpen = header.classList.contains("menu-open");
-
-    if (isOpen) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
-    }
-  }
-
-  if (menuButton && header) {
-    menuButton.addEventListener("click", toggleMobileMenu);
-
-    /*
-      Close the menu with Escape.
-    */
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeMobileMenu();
-        menuButton.focus();
-      }
-    });
-
-    /*
-      Close the menu when clicking outside of the header.
-    */
-    document.addEventListener("click", (event) => {
-      if (
-        header.classList.contains("menu-open") &&
-        !header.contains(event.target)
-      ) {
-        closeMobileMenu();
-      }
-    });
-  }
-
-  /*
-    Close mobile menu after selecting a navigation link.
-  */
-
-  mobileLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      closeMobileMenu();
-    });
-  });
-
-  /*
-    If the browser is resized back to desktop width,
-    automatically close the mobile menu.
-  */
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 760) {
-      closeMobileMenu();
-    }
-  });
-
-
-  /* =======================================================
-     QUOTE FORM
-     ======================================================= */
-
-  const quoteForm = document.getElementById("quote-form");
-  const formMessages = document.getElementById("form-messages");
-
-  if (quoteForm && formMessages) {
-    let isSubmitting = false;
-
-    quoteForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      /*
-        Prevent accidental double-clicks or duplicate
-        submissions.
-      */
-      if (isSubmitting) {
-        return;
-      }
-
-      /*
-        Use the browser's built-in validation first.
-      */
-      if (!quoteForm.checkValidity()) {
-        quoteForm.reportValidity();
-        return;
-      }
-
-      const submitButton = quoteForm.querySelector(
-        "button[type='submit']"
-      );
-
-      const submitArrow = submitButton
-        ? submitButton.querySelector("span")
-        : null;
-
-      const originalButtonText =
-        submitButton?.childNodes[0]?.textContent ||
-        "Send Quote Request";
-
-      isSubmitting = true;
-
-      if (submitButton) {
-        submitButton.disabled = true;
-
-        /*
-          Preserve the arrow <span> inside the button.
-        */
-        if (submitButton.childNodes[0]) {
-          submitButton.childNodes[0].textContent = "Sending... ";
-        }
-
-        if (submitArrow) {
-          submitArrow.textContent = "→";
-        }
-      }
-
-      /*
-        Show loading message.
-      */
-
+    } catch (error) {
+      // Show error message
+      formMessages.textContent = '✗ Error sending quote request. Please try again or contact us directly.';
+      formMessages.className = 'form-message error';
       formMessages.hidden = false;
-      formMessages.className = "form-message is-loading";
-      formMessages.textContent =
-        "Sending your quote request...";
+      console.error('Error:', error);
+    } finally {
+      // Restore submit button
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+}
 
-      /*
-        Scroll the message into view if necessary.
-      */
+// =========================================================
+//    SMOOTH SCROLL ANCHOR LINKS
+// =========================================================
 
-      formMessages.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-      });
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    
+    // Don't prevent default for empty hash
+    if (href === '#') {
+      return;
+    }
 
-      try {
-        const formData = new FormData(quoteForm);
-
-        /*
-          Add the page URL so the request contains context
-          about where the quote came from.
-        */
-
-        formData.append(
-          "Source",
-          window.location.href
-        );
-
-        const response = await fetch(quoteForm.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json"
-          }
+    const targetElement = document.querySelector(href);
+    
+    if (targetElement) {
+      e.preventDefault();
+      
+      // Close mobile menu if open
+      if (mobileNav && mobileNav.style.display !== 'none') {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mobileNav.style.display = 'none';
+        const spans = menuToggle.querySelectorAll('span');
+        spans.forEach(span => {
+          span.style.transform = 'none';
+          span.style.opacity = '1';
         });
-
-        let data = {};
-
-        try {
-          data = await response.json();
-        } catch {
-          data = {};
-        }
-
-        if (response.ok) {
-          formMessages.className =
-            "form-message is-success";
-
-          formMessages.textContent =
-            "✓ Thank you! Your quote request has been sent. We'll be in touch soon.";
-
-          quoteForm.reset();
-
-          /*
-            Return focus to the success message for
-            screen-reader users.
-          */
-
-          formMessages.setAttribute("tabindex", "-1");
-          formMessages.focus({ preventScroll: true });
-        } else {
-          const errorMessage =
-            data.errors
-              ?.map((error) => error.message)
-              .filter(Boolean)
-              .join(" ") ||
-            "Something went wrong while sending your request. Please try again.";
-
-          formMessages.className =
-            "form-message is-error";
-
-          formMessages.textContent = errorMessage;
-        }
-      } catch (error) {
-        console.error(
-          "Quote form submission error:",
-          error
-        );
-
-        formMessages.className =
-          "form-message is-error";
-
-        formMessages.textContent =
-          "We couldn't send your request right now. Please check your internet connection and try again.";
-      } finally {
-        isSubmitting = false;
-
-        if (submitButton) {
-          submitButton.disabled = false;
-
-          if (submitButton.childNodes[0]) {
-            submitButton.childNodes[0].textContent =
-              `${originalButtonText} `;
-          }
-
-          if (submitArrow) {
-            submitArrow.textContent = "→";
-          }
-        }
-      }
-    });
-  }
-
-
-  /* =======================================================
-     SMOOTH ANCHOR NAVIGATION
-     ======================================================= */
-
-  const anchorLinks = document.querySelectorAll(
-    'a[href^="#"]'
-  );
-
-  anchorLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const targetId = link.getAttribute("href");
-
-      if (!targetId || targetId === "#") {
-        return;
       }
 
-      const target = document.querySelector(targetId);
-
-      if (!target) {
-        return;
-      }
-
-      event.preventDefault();
-
-      /*
-        Close mobile navigation before scrolling.
-      */
-      closeMobileMenu();
-
-      target.scrollIntoView({
-        behavior: window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches
-          ? "auto"
-          : "smooth",
-        block: "start"
+      // Scroll to element
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
       });
+    }
+  });
+});
 
-      /*
-        Update the URL without causing a page jump.
-      */
-      if (history.replaceState) {
-        history.replaceState(
-          null,
-          "",
-          targetId
-        );
-      }
-    });
+// =========================================================
+//    INTERSECTION OBSERVER FOR ANIMATIONS
+// =========================================================
+
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.feature-grid article, .package-card, .gallery-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// =========================================================
+//    ACTIVE NAV HIGHLIGHTING
+// =========================================================
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.desktop-nav a, .mobile-nav a');
+
+function updateActiveNav() {
+  let current = '';
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (scrollY >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
   });
 
-
-  /* =======================================================
-     EXTERNAL IMAGE ERROR HANDLING
-     ======================================================= */
-
-  document.querySelectorAll("img").forEach((img) => {
-    img.addEventListener("error", () => {
-      console.warn(
-        `Noah's Wax N' Wrench: Image failed to load: ${img.src}`
-      );
-
-      /*
-        Don't replace the gallery image here because the
-        carousel has its own error handling.
-      */
-
-      if (img.id !== "carouselImage") {
-        img.setAttribute(
-          "data-image-error",
-          "true"
-        );
-      }
-    });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href').slice(1) === current) {
+      link.classList.add('active');
+    }
   });
+}
 
+window.addEventListener('scroll', updateActiveNav);
 
-  /* =======================================================
-     FORM FIELD ENHANCEMENTS
-     ======================================================= */
+// =========================================================
+//    MOBILE NAV STYLING
+// =========================================================
 
-  /*
-    Automatically format the phone number while typing.
-  */
-
-  const phoneInput = document.getElementById("phone");
-
-  if (phoneInput) {
-    phoneInput.addEventListener("input", () => {
-      let value = phoneInput.value.replace(/\D/g, "");
-
-      /*
-        Limit to 10 digits for a standard US number.
-      */
-      value = value.substring(0, 10);
-
-      if (value.length >= 7) {
-        phoneInput.value =
-          `(${value.substring(0, 3)}) ` +
-          `${value.substring(3, 6)}-` +
-          `${value.substring(6)}`;
-      } else if (value.length >= 4) {
-        phoneInput.value =
-          `(${value.substring(0, 3)}) ${value.substring(3)}`;
-      } else if (value.length > 0) {
-        phoneInput.value =
-          `(${value}`;
-      }
-    });
+// Add styles to mobile nav
+const mobileNavStyle = document.createElement('style');
+mobileNavStyle.textContent = `
+  .mobile-nav {
+    display: none;
+    position: absolute;
+    top: 85px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(5, 7, 10, 0.95);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(25px);
+    z-index: 999;
+    animation: slideDown 0.3s ease;
   }
 
-
-  /* =======================================================
-     CURRENT YEAR
-     ======================================================= */
-
-  /*
-    Automatically keep the copyright year current.
-    This means the footer won't need to be manually
-    updated every year.
-
-    The current HTML already says 2026, but this will
-    automatically update it in future years.
-  */
-
-  const footerCopyright =
-    document.querySelector(".footer-bottom span");
-
-  if (
-    footerCopyright &&
-    footerCopyright.textContent.includes("©")
-  ) {
-    const currentYear = new Date().getFullYear();
-
-    footerCopyright.textContent =
-      footerCopyright.textContent.replace(
-        /©\s*\d{4}/,
-        `© ${currentYear}`
-      );
+  .mobile-nav a {
+    padding: 16px 22px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+    transition: all 0.2s ease;
   }
 
-
-  /* =======================================================
-     INITIAL STATE
-     ======================================================= */
-
-  /*
-    Make sure the mobile menu starts closed even if the
-    browser restores a previous page state.
-  */
-
-  closeMobileMenu();
-
-  /*
-    Make sure the form message starts hidden.
-  */
-
-  if (formMessages) {
-    formMessages.hidden = true;
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    color: var(--accent);
+    background: rgba(0, 217, 255, 0.05);
   }
 
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mobile-nav {
+      display: flex;
+    }
+  }
+`;
+document.head.appendChild(mobileNavStyle);
+
+// =========================================================
+//    UTILITY: SAFE NAVIGATION
+// =========================================================
+
+// Ensure page always loads at top
+document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
 });
