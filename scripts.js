@@ -10,6 +10,14 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('.mobile-nav');
 
+// Ensure mobile nav is hidden on page load
+if (mobileNav) {
+  mobileNav.style.display = 'none';
+  if (menuToggle) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+}
+
 if (menuToggle && mobileNav) {
   menuToggle.addEventListener('click', () => {
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
