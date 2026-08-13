@@ -261,16 +261,17 @@ header {
   width: 44px;
   height: 44px;
   padding: 9px;
-  border: 1px solid var(--line);
+  border: 1.5px solid var(--accent);
   border-radius: 12px;
-  background: rgba(255,255,255,0.03);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(217, 70, 239, 0.08));
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .menu-toggle:hover {
   border-color: var(--accent);
-  background: rgba(0, 217, 255, 0.08);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.25), rgba(217, 70, 239, 0.15));
+  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
 }
 
 .menu-toggle span {
@@ -279,7 +280,7 @@ header {
   height: 2.5px;
   margin: 5px 0;
   border-radius: 99px;
-  background: var(--white);
+  background: var(--accent);
   transition: all 0.3s ease;
 }
 
