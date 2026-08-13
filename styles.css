@@ -595,16 +595,10 @@ header {
    SERVICE STRIP
    ========================================================= */
 
-.service-strip {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(90deg, rgba(0, 217, 255, 0.03), rgba(217, 70, 239, 0.02));
-}
-
 .service-strip-inner {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
-  gap: 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: center;
   padding: 24px 0;
   font-size: 0.85rem;
@@ -615,7 +609,8 @@ header {
 }
 
 .service-strip-inner span {
-  padding: 0 20px;
+  padding: 0;
+  text-align: center;
 }
 
 .service-strip-inner span b {
@@ -625,9 +620,7 @@ header {
 }
 
 .service-strip-inner i {
-  width: 1px;
-  height: 20px;
-  background: var(--line);
+  display: none;
 }
 
 /* =========================================================
