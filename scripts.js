@@ -4,15 +4,33 @@
 // =========================================================
 
 // =========================================================
+//    PREVENT SCROLL POSITION JUMP ON PAGE LOAD
+// =========================================================
+
+window.addEventListener('load', () => {
+  // Reset scroll to top on initial page load
+  if (!sessionStorage.getItem('scrolled')) {
+    window.scrollTo(0, 0);
+    sessionStorage.setItem('scrolled', 'true');
+  }
+});
+
+// Clear scroll position on fresh page load (not back button)
+if (performance.navigation.type === 1) {
+  window.scrollTo(0, 0);
+  sessionStorage.removeItem('scrolled');
+}
+
+// =========================================================
 //    MOBILE MENU TOGGLE
 // =========================================================
 
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('.mobile-nav');
 
-// Ensure mobile nav is hidden on page load
+// Ensure mobile nav starts closed
 if (mobileNav) {
-  mobileNav.style.display = 'none';
+  mobileNav.classList.remove('active');
   if (menuToggle) {
     menuToggle.setAttribute('aria-expanded', 'false');
   }
@@ -22,7 +40,7 @@ if (menuToggle && mobileNav) {
   menuToggle.addEventListener('click', () => {
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', !isExpanded);
-    mobileNav.style.display = isExpanded ? 'none' : 'flex';
+    mobileNav.classList.toggle('active');
     
     // Animate burger menu
     const spans = menuToggle.querySelectorAll('span');
@@ -43,7 +61,7 @@ if (menuToggle && mobileNav) {
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
       menuToggle.setAttribute('aria-expanded', 'false');
-      mobileNav.style.display = 'none';
+      mobileNav.classList.remove('active');
       const spans = menuToggle.querySelectorAll('span');
       spans.forEach(span => {
         span.style.transform = 'none';
@@ -51,24 +69,6 @@ if (menuToggle && mobileNav) {
       });
     });
   });
-}
-
-// =========================================================
-//    PREVENT SCROLL POSITION JUMP ON PAGE LOAD
-// =========================================================
-
-window.addEventListener('load', () => {
-  // Reset scroll to top on initial page load
-  if (!sessionStorage.getItem('scrolled')) {
-    window.scrollTo(0, 0);
-    sessionStorage.setItem('scrolled', 'true');
-  }
-});
-
-// Clear scroll position on fresh page load (not back button)
-if (performance.navigation.type === 1) {
-  window.scrollTo(0, 0);
-  sessionStorage.removeItem('scrolled');
 }
 
 // =========================================================
@@ -222,9 +222,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       e.preventDefault();
       
       // Close mobile menu if open
-      if (mobileNav && mobileNav.style.display !== 'none') {
+      if (mobileNav && mobileNav.classList.contains('active')) {
         menuToggle.setAttribute('aria-expanded', 'false');
-        mobileNav.style.display = 'none';
+        mobileNav.classList.remove('active');
         const spans = menuToggle.querySelectorAll('span');
         spans.forEach(span => {
           span.style.transform = 'none';
@@ -293,63 +293,6 @@ function updateActiveNav() {
 }
 
 window.addEventListener('scroll', updateActiveNav);
-
-// =========================================================
-//    MOBILE NAV STYLING
-// =========================================================
-
-// Add styles to mobile nav
-const mobileNavStyle = document.createElement('style');
-mobileNavStyle.textContent = `
-  .mobile-nav {
-    display: none;
-    position: absolute;
-    top: 85px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    gap: 0;
-    background: rgba(5, 7, 10, 0.95);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(25px);
-    z-index: 999;
-    animation: slideDown 0.3s ease;
-  }
-
-  .mobile-nav a {
-    padding: 16px 22px;
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 700;
-    border-bottom: 1px solid var(--line);
-    transition: all 0.2s ease;
-  }
-
-  .mobile-nav a:hover,
-  .mobile-nav a.active {
-    color: var(--accent);
-    background: rgba(0, 217, 255, 0.05);
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @media (max-width: 768px) {
-    .mobile-nav {
-      display: flex;
-    }
-  }
-`;
-document.head.appendChild(mobileNavStyle);
 
 // =========================================================
 //    UTILITY: SAFE NAVIGATION
