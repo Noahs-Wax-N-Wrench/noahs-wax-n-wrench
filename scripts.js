@@ -72,6 +72,76 @@ if (menuToggle && mobileNav) {
 }
 
 // =========================================================
+//    REVIEWS CAROUSEL
+// =========================================================
+
+const reviewsCarousel = document.querySelector('.reviews-carousel-inner');
+const reviewCards = document.querySelectorAll('.review-card');
+const reviewsDots = document.getElementById('reviewsDots');
+
+let currentReviewIndex = 0;
+const reviewAutoPlayInterval = 6000; // Change review every 6 seconds
+
+// Initialize review dots
+if (reviewsDots && reviewCards.length > 0) {
+  reviewCards.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = `review-dot ${index === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Review ${index + 1}`);
+    dot.addEventListener('click', () => {
+      currentReviewIndex = index;
+      updateReviewCarousel();
+      resetAutoPlay();
+    });
+    reviewsDots.appendChild(dot);
+  });
+
+  // Update reviews carousel display
+  function updateReviewCarousel() {
+    reviewCards.forEach((card, index) => {
+      card.classList.remove('active', 'prev');
+      if (index === currentReviewIndex) {
+        card.classList.add('active');
+      } else if (index < currentReviewIndex) {
+        card.classList.add('prev');
+      }
+    });
+
+    // Update dots
+    document.querySelectorAll('.review-dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentReviewIndex);
+    });
+  }
+
+  // Auto-advance reviews
+  let autoPlayTimer;
+
+  function startAutoPlay() {
+    autoPlayTimer = setInterval(() => {
+      currentReviewIndex = (currentReviewIndex + 1) % reviewCards.length;
+      updateReviewCarousel();
+    }, reviewAutoPlayInterval);
+  }
+
+  function resetAutoPlay() {
+    clearInterval(autoPlayTimer);
+    startAutoPlay();
+  }
+
+  // Start auto-play
+  startAutoPlay();
+
+  // Pause on hover
+  reviewsCarousel.addEventListener('mouseenter', () => {
+    clearInterval(autoPlayTimer);
+  });
+
+  reviewsCarousel.addEventListener('mouseleave', () => {
+    startAutoPlay();
+  });
+}
+
+// =========================================================
 //    CAROUSEL FUNCTIONALITY
 // =========================================================
 
@@ -260,7 +330,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.feature-grid article, .package-card, .gallery-card').forEach(el => {
+document.querySelectorAll('.package-card, .gallery-card').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
