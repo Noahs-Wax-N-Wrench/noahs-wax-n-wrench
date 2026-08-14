@@ -14,7 +14,6 @@ const images = [
   "Pictures/F150-Exterior.jpg",
   "Pictures/Highlander-Black-Exterior.jpg",
   "Pictures/Kia-Trunk.JPEG",
-  "Pictures/Lexus-Front-Carpet-Before-And-After.jpg",
   "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
 ];
 
