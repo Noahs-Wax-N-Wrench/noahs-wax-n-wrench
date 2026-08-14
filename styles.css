@@ -1338,33 +1338,21 @@ p {
 
   background:
     linear-gradient(
-      135deg,
-      #1a2126,
-      #11161a
-    );
+      90deg,
+      rgba(13,17,20,0.96) 0%,
+      rgba(13,17,20,0.88) 38%,
+      rgba(13,17,20,0.48) 72%,
+      rgba(13,17,20,0.30) 100%
+    ),
+    url("Pictures/Engine-Bay-Side-by-Side.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   overflow: hidden;
-}
 
-.mobile-card::after {
-  content: "";
-
-  position: absolute;
-
-  width: 380px;
-  height: 380px;
-
-  right: 40px;
-  top: -180px;
-
-  border: 1px solid rgba(89,199,255,0.12);
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 0 50px rgba(89,199,255,0.025),
-    0 0 0 100px rgba(89,199,255,0.018);
-
-  pointer-events: none;
+  box-shadow: var(--shadow-small);
 }
 
 .mobile-copy {
@@ -1395,55 +1383,6 @@ p {
 
 .mobile-copy .button {
   margin-top: 26px;
-}
-
-.mobile-stamp {
-  position: relative;
-  z-index: 2;
-
-  width: 205px;
-  height: 205px;
-
-  flex: 0 0 auto;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  border: 2px solid rgba(89,199,255,0.6);
-  border-radius: 50%;
-
-  transform: rotate(-8deg);
-
-  color: var(--accent);
-
-  text-align: center;
-}
-
-.mobile-stamp::before {
-  content: "";
-
-  position: absolute;
-  inset: 9px;
-
-  border: 1px solid rgba(89,199,255,0.3);
-  border-radius: 50%;
-}
-
-.mobile-stamp span {
-  font-size: 0.65rem;
-  font-weight: 900;
-  letter-spacing: 0.25em;
-}
-
-.mobile-stamp strong {
-  margin: 5px 0;
-
-  color: var(--white);
-
-  font-size: 2rem;
-  letter-spacing: 0.04em;
 }
 
 
@@ -2161,17 +2100,6 @@ select:focus-visible {
     align-items: flex-start;
 
     padding: 34px 28px;
-  }
-
-  .mobile-stamp {
-    width: 165px;
-    height: 165px;
-
-    align-self: center;
-  }
-
-  .mobile-stamp strong {
-    font-size: 1.65rem;
   }
 
   .form-grid {
