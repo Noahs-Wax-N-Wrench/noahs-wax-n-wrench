@@ -13,13 +13,9 @@ const images = [
   "Pictures/Headlight-Restoration.JPEG",
   "Pictures/F150-Exterior.jpg",
   "Pictures/Highlander-Black-Exterior.jpg",
-  "Pictures/Subaru-Center.JPEG",
   "Pictures/Kia-Trunk.JPEG",
-  "Pictures/Lexus-Back-Carpet-Before-And-After.jpg",
   "Pictures/Lexus-Front-Carpet-Before-And-After.jpg",
-  "Pictures/Lexus-Back-Stripes-One.jpg",
   "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
-  "Pictures/Santa-Fe-Exterior.jpg"
 ];
 
 
