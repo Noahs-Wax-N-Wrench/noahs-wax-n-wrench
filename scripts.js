@@ -18,7 +18,7 @@ const images = [
   "Pictures/Subaru-Suds.jpg",
   "Pictures/Mini-Cooper-Front.jpg",
   "Pictures/Mini-Cooper-Interior.jpg",
-  "Pictures/RAV4-Suds.jpg"
+  "Pictures/RAV4-Suds.jpg",
   "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
   "Pictures/Headlight-Restoration.JPEG",
   "Pictures/F150-Exterior.jpg",
