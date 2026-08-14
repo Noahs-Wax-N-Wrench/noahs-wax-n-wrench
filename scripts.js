@@ -9,6 +9,16 @@
    ========================================================= */
 
 const images = [
+  "Pictures/Tesla-Exterior.jpg",
+  "Pictures/Engine-Bay-Side-by-Side.jpg",
+  "Pictures/Infiniti-In-Action.jpg",
+  "Pictures/Infiniti-Parts.jpg",
+  "Pictures/Starters.jpg",
+  "Pictures/Subaru-Driver-Seat.jpg",
+  "Pictures/Subaru-Suds.jpg",
+  "Pictures/Mini-Cooper-Front.jpg",
+  "Pictures/Mini-Cooper-Interior.jpg",
+  "Pictures/RAV4-Suds.jpg"
   "Pictures/Audi-Exhaust-Fumes-Fix.JPEG",
   "Pictures/Headlight-Restoration.JPEG",
   "Pictures/F150-Exterior.jpg",
@@ -19,17 +29,22 @@ const images = [
 
 
 const imageDescriptions = [
+  "Tesla White Exterior Detailing in Menomonee Falls, WI",
+  "Engine bay cleaning before and after comparison",
+  "Noah's Wax N' Wrench Owner replacing parts on a car",
+  "Starter replacement and part replacement at Noah's Wax N' Wrench",
+  "Interior Detailing results driver seat",
+  "Exterior car wash at Noah's Wax N' Wrench in Menomonee Falls, WI",
+  "Luxury vehicle interior detailing Menomonee Falls, WI",
+  "Mini Cooper professional detailing",
+  "Car wash and polishing in Waukesha County",
   "Audi detailing and exhaust repair work by Noah's Wax N' Wrench",
   "Headlight restoration by Noah's Wax N' Wrench",
   "Professionally detailed Ford F-150",
   "Professionally detailed black Toyota Highlander",
   "Subaru interior detailing by Noah's Wax N' Wrench",
   "Kia trunk detailing by Noah's Wax N' Wrench",
-  "Lexus rear carpet before and after detailing",
-  "Lexus front carpet before and after detailing",
-  "Lexus rear carpet detailing result",
   "Lexus front driver and passenger area detailing",
-  "Professionally detailed Hyundai Santa Fe"
 ];
 
 
