@@ -164,7 +164,7 @@ p {
 }
 
 .header-main {
-  min-height: 88px;
+  min-height: 78px;
 
   display: flex;
   align-items: center;
@@ -329,12 +329,12 @@ p {
 .hero {
   position: relative;
 
-  min-height: 720px;
+  min-height: 560px;
 
   display: flex;
   align-items: center;
 
-  padding: 90px 0 105px;
+  padding: 65px 0 75px;
 
   overflow: hidden;
 
@@ -409,7 +409,7 @@ p {
 .hero-description {
   max-width: 570px;
 
-  margin-top: 27px;
+  margin-top: 23px;
 
   color: #b8c1c6;
 
@@ -422,7 +422,7 @@ p {
   align-items: center;
   gap: 12px;
 
-  margin-top: 34px;
+  margin-top: 24px;
 }
 
 .button {
@@ -475,7 +475,7 @@ p {
   flex-wrap: wrap;
   gap: 18px;
 
-  margin-top: 28px;
+  margin-top: 22px;
 }
 
 .hero-points span {
@@ -507,7 +507,7 @@ p {
 .hero-photo-frame {
   position: relative;
 
-  min-height: 510px;
+  min-height: 450px;
 
   overflow: hidden;
 
@@ -521,7 +521,7 @@ p {
 
 .hero-photo {
   width: 100%;
-  height: 510px;
+  height: 450px;
 
   object-fit: cover;
 
@@ -578,11 +578,11 @@ p {
   position: absolute;
 
   right: -35px;
-  bottom: -45px;
+  bottom: -38px;
 
   width: min(430px, 85%);
 
-  padding: 20px 22px;
+  padding: 18px 22px;
 
   border: 1px solid rgba(255,255,255,0.13);
   border-radius: 13px;
@@ -625,7 +625,7 @@ p {
 .reviews-carousel-inner {
   position: relative;
 
-  min-height: 115px;
+  min-height: 105px;
 }
 
 .review-card {
@@ -708,7 +708,7 @@ p {
 }
 
 .service-strip-inner {
-  min-height: 64px;
+  min-height: 56px;
 
   display: flex;
   align-items: center;
@@ -750,7 +750,7 @@ p {
    ========================================================= */
 
 .gallery-section {
-  padding: 120px 0;
+  padding: 95px 0;
 
   background: var(--bg);
 }
@@ -762,7 +762,7 @@ p {
 
   gap: 50px;
 
-  margin-bottom: 40px;
+  margin-bottom: 34px;
 }
 
 .section-heading-row h2 {
@@ -815,7 +815,7 @@ p {
   display: grid;
   grid-template-columns: 70px minmax(0, 1fr) 70px;
 
-  min-height: 620px;
+  min-height: 560px;
 
   background: #080b0d;
 }
@@ -846,7 +846,7 @@ p {
 
 #carouselImage {
   width: 100%;
-  height: 620px;
+  height: 560px;
 
   object-fit: contain;
 
@@ -895,7 +895,7 @@ p {
 }
 
 .gallery-controls {
-  min-height: 70px;
+  min-height: 60px;
 
   display: flex;
   align-items: center;
@@ -950,7 +950,7 @@ p {
    ========================================================= */
 
 .packages-section {
-  padding: 120px 0;
+  padding: 95px 0;
 
   background:
     linear-gradient(
@@ -963,7 +963,7 @@ p {
 .section-heading {
   max-width: 690px;
 
-  margin-bottom: 65px;
+  margin-bottom: 52px;
 }
 
 .section-heading h2 {
@@ -985,7 +985,7 @@ p {
 
   gap: 18px;
 
-  margin: 45px 0 24px;
+  margin: 35px 0 20px;
 }
 
 .category-title span {
@@ -1024,7 +1024,7 @@ p {
 }
 
 .package-main {
-  padding: 40px;
+  padding: 34px;
 }
 
 .package-kicker {
@@ -1096,7 +1096,7 @@ p {
 
   gap: 0;
 
-  padding: 28px 35px;
+  padding: 22px 30px;
 
   border-left: 1px solid var(--border);
 
@@ -1142,12 +1142,12 @@ p {
 .package-card {
   position: relative;
 
-  min-height: 330px;
+  min-height: 300px;
 
   display: flex;
   flex-direction: column;
 
-  padding: 32px;
+  padding: 28px;
 
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1271,7 +1271,7 @@ p {
 
   margin-top: 22px;
 
-  padding: 24px 27px;
+  padding: 20px 24px;
 
   border: 1px solid var(--border);
   border-radius: var(--radius-small);
@@ -1315,7 +1315,7 @@ p {
    ========================================================= */
 
 .mobile-section {
-  padding: 100px 0;
+  padding: 80px 0;
 
   background: var(--bg);
 }
@@ -1323,7 +1323,7 @@ p {
 .mobile-card {
   position: relative;
 
-  min-height: 370px;
+  min-height: 340px;
 
   display: flex;
   align-items: center;
@@ -1331,7 +1331,7 @@ p {
 
   gap: 50px;
 
-  padding: 60px;
+  padding: 50px;
 
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1452,7 +1452,7 @@ p {
    ========================================================= */
 
 .quote-section {
-  padding: 120px 0;
+  padding: 95px 0;
 
   background:
     linear-gradient(
@@ -1466,14 +1466,14 @@ p {
   display: grid;
   grid-template-columns: 0.72fr 1.28fr;
 
-  gap: 80px;
+  gap: 65px;
 
   align-items: start;
 }
 
 .quote-intro {
   position: sticky;
-  top: 120px;
+  top: 105px;
 }
 
 .quote-intro h2 {
@@ -1488,7 +1488,7 @@ p {
 }
 
 .quote-highlights {
-  margin-top: 35px;
+  margin-top: 28px;
 
   border-top: 1px solid var(--border);
 }
@@ -1518,7 +1518,7 @@ p {
 }
 
 .quote-form-wrap {
-  padding: 32px;
+  padding: 28px;
 
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -1529,20 +1529,20 @@ p {
 }
 
 .form-section {
-  padding: 4px 0 31px;
+  padding: 4px 0 26px;
 
   border-bottom: 1px solid var(--border);
 }
 
 .form-section + .form-section {
-  padding-top: 31px;
+  padding-top: 26px;
 }
 
 .form-section-heading {
   display: flex;
   gap: 14px;
 
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .form-section-heading > span {
@@ -1736,7 +1736,7 @@ footer {
 
   gap: 60px;
 
-  padding: 65px 0;
+  padding: 50px 0;
 }
 
 .footer-brand {
@@ -1913,8 +1913,8 @@ select:focus-visible {
 
   .hero-photo-frame,
   .hero-photo {
-    min-height: 520px;
-    height: 520px;
+    min-height: 470px;
+    height: 470px;
   }
 
   .reviews-carousel {
@@ -2041,7 +2041,7 @@ select:focus-visible {
 @media (max-width: 700px) {
 
   .hero {
-    padding: 65px 0 95px;
+    padding: 55px 0 75px;
   }
 
   .hero h1 {
@@ -2071,8 +2071,8 @@ select:focus-visible {
 
   .hero-photo-frame,
   .hero-photo {
-    min-height: 400px;
-    height: 400px;
+    min-height: 370px;
+    height: 370px;
   }
 
   .reviews-carousel {
@@ -2083,7 +2083,7 @@ select:focus-visible {
 
     width: calc(100% - 24px);
 
-    margin: -45px auto 0;
+    margin: -38px auto 0;
   }
 
   .service-strip-inner {
@@ -2115,21 +2115,21 @@ select:focus-visible {
   .gallery-section,
   .packages-section,
   .quote-section {
-    padding: 85px 0;
+    padding: 70px 0;
   }
 
   .carousel {
     grid-template-columns: 50px minmax(0, 1fr) 50px;
 
-    min-height: 430px;
+    min-height: 390px;
   }
 
   .carousel-image-wrapper {
-    min-height: 430px;
+    min-height: 390px;
   }
 
   #carouselImage {
-    height: 430px;
+    height: 390px;
   }
 
   .gallery-controls {
@@ -2145,7 +2145,7 @@ select:focus-visible {
   }
 
   .package-card {
-    min-height: 290px;
+    min-height: 270px;
   }
 
   .check-list {
@@ -2160,7 +2160,7 @@ select:focus-visible {
     flex-direction: column;
     align-items: flex-start;
 
-    padding: 40px 28px;
+    padding: 34px 28px;
   }
 
   .mobile-stamp {
@@ -2221,7 +2221,7 @@ select:focus-visible {
   }
 
   .hero {
-    padding-top: 50px;
+    padding-top: 42px;
   }
 
   .hero h1 {
@@ -2230,8 +2230,8 @@ select:focus-visible {
 
   .hero-photo-frame,
   .hero-photo {
-    min-height: 330px;
-    height: 330px;
+    min-height: 310px;
+    height: 310px;
   }
 
   .reviews-carousel {
@@ -2255,15 +2255,15 @@ select:focus-visible {
   .carousel {
     grid-template-columns: 44px minmax(0, 1fr) 44px;
 
-    min-height: 320px;
+    min-height: 300px;
   }
 
   .carousel-image-wrapper {
-    min-height: 320px;
+    min-height: 300px;
   }
 
   #carouselImage {
-    height: 320px;
+    height: 300px;
   }
 
   .carousel-arrow {
@@ -2288,7 +2288,7 @@ select:focus-visible {
   }
 
   .mobile-card {
-    padding: 32px 23px;
+    padding: 28px 23px;
   }
 
   .quote-form-wrap {
