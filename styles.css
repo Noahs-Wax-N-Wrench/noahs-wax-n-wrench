@@ -1322,7 +1322,8 @@ p {
 
 .mobile-card {
   position: relative;
-
+   
+  height: 340px
   min-height: 340px;
 
   display: flex;
@@ -1364,14 +1365,17 @@ p {
 
 .mobile-copy h2 {
   margin-top: 18px;
-
-  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.15;
 }
 
 .mobile-copy h2 span {
+  display: block;
+  margin-top: 6px;
   color: var(--accent);
+  font-size: 0.65em;
+  line-height: 1.2;
 }
-
 .mobile-copy p {
   max-width: 590px;
 
