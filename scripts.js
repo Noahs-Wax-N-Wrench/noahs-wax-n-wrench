@@ -53,11 +53,20 @@ let galleryTimer = null;
 let galleryChanging = false;
 
 
-const carouselImage = document.getElementById("carouselImage");
-const carouselDots = document.getElementById("carouselDots");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const carouselWrapper = document.getElementById("carouselWrapper");
+const carouselImage =
+  document.getElementById("carouselImage");
+
+const carouselDots =
+  document.getElementById("carouselDots");
+
+const prevBtn =
+  document.getElementById("prevBtn");
+
+const nextBtn =
+  document.getElementById("nextBtn");
+
+const carouselWrapper =
+  document.getElementById("carouselWrapper");
 
 
 /* ---------------------------------------------------------
@@ -65,8 +74,11 @@ const carouselWrapper = document.getElementById("carouselWrapper");
    --------------------------------------------------------- */
 
 images.forEach((src) => {
+
   const img = new Image();
+
   img.src = src;
+
 });
 
 
@@ -84,7 +96,8 @@ function createGalleryDots() {
 
   images.forEach((_, index) => {
 
-    const dot = document.createElement("button");
+    const dot =
+      document.createElement("button");
 
     dot.type = "button";
 
@@ -119,7 +132,10 @@ function updateGalleryDots() {
     return;
   }
 
-  const dots = carouselDots.querySelectorAll(".carousel-dot");
+  const dots =
+    carouselDots.querySelectorAll(
+      ".carousel-dot"
+    );
 
   dots.forEach((dot, index) => {
 
@@ -148,10 +164,15 @@ function showImage(index) {
 
   galleryChanging = true;
 
-  carouselImage.classList.add("is-changing");
+  carouselImage.classList.add(
+    "is-changing"
+  );
 
-  const nextSrc = images[currentImage];
-  const nextAlt = imageDescriptions[currentImage];
+  const nextSrc =
+    images[currentImage];
+
+  const nextAlt =
+    imageDescriptions[currentImage];
 
 
   setTimeout(() => {
@@ -159,9 +180,12 @@ function showImage(index) {
     carouselImage.src = nextSrc;
     carouselImage.alt = nextAlt;
 
+
     const revealImage = () => {
 
-      carouselImage.classList.remove("is-changing");
+      carouselImage.classList.remove(
+        "is-changing"
+      );
 
       galleryChanging = false;
 
@@ -180,11 +204,6 @@ function showImage(index) {
       revealImage
     );
 
-
-    /*
-      If the browser already has the image cached,
-      make sure the carousel does not get stuck.
-    */
 
     if (carouselImage.complete) {
 
@@ -213,7 +232,9 @@ function showImage(index) {
 
 function changeImage(step) {
 
-  showImage(currentImage + step);
+  showImage(
+    currentImage + step
+  );
 
 }
 
@@ -226,18 +247,19 @@ function startGallery() {
 
   stopGallery();
 
-  galleryTimer = setInterval(() => {
+  galleryTimer =
+    setInterval(() => {
 
-    if (
-      document.hidden ||
-      galleryChanging
-    ) {
-      return;
-    }
+      if (
+        document.hidden ||
+        galleryChanging
+      ) {
+        return;
+      }
 
-    changeImage(1);
+      changeImage(1);
 
-  }, 5000);
+    }, 5000);
 
 }
 
@@ -246,7 +268,9 @@ function stopGallery() {
 
   if (galleryTimer) {
 
-    clearInterval(galleryTimer);
+    clearInterval(
+      galleryTimer
+    );
 
     galleryTimer = null;
 
@@ -268,24 +292,30 @@ function restartGallery() {
 
 if (prevBtn) {
 
-  prevBtn.addEventListener("click", () => {
+  prevBtn.addEventListener(
+    "click",
+    () => {
 
-    changeImage(-1);
-    restartGallery();
+      changeImage(-1);
+      restartGallery();
 
-  });
+    }
+  );
 
 }
 
 
 if (nextBtn) {
 
-  nextBtn.addEventListener("click", () => {
+  nextBtn.addEventListener(
+    "click",
+    () => {
 
-    changeImage(1);
-    restartGallery();
+      changeImage(1);
+      restartGallery();
 
-  });
+    }
+  );
 
 }
 
@@ -294,42 +324,49 @@ if (nextBtn) {
    Keyboard controls
    --------------------------------------------------------- */
 
-document.addEventListener("keydown", (event) => {
+document.addEventListener(
+  "keydown",
+  (event) => {
 
-  const gallery = document.getElementById("gallery");
+    const gallery =
+      document.getElementById(
+        "gallery"
+      );
 
-  if (!gallery) {
-    return;
+    if (!gallery) {
+      return;
+    }
+
+    const rect =
+      gallery.getBoundingClientRect();
+
+    const galleryVisible =
+      rect.top < window.innerHeight &&
+      rect.bottom > 0;
+
+
+    if (!galleryVisible) {
+      return;
+    }
+
+
+    if (event.key === "ArrowLeft") {
+
+      changeImage(-1);
+      restartGallery();
+
+    }
+
+
+    if (event.key === "ArrowRight") {
+
+      changeImage(1);
+      restartGallery();
+
+    }
+
   }
-
-  const rect = gallery.getBoundingClientRect();
-
-  const galleryVisible =
-    rect.top < window.innerHeight &&
-    rect.bottom > 0;
-
-
-  if (!galleryVisible) {
-    return;
-  }
-
-
-  if (event.key === "ArrowLeft") {
-
-    changeImage(-1);
-    restartGallery();
-
-  }
-
-
-  if (event.key === "ArrowRight") {
-
-    changeImage(1);
-    restartGallery();
-
-  }
-
-});
+);
 
 
 /* ---------------------------------------------------------
@@ -346,10 +383,14 @@ if (carouselWrapper) {
     "touchstart",
     (event) => {
 
-      const touch = event.changedTouches[0];
+      const touch =
+        event.changedTouches[0];
 
-      touchStartX = touch.clientX;
-      touchStartY = touch.clientY;
+      touchStartX =
+        touch.clientX;
+
+      touchStartY =
+        touch.clientY;
 
     },
     {
@@ -362,7 +403,8 @@ if (carouselWrapper) {
     "touchend",
     (event) => {
 
-      const touch = event.changedTouches[0];
+      const touch =
+        event.changedTouches[0];
 
       const deltaX =
         touch.clientX - touchStartX;
@@ -370,10 +412,6 @@ if (carouselWrapper) {
       const deltaY =
         touch.clientY - touchStartY;
 
-
-      /*
-        Ignore mostly vertical swipes.
-      */
 
       if (
         Math.abs(deltaX) < 45 ||
@@ -418,10 +456,14 @@ startGallery();
    ========================================================= */
 
 const reviewCards =
-  document.querySelectorAll(".review-card");
+  document.querySelectorAll(
+    ".review-card"
+  );
 
 const reviewsDots =
-  document.getElementById("reviewsDots");
+  document.getElementById(
+    "reviewsDots"
+  );
 
 
 let currentReview = 0;
@@ -438,7 +480,8 @@ function createReviewDots() {
 
   reviewCards.forEach((_, index) => {
 
-    const dot = document.createElement("button");
+    const dot =
+      document.createElement("button");
 
     dot.type = "button";
 
@@ -449,12 +492,15 @@ function createReviewDots() {
       `View customer review ${index + 1}`
     );
 
-    dot.addEventListener("click", () => {
+    dot.addEventListener(
+      "click",
+      () => {
 
-      showReview(index);
-      restartReviews();
+        showReview(index);
+        restartReviews();
 
-    });
+      }
+    );
 
     reviewsDots.appendChild(dot);
 
@@ -474,29 +520,35 @@ function showReview(index) {
     reviewCards.length;
 
 
-  reviewCards.forEach((card, cardIndex) => {
+  reviewCards.forEach(
+    (card, cardIndex) => {
 
-    card.classList.toggle(
-      "active",
-      cardIndex === currentReview
-    );
+      card.classList.toggle(
+        "active",
+        cardIndex === currentReview
+      );
 
-  });
+    }
+  );
 
 
   if (reviewsDots) {
 
     const dots =
-      reviewsDots.querySelectorAll(".review-dot");
-
-    dots.forEach((dot, dotIndex) => {
-
-      dot.classList.toggle(
-        "active",
-        dotIndex === currentReview
+      reviewsDots.querySelectorAll(
+        ".review-dot"
       );
 
-    });
+    dots.forEach(
+      (dot, dotIndex) => {
+
+        dot.classList.toggle(
+          "active",
+          dotIndex === currentReview
+        );
+
+      }
+    );
 
   }
 
@@ -511,15 +563,18 @@ function startReviews() {
     return;
   }
 
-  reviewTimer = setInterval(() => {
+  reviewTimer =
+    setInterval(() => {
 
-    if (!document.hidden) {
+      if (!document.hidden) {
 
-      showReview(currentReview + 1);
+        showReview(
+          currentReview + 1
+        );
 
-    }
+      }
 
-  }, 6500);
+    }, 6500);
 
 }
 
@@ -528,7 +583,9 @@ function stopReviews() {
 
   if (reviewTimer) {
 
-    clearInterval(reviewTimer);
+    clearInterval(
+      reviewTimer
+    );
 
     reviewTimer = null;
 
@@ -554,10 +611,14 @@ startReviews();
    ========================================================= */
 
 const menuToggle =
-  document.querySelector(".menu-toggle");
+  document.querySelector(
+    ".menu-toggle"
+  );
 
 const mobileNav =
-  document.getElementById("mobileNav");
+  document.getElementById(
+    "mobileNav"
+  );
 
 
 function closeMobileMenu() {
@@ -576,7 +637,9 @@ function closeMobileMenu() {
     "Open navigation menu"
   );
 
-  mobileNav.classList.remove("open");
+  mobileNav.classList.remove(
+    "open"
+  );
 
 }
 
@@ -597,7 +660,9 @@ function openMobileMenu() {
     "Close navigation menu"
   );
 
-  mobileNav.classList.add("open");
+  mobileNav.classList.add(
+    "open"
+  );
 
 }
 
@@ -630,10 +695,6 @@ if (menuToggle) {
 }
 
 
-/* ---------------------------------------------------------
-   Close menu when navigation link clicked
-   --------------------------------------------------------- */
-
 if (mobileNav) {
 
   mobileNav
@@ -650,10 +711,6 @@ if (mobileNav) {
 }
 
 
-/* ---------------------------------------------------------
-   Close menu with Escape
-   --------------------------------------------------------- */
-
 document.addEventListener(
   "keydown",
   (event) => {
@@ -668,10 +725,6 @@ document.addEventListener(
 );
 
 
-/* ---------------------------------------------------------
-   Close menu when clicking outside
-   --------------------------------------------------------- */
-
 document.addEventListener(
   "click",
   (event) => {
@@ -681,10 +734,14 @@ document.addEventListener(
     }
 
     const clickedInsideMenu =
-      mobileNav.contains(event.target);
+      mobileNav.contains(
+        event.target
+      );
 
     const clickedToggle =
-      menuToggle.contains(event.target);
+      menuToggle.contains(
+        event.target
+      );
 
 
     if (
@@ -699,10 +756,6 @@ document.addEventListener(
   }
 );
 
-
-/* ---------------------------------------------------------
-   Close menu after resizing
-   --------------------------------------------------------- */
 
 window.addEventListener(
   "resize",
@@ -723,11 +776,183 @@ window.addEventListener(
    ========================================================= */
 
 const quoteForm =
-  document.getElementById("quote-form");
+  document.getElementById(
+    "quote-form"
+  );
 
 const formMessage =
-  document.getElementById("form-messages");
+  document.getElementById(
+    "form-messages"
+  );
 
+
+/* ---------------------------------------------------------
+   Multi-service selection
+   --------------------------------------------------------- */
+
+const serviceSelection =
+  document.getElementById(
+    "serviceSelection"
+  );
+
+const serviceInputs =
+  document.querySelectorAll(
+    ".service-option-input"
+  );
+
+const serviceCount =
+  document.getElementById(
+    "serviceCount"
+  );
+
+const serviceSelectionFooter =
+  document.getElementById(
+    "serviceSelectionFooter"
+  );
+
+const serviceError =
+  document.getElementById(
+    "serviceError"
+  );
+
+
+function getSelectedServices() {
+
+  return Array.from(
+    serviceInputs
+  )
+    .filter(
+      (input) => input.checked
+    )
+    .map(
+      (input) => input.value
+    );
+
+}
+
+
+function updateServiceSelection() {
+
+  const selectedServices =
+    getSelectedServices();
+
+  const count =
+    selectedServices.length;
+
+
+  if (serviceCount) {
+
+    serviceCount.textContent =
+      count;
+
+  }
+
+
+  if (serviceSelection) {
+
+    serviceSelection.classList.toggle(
+      "has-error",
+      false
+    );
+
+  }
+
+
+  if (serviceError) {
+
+    serviceError.hidden =
+      true;
+
+  }
+
+
+  if (serviceSelectionFooter) {
+
+    serviceSelectionFooter.classList.toggle(
+      "has-selection",
+      count > 0
+    );
+
+  }
+
+}
+
+
+serviceInputs.forEach(
+  (input) => {
+
+    input.addEventListener(
+      "change",
+      updateServiceSelection
+    );
+
+  }
+);
+
+
+updateServiceSelection();
+
+
+/* ---------------------------------------------------------
+   Service validation
+   --------------------------------------------------------- */
+
+function validateServices() {
+
+  const selectedServices =
+    getSelectedServices();
+
+  if (selectedServices.length > 0) {
+
+    if (serviceError) {
+      serviceError.hidden = true;
+    }
+
+    if (serviceSelection) {
+      serviceSelection.classList.remove(
+        "has-error"
+      );
+    }
+
+    return true;
+
+  }
+
+
+  if (serviceError) {
+
+    serviceError.hidden =
+      false;
+
+  }
+
+
+  if (serviceSelection) {
+
+    serviceSelection.classList.add(
+      "has-error"
+    );
+
+  }
+
+
+  if (serviceSelection) {
+
+    serviceSelection.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+  }
+
+  return false;
+
+}
+
+
+/* ---------------------------------------------------------
+   Form messages
+   --------------------------------------------------------- */
 
 function showFormMessage(
   message,
@@ -738,7 +963,8 @@ function showFormMessage(
     return;
   }
 
-  formMessage.hidden = false;
+  formMessage.hidden =
+    false;
 
   formMessage.className =
     `form-message ${type}`;
@@ -755,12 +981,14 @@ function hideFormMessage() {
     return;
   }
 
-  formMessage.hidden = true;
+  formMessage.hidden =
+    true;
 
   formMessage.className =
     "form-message";
 
-  formMessage.textContent = "";
+  formMessage.textContent =
+    "";
 
 }
 
@@ -778,6 +1006,18 @@ if (quoteForm) {
       event.preventDefault();
 
       hideFormMessage();
+
+
+      /*
+        First make sure at least one
+        service has been selected.
+      */
+
+      if (!validateServices()) {
+
+        return;
+
+      }
 
 
       /*
@@ -809,14 +1049,32 @@ if (quoteForm) {
         submitButton.innerHTML;
 
 
-      submitButton.disabled = true;
+      submitButton.disabled =
+        true;
 
       submitButton.innerHTML =
         "Sending Request...";
 
 
       const formData =
-        new FormData(quoteForm);
+        new FormData(
+          quoteForm
+        );
+
+
+      /*
+        Convert the selected services
+        into one clean Formspree field.
+      */
+
+      const selectedServices =
+        getSelectedServices();
+
+
+      formData.set(
+        "service",
+        selectedServices.join(", ")
+      );
 
 
       try {
@@ -826,9 +1084,12 @@ if (quoteForm) {
             quoteForm.action,
             {
               method: "POST",
+
               body: formData,
+
               headers: {
-                Accept: "application/json"
+                Accept:
+                  "application/json"
               }
             }
           );
@@ -844,21 +1105,15 @@ if (quoteForm) {
 
           quoteForm.reset();
 
+          updateServiceSelection();
 
-          /*
-            Return the button to its normal state
-            after a successful submission.
-          */
 
-          submitButton.disabled = false;
+          submitButton.disabled =
+            false;
 
           submitButton.innerHTML =
             originalButtonHTML;
 
-
-          /*
-            Keep the confirmation visible.
-          */
 
           formMessage.scrollIntoView({
             behavior: "smooth",
@@ -896,7 +1151,7 @@ if (quoteForm) {
 
           } catch {
             /*
-              Use the default error message.
+              Use default error message.
             */
           }
 
@@ -907,7 +1162,8 @@ if (quoteForm) {
           );
 
 
-          submitButton.disabled = false;
+          submitButton.disabled =
+            false;
 
           submitButton.innerHTML =
             originalButtonHTML;
@@ -928,7 +1184,8 @@ if (quoteForm) {
         );
 
 
-        submitButton.disabled = false;
+        submitButton.disabled =
+          false;
 
         submitButton.innerHTML =
           originalButtonHTML;
@@ -946,7 +1203,9 @@ if (quoteForm) {
    ========================================================= */
 
 const phoneInput =
-  document.getElementById("phone");
+  document.getElementById(
+    "phone"
+  );
 
 
 if (phoneInput) {
@@ -965,7 +1224,10 @@ if (phoneInput) {
       if (digits.length > 10) {
 
         digits =
-          digits.substring(0, 10);
+          digits.substring(
+            0,
+            10
+          );
 
       }
 
@@ -1001,7 +1263,9 @@ if (phoneInput) {
    ========================================================= */
 
 const yearInput =
-  document.getElementById("year");
+  document.getElementById(
+    "year"
+  );
 
 
 if (yearInput) {
@@ -1012,8 +1276,14 @@ if (yearInput) {
 
       yearInput.value =
         yearInput.value
-          .replace(/\D/g, "")
-          .substring(0, 4);
+          .replace(
+            /\D/g,
+            ""
+          )
+          .substring(
+            0,
+            4
+          );
 
     }
   );
@@ -1026,7 +1296,9 @@ if (yearInput) {
    ========================================================= */
 
 document
-  .querySelectorAll('a[href^="#"]')
+  .querySelectorAll(
+    'a[href^="#"]'
+  )
   .forEach((link) => {
 
     link.addEventListener(
@@ -1034,7 +1306,9 @@ document
       (event) => {
 
         const targetId =
-          link.getAttribute("href");
+          link.getAttribute(
+            "href"
+          );
 
 
         if (
