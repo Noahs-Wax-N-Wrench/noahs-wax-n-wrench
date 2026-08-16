@@ -24,27 +24,33 @@ const images = [
   "Pictures/F150-Exterior.jpg",
   "Pictures/Highlander-Black-Exterior.jpg",
   "Pictures/Kia-Trunk.JPEG",
-  "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg",
+  "Pictures/Lexus-Front-Driver-And-Passenger-One.jpg"
 ];
 
 
+/*
+   Keep these descriptions aligned with the exact
+   image order above. These are used for accessibility
+   and image alt text.
+*/
+
 const imageDescriptions = [
-  "Tesla White Exterior Detailing in Menomonee Falls, WI",
-  "Engine bay cleaning before and after comparison",
-  "Noah's Wax N' Wrench Owner replacing parts on a car",
-  "Starter replacement and part replacement at Noah's Wax N' Wrench",
-  "Interior Detailing results driver seat",
-  "Exterior car wash at Noah's Wax N' Wrench in Menomonee Falls, WI",
-  "Luxury vehicle interior detailing Menomonee Falls, WI",
-  "Mini Cooper professional detailing",
-  "Car wash and polishing in Waukesha County",
-  "Audi detailing and exhaust repair work by Noah's Wax N' Wrench",
-  "Headlight restoration by Noah's Wax N' Wrench",
-  "Professionally detailed Ford F-150",
-  "Professionally detailed black Toyota Highlander",
-  "Subaru interior detailing by Noah's Wax N' Wrench",
-  "Kia trunk detailing by Noah's Wax N' Wrench",
-  "Lexus front driver and passenger area detailing",
+  "Tesla white exterior detailing in Menomonee Falls, WI",
+  "Engine bay cleaning before and after comparison by Noah's Wax N' Wrench",
+  "Noah's Wax N' Wrench owner working on a vehicle",
+  "Automotive parts replacement service by Noah's Wax N' Wrench",
+  "Starter replacement service by Noah's Wax N' Wrench",
+  "Professional Subaru interior detailing",
+  "Professional Subaru exterior wash and detailing",
+  "Mini Cooper exterior detailing by Noah's Wax N' Wrench",
+  "Mini Cooper interior detailing by Noah's Wax N' Wrench",
+  "Toyota RAV4 exterior wash and detailing",
+  "Audi exhaust repair work by Noah's Wax N' Wrench",
+  "Professional headlight restoration service",
+  "Professionally detailed Ford F-150 exterior",
+  "Professionally detailed black Toyota Highlander exterior",
+  "Kia trunk interior detailing by Noah's Wax N' Wrench",
+  "Lexus front driver and passenger interior detailing"
 ];
 
 
@@ -70,6 +76,16 @@ const carouselWrapper =
 
 
 /* ---------------------------------------------------------
+   Reduced motion preference
+   --------------------------------------------------------- */
+
+const prefersReducedMotion =
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+
+/* ---------------------------------------------------------
    Preload images
    --------------------------------------------------------- */
 
@@ -77,6 +93,7 @@ images.forEach((src) => {
 
   const img = new Image();
 
+  img.decoding = "async";
   img.src = src;
 
 });
@@ -106,6 +123,13 @@ function createGalleryDots() {
     dot.setAttribute(
       "aria-label",
       `View gallery image ${index + 1}`
+    );
+
+    dot.setAttribute(
+      "aria-current",
+      index === currentImage
+        ? "true"
+        : "false"
     );
 
     dot.addEventListener("click", () => {
@@ -139,9 +163,19 @@ function updateGalleryDots() {
 
   dots.forEach((dot, index) => {
 
+    const isActive =
+      index === currentImage;
+
     dot.classList.toggle(
       "active",
-      index === currentImage
+      isActive
+    );
+
+    dot.setAttribute(
+      "aria-current",
+      isActive
+        ? "true"
+        : "false"
     );
 
   });
@@ -164,9 +198,37 @@ function showImage(index) {
 
   galleryChanging = true;
 
+
+  /*
+     If reduced motion is enabled, change the image
+     immediately without the fade transition.
+  */
+
+  if (prefersReducedMotion.matches) {
+
+    carouselImage.src =
+      images[currentImage];
+
+    carouselImage.alt =
+      imageDescriptions[currentImage];
+
+    carouselImage.classList.remove(
+      "is-changing"
+    );
+
+    galleryChanging = false;
+
+    updateGalleryDots();
+
+    return;
+
+  }
+
+
   carouselImage.classList.add(
     "is-changing"
   );
+
 
   const nextSrc =
     images[currentImage];
@@ -177,8 +239,11 @@ function showImage(index) {
 
   setTimeout(() => {
 
-    carouselImage.src = nextSrc;
-    carouselImage.alt = nextAlt;
+    carouselImage.src =
+      nextSrc;
+
+    carouselImage.alt =
+      nextAlt;
 
 
     const revealImage = () => {
@@ -204,6 +269,10 @@ function showImage(index) {
       revealImage
     );
 
+
+    /*
+       Cached images may already be complete.
+    */
 
     if (carouselImage.complete) {
 
@@ -247,6 +316,15 @@ function startGallery() {
 
   stopGallery();
 
+
+  if (
+    prefersReducedMotion.matches ||
+    images.length <= 1
+  ) {
+    return;
+  }
+
+
   galleryTimer =
     setInterval(() => {
 
@@ -280,6 +358,12 @@ function stopGallery() {
 
 
 function restartGallery() {
+
+  if (
+    prefersReducedMotion.matches
+  ) {
+    return;
+  }
 
   startGallery();
 
@@ -337,6 +421,7 @@ document.addEventListener(
       return;
     }
 
+
     const rect =
       gallery.getBoundingClientRect();
 
@@ -352,6 +437,8 @@ document.addEventListener(
 
     if (event.key === "ArrowLeft") {
 
+      event.preventDefault();
+
       changeImage(-1);
       restartGallery();
 
@@ -359,6 +446,8 @@ document.addEventListener(
 
 
     if (event.key === "ArrowRight") {
+
+      event.preventDefault();
 
       changeImage(1);
       restartGallery();
@@ -448,6 +537,20 @@ if (carouselWrapper) {
 
 createGalleryDots();
 updateGalleryDots();
+
+if (
+  carouselImage &&
+  images.length
+) {
+
+  carouselImage.src =
+    images[0];
+
+  carouselImage.alt =
+    imageDescriptions[0];
+
+}
+
 startGallery();
 
 
@@ -469,6 +572,10 @@ const reviewsDots =
 let currentReview = 0;
 let reviewTimer = null;
 
+
+/* ---------------------------------------------------------
+   Create review dots
+   --------------------------------------------------------- */
 
 function createReviewDots() {
 
@@ -492,6 +599,13 @@ function createReviewDots() {
       `View customer review ${index + 1}`
     );
 
+    dot.setAttribute(
+      "aria-current",
+      index === currentReview
+        ? "true"
+        : "false"
+    );
+
     dot.addEventListener(
       "click",
       () => {
@@ -509,6 +623,10 @@ function createReviewDots() {
 }
 
 
+/* ---------------------------------------------------------
+   Show review
+   --------------------------------------------------------- */
+
 function showReview(index) {
 
   if (!reviewCards.length) {
@@ -523,9 +641,24 @@ function showReview(index) {
   reviewCards.forEach(
     (card, cardIndex) => {
 
+      const isActive =
+        cardIndex === currentReview;
+
       card.classList.toggle(
         "active",
-        cardIndex === currentReview
+        isActive
+      );
+
+      /*
+         Hide inactive cards from assistive
+         technology when possible.
+      */
+
+      card.setAttribute(
+        "aria-hidden",
+        isActive
+          ? "false"
+          : "true"
       );
 
     }
@@ -542,9 +675,19 @@ function showReview(index) {
     dots.forEach(
       (dot, dotIndex) => {
 
+        const isActive =
+          dotIndex === currentReview;
+
         dot.classList.toggle(
           "active",
-          dotIndex === currentReview
+          isActive
+        );
+
+        dot.setAttribute(
+          "aria-current",
+          isActive
+            ? "true"
+            : "false"
         );
 
       }
@@ -555,13 +698,22 @@ function showReview(index) {
 }
 
 
+/* ---------------------------------------------------------
+   Review timer
+   --------------------------------------------------------- */
+
 function startReviews() {
 
   stopReviews();
 
-  if (reviewCards.length <= 1) {
+
+  if (
+    prefersReducedMotion.matches ||
+    reviewCards.length <= 1
+  ) {
     return;
   }
+
 
   reviewTimer =
     setInterval(() => {
@@ -595,6 +747,12 @@ function stopReviews() {
 
 
 function restartReviews() {
+
+  if (
+    prefersReducedMotion.matches
+  ) {
+    return;
+  }
 
   startReviews();
 
@@ -850,9 +1008,8 @@ function updateServiceSelection() {
 
   if (serviceSelection) {
 
-    serviceSelection.classList.toggle(
-      "has-error",
-      false
+    serviceSelection.classList.remove(
+      "has-error"
     );
 
   }
@@ -902,6 +1059,7 @@ function validateServices() {
   const selectedServices =
     getSelectedServices();
 
+
   if (selectedServices.length > 0) {
 
     if (serviceError) {
@@ -933,13 +1091,10 @@ function validateServices() {
       "has-error"
     );
 
-  }
-
-
-  if (serviceSelection) {
-
     serviceSelection.scrollIntoView({
-      behavior: "smooth",
+      behavior: prefersReducedMotion.matches
+        ? "auto"
+        : "smooth",
       block: "center"
     });
 
@@ -1063,7 +1218,7 @@ if (quoteForm) {
 
 
       /*
-        Convert the selected services
+        Convert selected services
         into one clean Formspree field.
       */
 
@@ -1115,10 +1270,17 @@ if (quoteForm) {
             originalButtonHTML;
 
 
-          formMessage.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
+          if (formMessage) {
+
+            formMessage.scrollIntoView({
+              behavior:
+                prefersReducedMotion.matches
+                  ? "auto"
+                  : "smooth",
+              block: "center"
+            });
+
+          }
 
 
         } else {
@@ -1334,7 +1496,10 @@ document
 
 
         target.scrollIntoView({
-          behavior: "smooth",
+          behavior:
+            prefersReducedMotion.matches
+              ? "auto"
+              : "smooth",
           block: "start"
         });
 
@@ -1372,16 +1537,42 @@ document.addEventListener(
    REDUCED MOTION
    ========================================================= */
 
-const prefersReducedMotion =
-  window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
-
-
 if (prefersReducedMotion.matches) {
 
   stopGallery();
   stopReviews();
+
+}
+
+
+/*
+   If the user changes their reduced-motion preference
+   while the page is open, update the carousels accordingly.
+*/
+
+if (
+  typeof prefersReducedMotion.addEventListener ===
+  "function"
+) {
+
+  prefersReducedMotion.addEventListener(
+    "change",
+    (event) => {
+
+      if (event.matches) {
+
+        stopGallery();
+        stopReviews();
+
+      } else {
+
+        startGallery();
+        startReviews();
+
+      }
+
+    }
+  );
 
 }
 
