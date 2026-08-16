@@ -950,7 +950,7 @@ p {
    ========================================================= */
 
 .packages-section {
-  padding: 95px 0;
+  padding: 95px 0 0;
 
   background:
     linear-gradient(
@@ -1315,7 +1315,7 @@ p {
    ========================================================= */
 
 .mobile-section {
-  padding: 80px 0;
+  padding: 95px 0;
 
   background: var(--bg);
 }
