@@ -1547,6 +1547,309 @@ p {
   border-color: rgba(255,100,100,0.35);
 }
 
+
+/* =========================================================
+   SERVICE SELECTION
+   ========================================================= */
+
+.service-selection {
+  width: 100%;
+}
+
+.service-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+
+/* Individual service option */
+
+.service-option {
+  position: relative;
+
+  min-height: 54px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 15px;
+
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+
+  color: #c8d0d4;
+  background: #0d1215;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* Hide native checkbox */
+
+.service-option-input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* Custom checkbox */
+
+.service-option-check {
+  position: relative;
+
+  width: 18px;
+  height: 18px;
+
+  flex: 0 0 18px;
+
+  margin-right: 11px;
+
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 5px;
+
+  background: #090d10;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Checkmark */
+
+.service-option-check::after {
+  content: "";
+
+  position: absolute;
+
+  left: 5px;
+  top: 2px;
+
+  width: 5px;
+  height: 9px;
+
+  border-right: 2px solid #061016;
+  border-bottom: 2px solid #061016;
+
+  opacity: 0;
+
+  transform: rotate(45deg) scale(0.7);
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+/* Service name */
+
+.service-option-text {
+  color: #c8d0d4;
+
+  font-size: 0.76rem;
+  font-weight: 750;
+
+  line-height: 1.3;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+/* Hover */
+
+.service-option:hover {
+  border-color: rgba(89,199,255,0.35);
+
+  background: #11181c;
+
+  transform: translateY(-1px);
+}
+
+.service-option:hover .service-option-text {
+  color: var(--white);
+}
+
+.service-option:hover .service-option-check {
+  border-color: rgba(89,199,255,0.55);
+}
+
+
+/* Selected option */
+
+.service-option:has(.service-option-input:checked) {
+  border-color: rgba(89,199,255,0.55);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(89,199,255,0.11),
+      rgba(89,199,255,0.045)
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(89,199,255,0.04);
+}
+
+
+/* Selected checkbox */
+
+.service-option-input:checked + .service-option-check {
+  border-color: var(--accent);
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 0 3px rgba(89,199,255,0.08);
+}
+
+
+/* Show checkmark */
+
+.service-option-input:checked + .service-option-check::after {
+  opacity: 1;
+
+  transform: rotate(45deg) scale(1);
+}
+
+
+/* Selected text */
+
+.service-option-input:checked ~ .service-option-text {
+  color: var(--white);
+
+  font-weight: 800;
+}
+
+
+/* Keyboard focus */
+
+.service-option:has(.service-option-input:focus-visible) {
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 3px rgba(89,199,255,0.09);
+}
+
+
+/* =========================================================
+   SERVICE SELECTION FOOTER
+   ========================================================= */
+
+.service-selection-footer {
+  min-height: 47px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 10px;
+
+  padding: 0 14px;
+
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 7px;
+
+  background: rgba(255,255,255,0.025);
+
+  color: var(--muted-dark);
+
+  font-size: 0.65rem;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* Service count */
+
+.service-selection-count {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  white-space: nowrap;
+}
+
+.service-selection-count strong {
+  color: var(--muted);
+
+  font-size: 0.72rem;
+}
+
+
+/* Footer when services are selected */
+
+.service-selection-footer.has-selection {
+  border-color: rgba(89,199,255,0.18);
+
+  background: rgba(89,199,255,0.045);
+}
+
+.service-selection-footer.has-selection
+.service-selection-count strong {
+  color: var(--accent);
+}
+
+
+/* =========================================================
+   SERVICE ERROR
+   ========================================================= */
+
+.service-error {
+  margin-top: 9px;
+
+  padding: 10px 12px;
+
+  border: 1px solid rgba(255,100,100,0.20);
+  border-radius: 7px;
+
+  color: #ffb2b2;
+
+  background: rgba(255,100,100,0.07);
+
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SERVICE SELECTION ERROR STATE
+   ========================================================= */
+
+.service-selection.has-error .service-option {
+  border-color: rgba(255,100,100,0.18);
+}
+
+.service-selection.has-error .service-option-check {
+  border-color: rgba(255,100,100,0.30);
+}
+
+
+/* =========================================================
+   FORM SUBMIT
+   ========================================================= */
+
 .form-submit {
   width: 100%;
 
@@ -2073,6 +2376,31 @@ select:focus-visible {
   .quote-form-wrap {
     padding: 22px;
   }
+
+
+  /* Service selection mobile */
+
+  .service-options {
+    grid-template-columns: 1fr;
+  }
+
+  .service-option {
+    min-height: 52px;
+
+    padding: 0 14px;
+  }
+
+  .service-selection-footer {
+    min-height: auto;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 4px;
+
+    padding: 11px 13px;
+  }
+
 
   .footer-top {
     grid-template-columns: 1fr;
