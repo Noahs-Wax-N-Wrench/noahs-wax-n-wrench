@@ -1259,8 +1259,10 @@ p {
   background: rgba(255,255,255,0.08);
 }
 
+
 /* =========================================================
    MOBILE ADVANTAGE
+   Oil Changes + Repairs / Maintenance
    ========================================================= */
 
 .mobile-section {
@@ -1271,8 +1273,8 @@ p {
 
 .mobile-card {
   position: relative;
-   
-  height: 340px
+
+  height: 340px;
   min-height: 340px;
 
   display: flex;
@@ -1289,9 +1291,9 @@ p {
   background:
     linear-gradient(
       90deg,
-      rgba(13,17,20,0.96) 0%,
-      rgba(13,17,20,0.88) 38%,
-      rgba(13,17,20,0.48) 72%,
+      rgba(13,17,20,0.97) 0%,
+      rgba(13,17,20,0.91) 35%,
+      rgba(13,17,20,0.58) 68%,
       rgba(13,17,20,0.30) 100%
     ),
     url("Pictures/Engine-Bay-Side-by-Side.jpg");
@@ -1314,17 +1316,24 @@ p {
 
 .mobile-copy h2 {
   margin-top: 18px;
+
   font-size: clamp(1.8rem, 3vw, 2.6rem);
+
   line-height: 1.15;
 }
 
 .mobile-copy h2 span {
   display: block;
+
   margin-top: 6px;
+
   color: var(--accent);
+
   font-size: 0.65em;
+
   line-height: 1.2;
 }
+
 .mobile-copy p {
   max-width: 590px;
 
@@ -1830,9 +1839,6 @@ select:focus-visible {
 
   .quote-intro {
     position: static;
-  }
-
-  .quote-intro {
     max-width: 700px;
   }
 
@@ -1983,7 +1989,7 @@ select:focus-visible {
 
     overflow-x: auto;
 
-    padding: 0 0;
+    padding: 0;
 
     scrollbar-width: none;
   }
@@ -2047,7 +2053,8 @@ select:focus-visible {
   }
 
   .mobile-card {
-    min-height: auto;
+    height: auto;
+    min-height: 340px;
 
     flex-direction: column;
     align-items: flex-start;
@@ -2169,6 +2176,8 @@ select:focus-visible {
   }
 
   .mobile-card {
+    min-height: 340px;
+
     padding: 28px 23px;
   }
 
