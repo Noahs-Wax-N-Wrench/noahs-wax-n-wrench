@@ -28,12 +28,6 @@ const images = [
 ];
 
 
-/*
-   Keep these descriptions aligned with the exact
-   image order above. These are used for accessibility
-   and image alt text.
-*/
-
 const imageDescriptions = [
   "Tesla white exterior detailing in Menomonee Falls, WI",
   "Engine bay cleaning before and after comparison by Noah's Wax N' Wrench",
@@ -75,9 +69,9 @@ const carouselWrapper =
   document.getElementById("carouselWrapper");
 
 
-/* ---------------------------------------------------------
-   Reduced motion preference
-   --------------------------------------------------------- */
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
 
 const prefersReducedMotion =
   window.matchMedia(
@@ -85,9 +79,9 @@ const prefersReducedMotion =
   );
 
 
-/* ---------------------------------------------------------
-   Preload images
-   --------------------------------------------------------- */
+/* =========================================================
+   PRELOAD IMAGES
+   ========================================================= */
 
 images.forEach((src) => {
 
@@ -99,9 +93,9 @@ images.forEach((src) => {
 });
 
 
-/* ---------------------------------------------------------
-   Create gallery dots
-   --------------------------------------------------------- */
+/* =========================================================
+   CREATE GALLERY DOTS
+   ========================================================= */
 
 function createGalleryDots() {
 
@@ -146,9 +140,9 @@ function createGalleryDots() {
 }
 
 
-/* ---------------------------------------------------------
-   Update dots
-   --------------------------------------------------------- */
+/* =========================================================
+   UPDATE GALLERY DOTS
+   ========================================================= */
 
 function updateGalleryDots() {
 
@@ -183,9 +177,9 @@ function updateGalleryDots() {
 }
 
 
-/* ---------------------------------------------------------
-   Show gallery image
-   --------------------------------------------------------- */
+/* =========================================================
+   SHOW GALLERY IMAGE
+   ========================================================= */
 
 function showImage(index) {
 
@@ -198,11 +192,6 @@ function showImage(index) {
 
   galleryChanging = true;
 
-
-  /*
-     If reduced motion is enabled, change the image
-     immediately without the fade transition.
-  */
 
   if (prefersReducedMotion.matches) {
 
@@ -270,10 +259,6 @@ function showImage(index) {
     );
 
 
-    /*
-       Cached images may already be complete.
-    */
-
     if (carouselImage.complete) {
 
       setTimeout(() => {
@@ -295,9 +280,9 @@ function showImage(index) {
 }
 
 
-/* ---------------------------------------------------------
-   Change image
-   --------------------------------------------------------- */
+/* =========================================================
+   CHANGE IMAGE
+   ========================================================= */
 
 function changeImage(step) {
 
@@ -308,9 +293,9 @@ function changeImage(step) {
 }
 
 
-/* ---------------------------------------------------------
-   Gallery timer
-   --------------------------------------------------------- */
+/* =========================================================
+   GALLERY TIMER
+   ========================================================= */
 
 function startGallery() {
 
@@ -370,9 +355,9 @@ function restartGallery() {
 }
 
 
-/* ---------------------------------------------------------
-   Gallery buttons
-   --------------------------------------------------------- */
+/* =========================================================
+   GALLERY BUTTONS
+   ========================================================= */
 
 if (prevBtn) {
 
@@ -404,9 +389,9 @@ if (nextBtn) {
 }
 
 
-/* ---------------------------------------------------------
-   Keyboard controls
-   --------------------------------------------------------- */
+/* =========================================================
+   KEYBOARD CONTROLS
+   ========================================================= */
 
 document.addEventListener(
   "keydown",
@@ -458,9 +443,9 @@ document.addEventListener(
 );
 
 
-/* ---------------------------------------------------------
-   Swipe controls
-   --------------------------------------------------------- */
+/* =========================================================
+   SWIPE CONTROLS
+   ========================================================= */
 
 let touchStartX = 0;
 let touchStartY = 0;
@@ -531,9 +516,9 @@ if (carouselWrapper) {
 }
 
 
-/* ---------------------------------------------------------
-   Initialize gallery
-   --------------------------------------------------------- */
+/* =========================================================
+   INITIALIZE GALLERY
+   ========================================================= */
 
 createGalleryDots();
 updateGalleryDots();
@@ -573,9 +558,9 @@ let currentReview = 0;
 let reviewTimer = null;
 
 
-/* ---------------------------------------------------------
-   Create review dots
-   --------------------------------------------------------- */
+/* =========================================================
+   CREATE REVIEW DOTS
+   ========================================================= */
 
 function createReviewDots() {
 
@@ -623,9 +608,9 @@ function createReviewDots() {
 }
 
 
-/* ---------------------------------------------------------
-   Show review
-   --------------------------------------------------------- */
+/* =========================================================
+   SHOW REVIEW
+   ========================================================= */
 
 function showReview(index) {
 
@@ -648,11 +633,6 @@ function showReview(index) {
         "active",
         isActive
       );
-
-      /*
-         Hide inactive cards from assistive
-         technology when possible.
-      */
 
       card.setAttribute(
         "aria-hidden",
@@ -698,9 +678,9 @@ function showReview(index) {
 }
 
 
-/* ---------------------------------------------------------
-   Review timer
-   --------------------------------------------------------- */
+/* =========================================================
+   REVIEW TIMER
+   ========================================================= */
 
 function startReviews() {
 
@@ -944,9 +924,9 @@ const formMessage =
   );
 
 
-/* ---------------------------------------------------------
-   Multi-service selection
-   --------------------------------------------------------- */
+/* =========================================================
+   MULTI-SERVICE SELECTION
+   ========================================================= */
 
 const serviceSelection =
   document.getElementById(
@@ -1050,9 +1030,9 @@ serviceInputs.forEach(
 updateServiceSelection();
 
 
-/* ---------------------------------------------------------
-   Service validation
-   --------------------------------------------------------- */
+/* =========================================================
+   SERVICE VALIDATION
+   ========================================================= */
 
 function validateServices() {
 
@@ -1105,9 +1085,9 @@ function validateServices() {
 }
 
 
-/* ---------------------------------------------------------
-   Form messages
-   --------------------------------------------------------- */
+/* =========================================================
+   FORM MESSAGES
+   ========================================================= */
 
 function showFormMessage(
   message,
@@ -1148,9 +1128,9 @@ function hideFormMessage() {
 }
 
 
-/* ---------------------------------------------------------
-   Form submission
-   --------------------------------------------------------- */
+/* =========================================================
+   FORM SUBMISSION
+   ========================================================= */
 
 if (quoteForm) {
 
@@ -1163,22 +1143,12 @@ if (quoteForm) {
       hideFormMessage();
 
 
-      /*
-        First make sure at least one
-        service has been selected.
-      */
-
       if (!validateServices()) {
 
         return;
 
       }
 
-
-      /*
-        Let native browser validation
-        handle required fields.
-      */
 
       if (!quoteForm.checkValidity()) {
 
@@ -1216,11 +1186,6 @@ if (quoteForm) {
           quoteForm
         );
 
-
-      /*
-        Convert selected services
-        into one clean Formspree field.
-      */
 
       const selectedServices =
         getSelectedServices();
@@ -1312,9 +1277,7 @@ if (quoteForm) {
             }
 
           } catch {
-            /*
-              Use default error message.
-            */
+            /* Use default error message. */
           }
 
 
@@ -1544,11 +1507,6 @@ if (prefersReducedMotion.matches) {
 
 }
 
-
-/*
-   If the user changes their reduced-motion preference
-   while the page is open, update the carousels accordingly.
-*/
 
 if (
   typeof prefersReducedMotion.addEventListener ===
