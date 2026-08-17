@@ -392,7 +392,8 @@ p {
 
   color: var(--white);
 
-  font-size: clamp(3.4rem, 6vw, 6.2rem);
+  /* Slightly reduced from the original size */
+  font-size: clamp(3rem, 5.2vw, 5.4rem);
   font-weight: 850;
 
   letter-spacing: -0.065em;
