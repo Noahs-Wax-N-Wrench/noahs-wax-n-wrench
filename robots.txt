@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://sussexautodetailing.com/sitemap.xml
 
+Sitemap: https://noahswaxnwrench.com/sitemap.xml
