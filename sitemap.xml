@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
-    <loc>https://sussexautodetailing.com/</loc>
-    <lastmod>2025-07-13</lastmod>
-    <priority>1.00</priority>
+    <loc>https://noahswaxnwrench.com/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://sussexautodetailing.com/#intro</loc>
-    <lastmod>2025-07-13</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://sussexautodetailing.com/#gallery</loc>
-    <lastmod>2025-07-13</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://sussexautodetailing.com/#packages</loc>
-    <lastmod>2025-07-13</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://sussexautodetailing.com/#quote</loc>
-    <lastmod>2025-07-13</lastmod>
-    <priority>0.80</priority>
-  </url>
+
 </urlset>
