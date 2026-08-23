@@ -1086,6 +1086,152 @@ function validateServices() {
 
 
 /* =========================================================
+   VEHICLE FIELD REFERENCES
+   ========================================================= */
+
+const yearInput =
+  document.getElementById(
+    "year"
+  );
+
+const makeInput =
+  document.getElementById(
+    "make"
+  );
+
+const modelInput =
+  document.getElementById(
+    "model"
+  );
+
+
+/* =========================================================
+   VEHICLE VALIDATION
+   ========================================================= */
+
+const requiredVehicleFields = [
+  yearInput,
+  makeInput,
+  modelInput
+].filter(Boolean);
+
+
+function validateVehicleDetails() {
+
+  let firstInvalidField = null;
+
+
+  /*
+   * Clear previous custom validation messages.
+   */
+
+  requiredVehicleFields.forEach(
+    (field) => {
+
+      field.setCustomValidity("");
+
+    }
+  );
+
+
+  /*
+   * Check Year, Make and Model.
+   */
+
+  requiredVehicleFields.forEach(
+    (field) => {
+
+      const value =
+        field.value.trim();
+
+
+      if (!value) {
+
+        const label =
+          field.labels &&
+          field.labels[0]
+            ? field.labels[0].textContent.trim()
+            : "vehicle information";
+
+
+        field.setCustomValidity(
+          `Please enter your vehicle ${label.toLowerCase()}.`
+        );
+
+
+        if (!firstInvalidField) {
+
+          firstInvalidField =
+            field;
+
+        }
+
+      }
+
+    }
+  );
+
+
+  /*
+   * Validate the year specifically.
+   */
+
+  if (yearInput) {
+
+    const year =
+      yearInput.value.trim();
+
+
+    if (year && !/^\d{4}$/.test(year)) {
+
+      yearInput.setCustomValidity(
+        "Please enter a valid 4-digit vehicle year."
+      );
+
+
+      if (!firstInvalidField) {
+
+        firstInvalidField =
+          yearInput;
+
+      }
+
+    }
+
+  }
+
+
+  /*
+   * Stop submission if anything is invalid.
+   */
+
+  if (firstInvalidField) {
+
+    firstInvalidField.reportValidity();
+
+
+    firstInvalidField.scrollIntoView({
+      behavior: prefersReducedMotion.matches
+        ? "auto"
+        : "smooth",
+      block: "center"
+    });
+
+
+    firstInvalidField.focus();
+
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =========================================================
    FORM MESSAGES
    ========================================================= */
 
@@ -1138,10 +1284,19 @@ if (quoteForm) {
     "submit",
     async (event) => {
 
+      /*
+       * Always prevent the browser from submitting
+       * directly to Formspree.
+       */
+
       event.preventDefault();
 
       hideFormMessage();
 
+
+      /*
+       * Validate service selection first.
+       */
 
       if (!validateServices()) {
 
@@ -1149,6 +1304,21 @@ if (quoteForm) {
 
       }
 
+
+      /*
+       * Explicitly validate Year, Make and Model.
+       */
+
+      if (!validateVehicleDetails()) {
+
+        return;
+
+      }
+
+
+      /*
+       * Run the browser's complete HTML validation.
+       */
 
       if (!quoteForm.checkValidity()) {
 
@@ -1228,6 +1398,20 @@ if (quoteForm) {
           updateServiceSelection();
 
 
+          /*
+           * Clear any custom validation messages
+           * after a successful submission.
+           */
+
+          requiredVehicleFields.forEach(
+            (field) => {
+
+              field.setCustomValidity("");
+
+            }
+          );
+
+
           submitButton.disabled =
             false;
 
@@ -1277,7 +1461,9 @@ if (quoteForm) {
             }
 
           } catch {
-            /* Use default error message. */
+            /*
+             * Use default error message.
+             */
           }
 
 
@@ -1384,14 +1570,8 @@ if (phoneInput) {
 
 
 /* =========================================================
-   YEAR VALIDATION
+   YEAR INPUT RESTRICTION
    ========================================================= */
-
-const yearInput =
-  document.getElementById(
-    "year"
-  );
-
 
 if (yearInput) {
 
@@ -1410,10 +1590,39 @@ if (yearInput) {
             4
           );
 
+
+      /*
+       * Clear custom validation as the user corrects
+       * the field. Browser validation will run again
+       * when the form is submitted.
+       */
+
+      yearInput.setCustomValidity("");
+
     }
   );
 
 }
+
+
+/* =========================================================
+   CLEAR VEHICLE VALIDATION ON INPUT
+   ========================================================= */
+
+[makeInput, modelInput]
+  .filter(Boolean)
+  .forEach((field) => {
+
+    field.addEventListener(
+      "input",
+      () => {
+
+        field.setCustomValidity("");
+
+      }
+    );
+
+  });
 
 
 /* =========================================================
