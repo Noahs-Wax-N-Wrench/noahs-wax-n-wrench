@@ -650,10 +650,6 @@
     </section>
 
 
-    <!-- =========================================================
-         QUOTE
-         ========================================================= -->
-
     <section id="quote" class="quote-section">
 
       <div class="container quote-grid">
@@ -1044,6 +1040,11 @@
                     id="year"
                     name="year"
                     placeholder="2024"
+                    inputmode="numeric"
+                    minlength="4"
+                    maxlength="4"
+                    pattern="[0-9]{4}"
+                    required
                   />
 
                 </div>
@@ -1060,6 +1061,7 @@
                     id="make"
                     name="make"
                     placeholder="Honda"
+                    required
                   />
 
                 </div>
@@ -1076,6 +1078,7 @@
                     id="model"
                     name="model"
                     placeholder="Civic"
+                    required
                   />
 
                 </div>
