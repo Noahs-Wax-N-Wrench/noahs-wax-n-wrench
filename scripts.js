@@ -505,6 +505,7 @@ if (carouselWrapper) {
 
       }
 
+
       restartGallery();
 
     },
@@ -517,30 +518,7 @@ if (carouselWrapper) {
 
 
 /* =========================================================
-   INITIALIZE GALLERY
-   ========================================================= */
-
-createGalleryDots();
-updateGalleryDots();
-
-if (
-  carouselImage &&
-  images.length
-) {
-
-  carouselImage.src =
-    images[0];
-
-  carouselImage.alt =
-    imageDescriptions[0];
-
-}
-
-startGallery();
-
-
-/* =========================================================
-   REVIEWS CAROUSEL
+   REVIEW CAROUSEL
    ========================================================= */
 
 const reviewCards =
@@ -618,6 +596,7 @@ function showReview(index) {
     return;
   }
 
+
   currentReview =
     (index + reviewCards.length) %
     reviewCards.length;
@@ -629,10 +608,12 @@ function showReview(index) {
       const isActive =
         cardIndex === currentReview;
 
+
       card.classList.toggle(
         "active",
         isActive
       );
+
 
       card.setAttribute(
         "aria-hidden",
@@ -652,16 +633,19 @@ function showReview(index) {
         ".review-dot"
       );
 
+
     dots.forEach(
       (dot, dotIndex) => {
 
         const isActive =
           dotIndex === currentReview;
 
+
         dot.classList.toggle(
           "active",
           isActive
         );
+
 
         dot.setAttribute(
           "aria-current",
@@ -765,15 +749,18 @@ function closeMobileMenu() {
     return;
   }
 
+
   menuToggle.setAttribute(
     "aria-expanded",
     "false"
   );
 
+
   menuToggle.setAttribute(
     "aria-label",
     "Open navigation menu"
   );
+
 
   mobileNav.classList.remove(
     "open"
@@ -788,15 +775,18 @@ function openMobileMenu() {
     return;
   }
 
+
   menuToggle.setAttribute(
     "aria-expanded",
     "true"
   );
 
+
   menuToggle.setAttribute(
     "aria-label",
     "Close navigation menu"
   );
+
 
   mobileNav.classList.add(
     "open"
@@ -870,6 +860,7 @@ document.addEventListener(
     if (!mobileNav || !menuToggle) {
       return;
     }
+
 
     const clickedInsideMenu =
       mobileNav.contains(
@@ -1012,6 +1003,29 @@ function updateServiceSelection() {
 
   }
 
+
+  serviceInputs.forEach(
+    (input) => {
+
+      const option =
+        input.closest(
+          ".service-option"
+        );
+
+
+      if (!option) {
+        return;
+      }
+
+
+      option.classList.toggle(
+        "selected",
+        input.checked
+      );
+
+    }
+  );
+
 }
 
 
@@ -1040,17 +1054,26 @@ function validateServices() {
     getSelectedServices();
 
 
-  if (selectedServices.length > 0) {
+  if (
+    selectedServices.length > 0
+  ) {
 
     if (serviceError) {
-      serviceError.hidden = true;
+
+      serviceError.hidden =
+        true;
+
     }
 
+
     if (serviceSelection) {
+
       serviceSelection.classList.remove(
         "has-error"
       );
+
     }
+
 
     return true;
 
@@ -1071,14 +1094,17 @@ function validateServices() {
       "has-error"
     );
 
+
     serviceSelection.scrollIntoView({
-      behavior: prefersReducedMotion.matches
-        ? "auto"
-        : "smooth",
+      behavior:
+        prefersReducedMotion.matches
+          ? "auto"
+          : "smooth",
       block: "center"
     });
 
   }
+
 
   return false;
 
@@ -1182,7 +1208,10 @@ function validateVehicleDetails() {
       yearInput.value.trim();
 
 
-    if (year && !/^\d{4}$/.test(year)) {
+    if (
+      year &&
+      !/^\d{4}$/.test(year)
+    ) {
 
       yearInput.setCustomValidity(
         "Please enter a valid 4-digit vehicle year."
@@ -1211,9 +1240,10 @@ function validateVehicleDetails() {
 
 
     firstInvalidField.scrollIntoView({
-      behavior: prefersReducedMotion.matches
-        ? "auto"
-        : "smooth",
+      behavior:
+        prefersReducedMotion.matches
+          ? "auto"
+          : "smooth",
       block: "center"
     });
 
@@ -1244,11 +1274,14 @@ function showFormMessage(
     return;
   }
 
+
   formMessage.hidden =
     false;
 
+
   formMessage.className =
     `form-message ${type}`;
+
 
   formMessage.textContent =
     message;
@@ -1262,11 +1295,14 @@ function hideFormMessage() {
     return;
   }
 
+
   formMessage.hidden =
     true;
 
+
   formMessage.className =
     "form-message";
+
 
   formMessage.textContent =
     "";
@@ -1290,6 +1326,7 @@ if (quoteForm) {
        */
 
       event.preventDefault();
+
 
       hideFormMessage();
 
@@ -1347,6 +1384,7 @@ if (quoteForm) {
       submitButton.disabled =
         true;
 
+
       submitButton.innerHTML =
         "Sending Request...";
 
@@ -1367,6 +1405,51 @@ if (quoteForm) {
       );
 
 
+      /*
+       * =====================================================
+       * GOOGLE ADS ENHANCED CONVERSIONS
+       * Capture the customer's email and phone BEFORE the
+       * form is reset.
+       * =====================================================
+       */
+
+      const conversionEmail =
+        String(
+          formData.get("email") || ""
+        ).trim();
+
+
+      const rawConversionPhone =
+        String(
+          formData.get("phone") || ""
+        ).replace(
+          /\D/g,
+          ""
+        );
+
+
+      let conversionPhone =
+        "";
+
+
+      if (
+        rawConversionPhone.length === 10
+      ) {
+
+        conversionPhone =
+          `+1${rawConversionPhone}`;
+
+      } else if (
+        rawConversionPhone.length === 11 &&
+        rawConversionPhone.startsWith("1")
+      ) {
+
+        conversionPhone =
+          `+${rawConversionPhone}`;
+
+      }
+
+
       try {
 
         const response =
@@ -1381,11 +1464,61 @@ if (quoteForm) {
                 Accept:
                   "application/json"
               }
+
             }
           );
 
 
         if (response.ok) {
+
+          /*
+           * =================================================
+           * GOOGLE ADS ENHANCED CONVERSIONS
+           *
+           * This fires ONLY after Formspree successfully
+           * accepts the quote request.
+           * =================================================
+           */
+
+          if (
+            typeof window.gtag ===
+              "function" &&
+            conversionEmail
+          ) {
+
+            const enhancedConversionData =
+              {
+                email:
+                  conversionEmail
+              };
+
+
+            if (conversionPhone) {
+
+              enhancedConversionData.phone_number =
+                conversionPhone;
+
+            }
+
+
+            window.gtag(
+              "set",
+              "user_data",
+              enhancedConversionData
+            );
+
+
+            window.gtag(
+              "event",
+              "conversion",
+              {
+                send_to:
+                  "AW-18408696341/pghiCI-IpOccEJXU-clE"
+              }
+            );
+
+          }
+
 
           showFormMessage(
             "Your quote request has been sent! We'll review your information and get back to you shortly.",
@@ -1394,6 +1527,7 @@ if (quoteForm) {
 
 
           quoteForm.reset();
+
 
           updateServiceSelection();
 
@@ -1414,6 +1548,7 @@ if (quoteForm) {
 
           submitButton.disabled =
             false;
+
 
           submitButton.innerHTML =
             originalButtonHTML;
@@ -1461,9 +1596,11 @@ if (quoteForm) {
             }
 
           } catch {
+
             /*
              * Use default error message.
              */
+
           }
 
 
@@ -1476,10 +1613,12 @@ if (quoteForm) {
           submitButton.disabled =
             false;
 
+
           submitButton.innerHTML =
             originalButtonHTML;
 
         }
+
 
       } catch (error) {
 
@@ -1497,6 +1636,7 @@ if (quoteForm) {
 
         submitButton.disabled =
           false;
+
 
         submitButton.innerHTML =
           originalButtonHTML;
@@ -1649,7 +1789,9 @@ document
           !targetId ||
           targetId === "#"
         ) {
+
           return;
+
         }
 
 
@@ -1660,7 +1802,9 @@ document
 
 
         if (!target) {
+
           return;
+
         }
 
 
@@ -1776,7 +1920,9 @@ if (carouselImage) {
         "is-changing"
       );
 
+
       galleryChanging = false;
+
 
       console.error(
         "Unable to load gallery image:",
